@@ -1,0 +1,37 @@
+{
+    "doctype": "DocType",
+    "module": "Design Operations",
+    "fields": [
+        {
+            "fieldname": "transmittal_no",
+            "fieldtype": "Data",
+            "label": "Transmittal No"
+        },
+        {
+            "fieldname": "date",
+            "fieldtype": "Date",
+            "label": "Date"
+        },
+        {
+            "fieldname": "recipient",
+            "fieldtype": "Data",
+            "label": "Recipient"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Design Engineer",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        }
+    ],
+    "name": "Transmittal"
+}

@@ -1,0 +1,38 @@
+{
+    "doctype": "DocType",
+    "module": "Construction Control",
+    "fields": [
+        {
+            "fieldname": "rfi_no",
+            "fieldtype": "Data",
+            "label": "RFI No"
+        },
+        {
+            "fieldname": "subject",
+            "fieldtype": "Data",
+            "label": "Subject"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Open\nClosed"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Site Engineer",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        }
+    ],
+    "name": "RFI Record"
+}

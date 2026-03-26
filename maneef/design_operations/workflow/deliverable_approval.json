@@ -1,0 +1,23 @@
+{
+    "doctype": "Workflow",
+    "name": "Maneef Deliverable Approval",
+    "document_type": "Project Deliverable",
+    "is_active": 1,
+    "override_status": 1,
+    "workflow_state_field": "workflow_state",
+    "states": [
+        {"state": "Draft", "doc_status": 0, "allow_edit": "Production Team"},
+        {"state": "Coordinator Review", "doc_status": 0, "allow_edit": "Project Coordinator"},
+        {"state": "GM Approval Pending", "doc_status": 0, "allow_edit": "Managing Partner"},
+        {"state": "Approved", "doc_status": 1, "allow_edit": "Managing Partner"},
+        {"state": "Rejected", "doc_status": 0, "allow_edit": "Production Team"}
+    ],
+    "transitions": [
+        {"state": "Draft", "action": "Submit for Review", "next_state": "Coordinator Review", "allowed": "Production Team"},
+        {"state": "Coordinator Review", "action": "Escalate to GM", "next_state": "GM Approval Pending", "allowed": "Project Coordinator"},
+        {"state": "Coordinator Review", "action": "Return to Production", "next_state": "Rejected", "allowed": "Project Coordinator"},
+        {"state": "GM Approval Pending", "action": "Approve", "next_state": "Approved", "allowed": "Managing Partner"},
+        {"state": "GM Approval Pending", "action": "Reject", "next_state": "Rejected", "allowed": "Managing Partner"},
+        {"state": "Rejected", "action": "Re-submit", "next_state": "Coordinator Review", "allowed": "Production Team"}
+    ]
+}

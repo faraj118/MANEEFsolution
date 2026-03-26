@@ -1,0 +1,39 @@
+{
+    "doctype": "DocType",
+    "module": "Construction Control",
+    "fields": [
+        {
+            "fieldname": "issue_description",
+            "fieldtype": "Text",
+            "label": "Issue Description"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Open\nClosed"
+        },
+        {
+            "fieldname": "site_visit_report",
+            "fieldtype": "Link",
+            "label": "Site Visit Report",
+            "options": "Site Visit Report"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Site Engineer",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        }
+    ],
+    "name": "SVR Issue"
+}

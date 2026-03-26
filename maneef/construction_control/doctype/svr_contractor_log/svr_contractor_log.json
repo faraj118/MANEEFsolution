@@ -1,0 +1,38 @@
+{
+    "doctype": "DocType",
+    "module": "Construction Control",
+    "fields": [
+        {
+            "fieldname": "contractor_name",
+            "fieldtype": "Data",
+            "label": "Contractor Name"
+        },
+        {
+            "fieldname": "log_entry",
+            "fieldtype": "Text",
+            "label": "Log Entry"
+        },
+        {
+            "fieldname": "site_visit_report",
+            "fieldtype": "Link",
+            "label": "Site Visit Report",
+            "options": "Site Visit Report"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Site Engineer",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        }
+    ],
+    "name": "SVR Contractor Log"
+}

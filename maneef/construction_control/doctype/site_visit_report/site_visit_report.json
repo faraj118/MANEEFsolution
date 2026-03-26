@@ -1,0 +1,37 @@
+{
+    "doctype": "DocType",
+    "module": "Construction Control",
+    "fields": [
+        {
+            "fieldname": "visit_date",
+            "fieldtype": "Date",
+            "label": "Visit Date"
+        },
+        {
+            "fieldname": "site",
+            "fieldtype": "Data",
+            "label": "Site"
+        },
+        {
+            "fieldname": "remarks",
+            "fieldtype": "Text",
+            "label": "Remarks"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Site Engineer",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        }
+    ],
+    "name": "Site Visit Report"
+}

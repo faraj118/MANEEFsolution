@@ -1,0 +1,38 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"WfW19G-fH1\",\"type\":\"header\",\"data\":{\"text\":\"Strategic Oversight\",\"level\":4}},{\"id\":\"N1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Deliverables Pending My Approval\"}},{\"id\":\"N2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Projects Exceeding Burn %\"}},{\"id\":\"WfW19G-fH2\",\"type\":\"header\",\"data\":{\"text\":\"Approval Queue\",\"level\":4}},{\"id\":\"JdY8QdG1H_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"My Pending Approvals\"}},{\"id\":\"UdY8QdG1H_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}},{\"id\":\"WfW19G-fH3\",\"type\":\"header\",\"data\":{\"text\":\"Commercial Gates\",\"level\":4}},{\"id\":\"KdY8QdG2H_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unapproved Charters\"}}]",
+ "creation": "2024-01-01 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "dashboard",
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Maneef GM Command",
+ "links": [
+  {"label": "Project Deliverable", "link_type": "DocType", "link_to": "Project Deliverable", "type": "Link"},
+  {"label": "Project Charter", "link_type": "DocType", "link_to": "Project Charter", "type": "Link"},
+  {"label": "Project Health Matrix", "link_type": "Report", "link_to": "Project Health Matrix", "type": "Link"}
+ ],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Design Operations",
+ "name": "Maneef GM Command",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {"role": "Managing Partner"}
+ ],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {"color": "Blue", "label": "My Pending Approvals", "link_to": "Project Deliverable", "type": "DocType", "docview": "List", "filters": "[[\"workflow_state\",\"=\",\"GM Approval Pending\"]]" },
+  {"color": "Red", "label": "Unapproved Charters", "link_to": "Project Charter", "type": "DocType", "docview": "List", "filters": "[[\"docstatus\",\"=\",\"0\"]]" },
+  {"color": "Green", "label": "Project Health Matrix", "link_to": "Project Health Matrix", "type": "Report"}
+ ],
+ "title": "GM Command Center"
+}

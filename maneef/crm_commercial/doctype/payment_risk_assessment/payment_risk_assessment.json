@@ -1,0 +1,27 @@
+{
+    "doctype": "DocType",
+    "name": "Payment Risk Assessment",
+    "module": "Crm Commercial",
+    "custom": 1,
+    "fields": [
+        {
+            "fieldname": "risk_factor",
+            "fieldtype": "Data",
+            "label": "Risk Factor"
+        },
+        {
+            "fieldname": "assessment",
+            "fieldtype": "Text",
+            "label": "Assessment"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}

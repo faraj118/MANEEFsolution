@@ -9,6 +9,7 @@ app_license = "mit"
 # ------------------
 
 # required_apps = []
+required_apps = ["erpnext"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -44,6 +45,9 @@ app_license = "mit"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Company": "public/js/company.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -83,7 +87,19 @@ app_license = "mit"
 # ------------
 
 # before_install = "maneef.install.before_install"
-# after_install = "maneef.install.after_install"
+after_install = ["maneef.setup.run_post_migrate_setup"]
+after_migrate = ["maneef.setup.run_post_migrate_setup"]
+
+# Fixtures
+# --------
+fixtures = [
+    "Workflow", 
+    "Workflow State", 
+    "Workflow Action", 
+    "Custom Field", 
+    "Property Setter",
+    "Print Format"
+]
 
 # Uninstallation
 # ------------
@@ -137,34 +153,41 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    "Opportunity": {
+        "validate": "maneef.crm_commercial.opportunity_hooks.validate",
+        "on_update": "maneef.crm_commercial.opportunity_hooks.on_update"
+    },
+    "Sales Order": {
+        "before_submit": "maneef.crm_commercial.sales_order_hooks.before_submit",
+        "on_submit": "maneef.crm_commercial.sales_order_hooks.on_submit"
+    },
+    "Sales Invoice": {
+        "before_submit": "maneef.financial_control.sales_invoice_hooks.before_submit"
+    },
+    "Payment Entry": {
+        "before_submit": "maneef.financial_control.payment_entry_hooks.before_submit"
+    },
+    "Timesheet": {
+        "before_submit": "maneef.financial_control.timesheet_hooks.before_submit",
+        "on_submit": "maneef.financial_control.sales_invoice_hooks.on_timesheet_submit"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"maneef.tasks.all"
-# 	],
-# 	"daily": [
-# 		"maneef.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"maneef.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"maneef.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"maneef.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+    "daily": [
+        "maneef.financial_control.sales_invoice_hooks.daily_burn_rate_update"
+    ],
+    "hourly": [
+        "maneef.financial_control.sales_invoice_hooks.hourly_burn_alert_check"
+    ],
+    "weekly": [
+        "maneef.construction_control.doctype.rfi_record.rfi_record.weekly_open_items_report"
+    ]
+}
 
 # Testing
 # -------
@@ -246,4 +269,10 @@ app_license = "mit"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
+
+app_include_js = [
+    "/assets/maneef/js/project_deliverable.js"
+]
+
+
 

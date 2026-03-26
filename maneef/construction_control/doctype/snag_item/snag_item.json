@@ -1,0 +1,38 @@
+{
+    "doctype": "DocType",
+    "module": "Construction Control",
+    "fields": [
+        {
+            "fieldname": "item_description",
+            "fieldtype": "Text",
+            "label": "Item Description"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Open\nResolved"
+        },
+        {
+            "fieldname": "site",
+            "fieldtype": "Data",
+            "label": "Site"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Site Engineer",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        }
+    ],
+    "name": "Snag Item"
+}

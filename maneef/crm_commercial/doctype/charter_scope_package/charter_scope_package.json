@@ -1,0 +1,27 @@
+{
+    "doctype": "DocType",
+    "name": "Charter Scope Package",
+    "module": "Crm Commercial",
+    "custom": 1,
+    "fields": [
+        {
+            "fieldname": "package_name",
+            "fieldtype": "Data",
+            "label": "Package Name"
+        },
+        {
+            "fieldname": "scope",
+            "fieldtype": "Text",
+            "label": "Scope"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}

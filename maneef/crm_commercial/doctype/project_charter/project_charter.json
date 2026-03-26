@@ -1,0 +1,126 @@
+{
+    "doctype": "DocType",
+    "name": "Project Charter",
+    "module": "Crm Commercial",
+    "autoname": "naming_series:",
+    "custom": 1,
+    "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Naming Series",
+            "options": "PC-.YYYY.-.####"
+        },
+        {
+            "fieldname": "charter_name",
+            "fieldtype": "Data",
+            "label": "Charter Name",
+            "reqd": 1
+        },
+        {
+            "fieldname": "customer",
+            "fieldtype": "Link",
+            "label": "Customer",
+            "options": "Customer",
+            "reqd": 1
+        },
+        {
+            "fieldname": "project_manager",
+            "fieldtype": "Link",
+            "label": "Project Manager",
+            "options": "User"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "opportunity",
+            "fieldtype": "Link",
+            "label": "Opportunity",
+            "options": "Opportunity"
+        },
+        {
+            "fieldname": "sales_order",
+            "fieldtype": "Link",
+            "label": "Sales Order",
+            "options": "Sales Order"
+        },
+        {
+            "fieldname": "section_break_2",
+            "fieldtype": "Section Break",
+            "label": "Project Timeline & Budget"
+        },
+        {
+            "fieldname": "start_date",
+            "fieldtype": "Date",
+            "label": "Estimated Start Date"
+        },
+        {
+            "fieldname": "end_date",
+            "fieldtype": "Date",
+            "label": "Estimated End Date"
+        },
+        {
+            "fieldname": "column_break_3",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "total_budget",
+            "fieldtype": "Currency",
+            "label": "Total Project Budget",
+            "options": "currency"
+        },
+        {
+            "fieldname": "section_break_4",
+            "fieldtype": "Section Break",
+            "label": "Scope & Assumptions"
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Long Text",
+            "label": "Project Overview / Objectives"
+        },
+        {
+            "fieldname": "section_break_5",
+            "fieldtype": "Section Break",
+            "label": "Technical Task Briefs (Cairo/Production)"
+        },
+        {
+            "fieldname": "custom_task_briefs",
+            "fieldtype": "Table",
+            "label": "Task Briefs",
+            "options": "Task Brief"
+        },
+        {
+            "fieldname": "amended_from",
+            "fieldtype": "Link",
+            "label": "Amended From",
+            "options": "Project Charter",
+            "print_hide": 1,
+            "read_only": 1
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1
+        }
+    ],
+    "is_submittable": 1
+}

@@ -1,0 +1,121 @@
+{
+    "name": "Maneef AEC Standard COA",
+    "tree": {
+      "1000 - ASSETS | الأصول": {
+        "root_type": "Asset",
+        "report_type": "Balance Sheet",
+        "is_group": 1,
+        "1100 - Current Assets | الأصول المتداولة": {
+          "is_group": 1,
+          "1110 Cash on Hand | نقد في الصندوق": {"account_type": "Cash", "is_group": 0},
+          "1120 Bank - Main Account | حساب البنك الرئيسي": {"account_type": "Bank", "is_group": 0},
+          "1130 Accounts Receivable - Clients | ذمم مدينة - عملاء": {"account_type": "Receivable", "is_group": 0},
+          "1140 Retention Receivable | استحقاقات محتجزة": {"account_type": "Receivable", "is_group": 0},
+          "1150 Work in Progress - WIP (Projects) | أعمال تحت التنفيذ - WIP": {"account_type": "Stock", "is_group": 0},
+          "1160 Advances to Suppliers | سلف للموردين": {"account_type": "Receivable", "is_group": 0},
+          "1170 Employee Advances | سلف موظفين": {"account_type": "Receivable", "is_group": 0}
+        },
+        "1200 - Non-Current Assets | الأصول غير المتداولة": {
+          "is_group": 1,
+          "1210 Office Furniture | أثاث مكتبي": {"account_type": "Fixed Asset", "is_group": 0},
+          "1220 Office Equipment | معدات مكتبية": {"account_type": "Fixed Asset", "is_group": 0},
+          "1230 Computers & Workstations | حواسيب ومحطات عمل": {"account_type": "Fixed Asset", "is_group": 0},
+          "1240 Software Licenses | تراخيص برامج": {"is_group": 0},
+          "1250 Vehicles | مركبات": {"account_type": "Fixed Asset", "is_group": 0},
+          "1290 Accumulated Depreciation (Contra - Group) | مجمع الاستهلاك (حساب مقابل)": {"account_type": "Accumulated Depreciation", "is_group": 0}
+        }
+      },
+      "2000 - LIABILITIES | الالتزامات": {
+        "root_type": "Liability",
+        "report_type": "Balance Sheet",
+        "is_group": 1,
+        "2100 - Current Liabilities | الالتزامات المتداولة": {
+          "is_group": 1,
+          "2110 Accounts Payable | ذمم دائنة - موردون": {"account_type": "Payable", "is_group": 0},
+          "2120 Accrued Expenses | مصاريف مستحقة": {"is_group": 0},
+          "2130 Salaries Payable | رواتب مستحقة": {"is_group": 0},
+          "2140 Client Advances | دفعات مقدمة من العملاء": {"account_type": "Payable", "is_group": 0},
+          "2150 Taxes Payable | ضرائب مستحقة": {"account_type": "Tax", "is_group": 0}
+        },
+        "2200 - Non-Current Liabilities | الالتزامات غير المتداولة": {
+          "is_group": 1,
+          "2210 Bank Loan | قرض بنكي": {"account_type": "Payable", "is_group": 0},
+          "2220 Long-Term Payables | ذمم دائنة طويلة الأجل": {"account_type": "Payable", "is_group": 0}
+        }
+      },
+      "3000 - EQUITY | حقوق الملكية": {
+        "root_type": "Equity",
+        "report_type": "Balance Sheet",
+        "is_group": 1,
+        "3100 Share Capital | رأس المال المدفوع": {"is_group": 0},
+        "3200 Partner Current Account | حساب الشريك الجاري": {"is_group": 0},
+        "3300 Retained Earnings | الأرباح المحتجزة": {"is_group": 0},
+        "3400 Current Year Earnings (Auto) | أرباح السنة الجارية (تلقائي)": {"is_group": 0}
+      },
+      "4000 - REVENUE | الإيرادات": {
+        "root_type": "Income",
+        "report_type": "Profit and Loss",
+        "is_group": 1,
+        "4100 - Professional Service Revenue | إيرادات الخدمات المهنية": {
+          "is_group": 1,
+          "4110 Architectural Design | تصميم معماري": {"is_group": 0},
+          "4120 Supervision | إشراف هندسي": {"is_group": 0},
+          "4130 Project Management | إدارة مشاريع": {"is_group": 0},
+          "4140 Interior Design | تصميم داخلي": {"is_group": 0},
+          "4150 Feasibility Studies | دراسات جدوى": {"is_group": 0},
+          "4160 Consultancy | استشارات": {"is_group": 0}
+        },
+        "4200 - Other Income | إيرادات أخرى": {
+          "is_group": 1,
+          "4210 Other Operational Income | إيرادات تشغيلية أخرى": {"is_group": 0},
+          "4220 Exchange Gain | أرباح فروق عملة": {"is_group": 0}
+        }
+      },
+      "5000 - COST OF SERVICES | تكاليف الخدمات المباشرة": {
+        "root_type": "Expense",
+        "report_type": "Profit and Loss",
+        "is_group": 1,
+        "5110 Project Salaries Allocation | توزيع رواتب المشاريع": {"is_group": 0},
+        "5120 Outsourced Engineering | هندسة معهودة للخارج": {"is_group": 0},
+        "5130 Site Visits & Travel | زيارات ميدانية وسفر": {"is_group": 0},
+        "5140 Printing & Plotting | طباعة ورسومات": {"is_group": 0},
+        "5150 Project Software Allocation | توزيع تكلفة البرامج للمشروع": {"is_group": 0},
+        "5160 Technical Subconsultants | مستشارون فنيون فرعيون": {"is_group": 0}
+      },
+      "6000 - OPERATING EXPENSES (OPEX) | المصاريف التشغيلية": {
+        "root_type": "Expense",
+        "report_type": "Profit and Loss",
+        "is_group": 1,
+        "6100 - Administrative | إدارية": {
+          "is_group": 1,
+          "6110 Admin Salaries | رواتب إدارية": {"is_group": 0},
+          "6120 Office Rent | إيجار مكتب": {"is_group": 0},
+          "6130 Utilities | مرافق عامة": {"is_group": 0},
+          "6140 Internet & Telecommunications | إنترنت واتصالات": {"is_group": 0},
+          "6150 Office Supplies | مستلزمات مكتبية": {"is_group": 0}
+        },
+        "6200 - Marketing | تسويق": {
+          "is_group": 1,
+          "6210 Marketing Salaries | رواتب التسويق": {"is_group": 0},
+          "6220 Advertising | إعلانات": {"is_group": 0},
+          "6230 Website & Hosting | موقع إلكتروني واستضافة": {"is_group": 0},
+          "6240 Branding | هوية بصرية": {"is_group": 0}
+        },
+        "6300 - Professional Fees | رسوم مهنية": {
+          "is_group": 1,
+          "6310 Legal Fees | رسوم قانونية": {"is_group": 0},
+          "6320 Audit Fees | رسوم تدقيق": {"is_group": 0},
+          "6330 Training & Development | تدريب وتطوير": {"is_group": 0}
+        },
+        "6400 - Financial | مالية": {
+          "is_group": 1,
+          "6410 Bank Charges | رسوم بنكية": {"is_group": 0},
+          "6420 Exchange Loss | خسائر فروق عملة": {"is_group": 0}
+        },
+        "6500 - Depreciation | الاستهلاك": {
+          "is_group": 1,
+          "6510 Depreciation Expense | مصروف الاستهلاك": {"is_group": 0}
+        }
+      }
+    }
+}

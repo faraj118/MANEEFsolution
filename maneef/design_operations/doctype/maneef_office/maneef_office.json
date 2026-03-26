@@ -1,0 +1,67 @@
+{
+    "doctype": "DocType",
+    "name": "Maneef Office",
+    "module": "Design Operations",
+    "custom": 1,
+    "autoname": "field:office_name",
+    "fields": [
+        {
+            "fieldname": "office_name",
+            "fieldtype": "Data",
+            "label": "Office Name",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "city",
+            "fieldtype": "Data",
+            "label": "City",
+            "reqd": 1
+        },
+        {
+            "fieldname": "country",
+            "fieldtype": "Link",
+            "label": "Country",
+            "options": "Country"
+        },
+        {
+            "fieldname": "office_type",
+            "fieldtype": "Select",
+            "label": "Office Type",
+            "options": "Strategic & Commercial\nTechnical & Production\nSupport & Admin",
+            "reqd": 1
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "default_cost_center",
+            "fieldtype": "Link",
+            "label": "Default Cost Center",
+            "options": "Cost Center"
+        },
+        {
+            "fieldname": "is_active",
+            "fieldtype": "Check",
+            "label": "Is Active",
+            "default": "1"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Administrator",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}

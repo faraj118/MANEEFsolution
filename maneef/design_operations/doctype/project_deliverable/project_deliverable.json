@@ -1,0 +1,38 @@
+{
+    "doctype": "DocType",
+    "module": "Design Operations",
+    "fields": [
+        {
+            "fieldname": "deliverable_name",
+            "fieldtype": "Data",
+            "label": "Deliverable Name"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Draft\nIn Progress\nCompleted"
+        },
+        {
+            "fieldname": "due_date",
+            "fieldtype": "Date",
+            "label": "Due Date"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Design Engineer",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        }
+    ],
+    "name": "Project Deliverable"
+}

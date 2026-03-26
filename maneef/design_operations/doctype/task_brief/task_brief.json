@@ -1,0 +1,42 @@
+{
+    "doctype": "DocType",
+    "name": "Task Brief",
+    "module": "Design Operations",
+    "custom": 1,
+    "istable": 1,
+    "fields": [
+        {
+            "fieldname": "task_title",
+            "fieldtype": "Data",
+            "label": "Task Title",
+            "in_list_view": 1,
+            "reqd": 1
+        },
+        {
+            "fieldname": "task_type",
+            "fieldtype": "Select",
+            "label": "Task Type",
+            "options": "BIM Modeling\nDrafting\nVisualization\nTechnical Audit\nCoordination",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "instruction",
+            "fieldtype": "Small Text",
+            "label": "Instruction / Objective",
+            "reqd": 1
+        },
+        {
+            "fieldname": "lod_requirement",
+            "fieldtype": "Select",
+            "label": "LOD Requirement",
+            "options": "LOD 100\nLOD 200\nLOD 300\nLOD 350\nLOD 400",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "estimated_hours",
+            "fieldtype": "Float",
+            "label": "Est. Hours",
+            "in_list_view": 1
+        }
+    ]
+}

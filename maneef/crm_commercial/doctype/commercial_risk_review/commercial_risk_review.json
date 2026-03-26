@@ -1,0 +1,27 @@
+{
+    "doctype": "DocType",
+    "name": "Commercial Risk Review",
+    "module": "Crm Commercial",
+    "custom": 1,
+    "fields": [
+        {
+            "fieldname": "risk_area",
+            "fieldtype": "Data",
+            "label": "Risk Area"
+        },
+        {
+            "fieldname": "review_notes",
+            "fieldtype": "Text",
+            "label": "Review Notes"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}
