@@ -107,6 +107,16 @@ def create_number_cards():
         except Exception as e:
             frappe.log_error(title="Number Card Setup Failed", message=f"Card {card['name']}: {str(e)}")
 
+def setup_all_companies_coa():
+    """Automatically ensures any existing company has the Maneef AEC COA injected."""
+    from maneef.financial_control.chart_of_accounts.coa_builder import setup_maneef_coa
+    companies = frappe.get_all("Company", fields=["name"])
+    for company in companies:
+        try:
+            setup_maneef_coa(company.name)
+        except Exception as e:
+            frappe.log_error(title="AEC COA Auto-Injection Failed", message=f"Company {company.name}: {str(e)}")
+
 def run_post_migrate_setup():
     # Main entry point for AEC system initialization
     # All Custom Fields, Workflows, and Property Setters are now 
@@ -114,6 +124,7 @@ def run_post_migrate_setup():
     create_default_roles()
     create_default_offices()
     create_project_type_master()
+    setup_all_companies_coa()
     
     set_naming_series()
     create_number_cards()

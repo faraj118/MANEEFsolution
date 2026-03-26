@@ -154,6 +154,9 @@ fixtures = [
 # Hook on document methods and events
 
 doc_events = {
+    "Company": {
+        "on_update": "maneef.setup.setup_all_companies_coa"
+    },
     "Opportunity": {
         "validate": "maneef.crm_commercial.opportunity_hooks.validate",
         "on_update": "maneef.crm_commercial.opportunity_hooks.on_update"
