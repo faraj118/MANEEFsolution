@@ -18,16 +18,21 @@ def create_default_roles():
 
 def create_default_offices():
     offices = [
-        {"office_name": "Maneef HQ - Tripoli", "city": "Tripoli", "country": "Libya", "office_type": "Strategic & Commercial"},
-        {"office_name": "Maneef Production - Cairo", "city": "Cairo", "country": "Egypt", "office_type": "Technical & Production"}
+        {"office_name": "Tripoli HQ", "city": "Tripoli", "office_type": "Strategic & Commercial"},
+        {"office_name": "Cairo Production", "city": "Cairo", "office_type": "Technical & Production"}
     ]
     for office in offices:
-        try:
-            if not frappe.db.exists("Maneef Office", office["office_name"]):
-                frappe.get_doc({"doctype": "Maneef Office", **office}).insert(ignore_permissions=True)
-                frappe.logger().info(f"Created office: {office['office_name']}")
-        except Exception as e:
-            frappe.log_error(title="Office Creation Failed", message=f"Error creating office {office['office_name']}: {str(e)}")
+        if not frappe.db.exists("AEC Production Office", office["office_name"]):
+            try:
+                frappe.get_doc({
+                    "doctype": "AEC Production Office",
+                    "office_name": office["office_name"],
+                    "city": office["city"],
+                    "office_type": office["office_type"]
+                }).insert(ignore_permissions=True)
+                frappe.logger().info(f"Created AEC Production Office: {office['office_name']}")
+            except Exception as e:
+                frappe.log_error(title="AEC Office Creation Failed", message=f"Office {office['office_name']}: {str(e)}")
 
 def create_project_type_master():
     project_types = [
@@ -81,22 +86,24 @@ def create_number_cards():
             "color": "Blue"
         },
         {
-            "name": "Projects Exceeding Burn %",
-            "label": "Projects Exceeding Burn %",
-            "document_type": "Project",
+            # Count of Project Deliverables awaiting any approval action
+            "name": "Global Pending Approvals",
+            "label": "Total Pending Approvals",
+            "document_type": "Project Deliverable",
             "function": "Count",
-            "filters_config": '[["Project","custom_burn_percentage",">","80"]]',
-            "is_public": 1,
-            "color": "Red"
-        },
-        {
-            "name": "Unapproved Charters",
-            "label": "Unapproved Charters",
-            "document_type": "Project Charter",
-            "function": "Count",
-            "filters_config": '[["Project Charter","docstatus","=","0"]]',
+            "filters_config": '[["Project Deliverable","docstatus","=","0"]]',
             "is_public": 1,
             "color": "Orange"
+        },
+        {
+            # Count of open Projects where burn percentage exceeds 80%
+            "name": "Average Project Burn Rate",
+            "label": "High Burn Rate Projects",
+            "document_type": "Project",
+            "function": "Count",
+            "filters_config": '[["Project","custom_burn_percentage",">=","80"],["Project","status","=","Open"]]',
+            "is_public": 1,
+            "color": "Red"
         }
     ]
     for card in cards:
@@ -104,8 +111,13 @@ def create_number_cards():
             if not frappe.db.exists("Number Card", card["name"]):
                 frappe.get_doc({"doctype": "Number Card", **card}).insert(ignore_permissions=True)
                 frappe.logger().info(f"Created Number Card: {card['name']}")
+                print(f"  ✅ Created Number Card: {card['name']}")
+            else:
+                print(f"  ⏭  Number Card already exists: {card['name']}")
         except Exception as e:
-            frappe.log_error(title="Number Card Setup Failed", message=f"Card {card['name']}: {str(e)}")
+            error_msg = f"Card {card['name']}: {str(e)}"
+            frappe.log_error(title="Number Card Setup Failed", message=error_msg)
+            print(f"  ❌ Failed to create Number Card '{card['name']}': {str(e)}")
 
 def setup_all_companies_coa():
     """Automatically ensures any existing company has the Maneef AEC COA injected."""
@@ -129,7 +141,4 @@ def run_post_migrate_setup():
     set_naming_series()
     create_number_cards()
     frappe.logger().info("Setup complete: AEC Roles, Offices, Naming, and Cards (Workflows/Fields moved to Fixtures).")
-    
-    set_naming_series()
-    create_number_cards()
     frappe.logger().info("Setup complete: AEC Roles, Offices, Fields, Naming, Workflows, and Cards.")

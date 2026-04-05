@@ -88,7 +88,7 @@ def create_timesheet_entry(task, start_time, end_time, hours):
         "from_time": start_time,
         "to_time": end_time,
         "hours": hours,
-        "description": _("Production work at office: {0}").format(task.custom_current_office)
+        "description": _("Production work at AEC Production Office: {0}").format(task.custom_current_office)
     })
     
     ts_doc.save(ignore_permissions=True)

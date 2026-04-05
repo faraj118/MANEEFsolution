@@ -3,6 +3,13 @@ from frappe.model.document import Document
 from frappe import _
 
 class SiteVisitReport(Document):
+    def validate(self):
+        if self.is_billable:
+            if not self.visit_cost or self.visit_cost <= 0:
+                frappe.throw(_("A billable Site Visit MUST have a recorded Visit Cost."))
+            if not self.assigned_engineer:
+                frappe.throw(_("An Assigned Engineer is required for billable visits."))
+
     def before_save(self):
         self._auto_fill_defaults()
         self._validate_site_architect_role()
@@ -17,8 +24,14 @@ class SiteVisitReport(Document):
             frappe.throw(_("Edits to submitted reports are blocked for Site Architects unless you are a Project Manager or above."))
 
     def _auto_fill_defaults(self):
-        if not self.site_architect:
+        if hasattr(self, 'site_architect') and not self.site_architect:
             self.site_architect = frappe.session.user
+        if not self.assigned_engineer:
+            # Check if user is linked to an Employee
+            emp = frappe.db.get_value("Employee", {"user_id": frappe.session.user}, "name")
+            if emp:
+                self.assigned_engineer = emp
+
         if not self.visit_date:
             self.visit_date = frappe.utils.today()
         if hasattr(frappe, 'request') and hasattr(frappe.request, 'headers'):

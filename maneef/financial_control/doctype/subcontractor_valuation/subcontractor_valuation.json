@@ -1,0 +1,105 @@
+{
+    "doctype": "DocType",
+    "name": "Subcontractor Valuation",
+    "module": "Financial Control",
+    "custom": 0,
+    "is_submittable": 1,
+    "autoname": "naming_series:",
+    "track_changes": 1,
+    "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Naming Series",
+            "options": "VAL-.YYYY.-.####"
+        },
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "options": "Project",
+            "label": "Project",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "supplier",
+            "fieldtype": "Link",
+            "options": "Supplier",
+            "label": "Subcontractor",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "valuation_date",
+            "fieldtype": "Date",
+            "label": "Valuation Target Date",
+            "reqd": 1,
+            "default": "Today"
+        },
+        {
+            "fieldname": "items_section",
+            "fieldtype": "Section Break",
+            "label": "Work In Progress (WIP)"
+        },
+        {
+            "fieldname": "items",
+            "fieldtype": "Table",
+            "options": "Subcontractor Valuation Item",
+            "label": "Claimed Items",
+            "reqd": 1
+        },
+        {
+            "fieldname": "totals_section",
+            "fieldtype": "Section Break",
+            "label": "Totals & Certification"
+        },
+        {
+            "fieldname": "total_claimed_amount",
+            "fieldtype": "Currency",
+            "label": "Total Claimed Amount",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "retention_pct",
+            "fieldtype": "Percent",
+            "label": "Retention (%)",
+            "default": "10"
+        },
+        {
+            "fieldname": "net_payable",
+            "fieldtype": "Currency",
+            "label": "Net Certified Payable",
+            "read_only": 1
+        }
+    ],
+    "permissions": [
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 0,
+            "cancel": 0
+        },
+        {
+            "role": "Accounts User",
+            "read": 1,
+            "write": 1,
+            "create": 0,
+            "delete": 0,
+            "submit": 1,
+            "cancel": 0
+        },
+        {
+            "role": "Managing Partner",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 1,
+            "cancel": 1
+        }
+    ]
+}

@@ -1,0 +1,183 @@
+{
+    "doctype": "DocType",
+    "name": "Project Budget Control",
+    "module": "Financial Control",
+    "custom": 1,
+    "is_virtual": 0,
+    "fields": [
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "label": "Project",
+            "options": "Project",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "project_name",
+            "fieldtype": "Data",
+            "label": "Project Name",
+            "fetch_from": "project.project_name",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "section_break_1",
+            "fieldtype": "Section Break",
+            "label": "Budget Summary"
+        },
+        {
+            "fieldname": "total_budget",
+            "fieldtype": "Currency",
+            "label": "Total Budget",
+            "options": "currency",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "actual_cost_to_date",
+            "fieldtype": "Currency",
+            "label": "Actual Cost to Date",
+            "options": "currency",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "budget_variance",
+            "fieldtype": "Currency",
+            "label": "Budget Variance",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "variance_percentage",
+            "fieldtype": "Percent",
+            "label": "Variance %",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "burn_percentage",
+            "fieldtype": "Percent",
+            "label": "Burn %",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "payment_terms",
+            "fieldtype": "Link",
+            "label": "Payment Terms",
+            "options": "Payment Terms Template"
+        },
+        {
+            "fieldname": "last_synced",
+            "fieldtype": "Datetime",
+            "label": "Last Synced",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_break_2",
+            "fieldtype": "Section Break",
+            "label": "Budget Breakdown"
+        },
+        {
+            "fieldname": "budget_breakdown",
+            "fieldtype": "Table",
+            "label": "Budget Breakdown",
+            "options": "Budget Breakdown Item"
+        },
+        {
+            "fieldname": "section_break_3",
+            "fieldtype": "Section Break",
+            "label": "Financial Control"
+        },
+        {
+            "fieldname": "budget_alert_threshold",
+            "fieldtype": "Percent",
+            "label": "Budget Alert Threshold",
+            "default": "80",
+            "description": "Alert when burn percentage exceeds this value"
+        },
+        {
+            "fieldname": "last_alert_sent",
+            "fieldtype": "Datetime",
+            "label": "Last Alert Sent",
+            "read_only": 1
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Long Text",
+            "label": "Notes"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 0,
+            "cancel": 0,
+            "amend": 0
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 0,
+            "cancel": 0,
+            "amend": 0
+        },
+        {
+            "role": "Finance Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 0,
+            "cancel": 0,
+            "amend": 0
+        }
+    ],
+    "is_quick_entry": 0,
+    "list_view": [
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "label": "Project"
+        },
+        {
+            "fieldname": "project_name",
+            "fieldtype": "Data",
+            "label": "Project Name"
+        },
+        {
+            "fieldname": "total_budget",
+            "fieldtype": "Currency",
+            "label": "Total Budget"
+        },
+        {
+            "fieldname": "actual_cost_to_date",
+            "fieldtype": "Currency",
+            "label": "Actual Cost"
+        },
+        {
+            "fieldname": "budget_variance",
+            "fieldtype": "Currency",
+            "label": "Variance"
+        },
+        {
+            "fieldname": "burn_percentage",
+            "fieldtype": "Percent",
+            "label": "Burn %"
+        }
+    ],
+    "search_fields": "project,project_name"
+}

@@ -1,6 +1,6 @@
 {
     "doctype": "DocType",
-    "name": "Maneef Office",
+    "name": "AEC Production Office",
     "module": "Design Operations",
     "custom": 1,
     "autoname": "field:office_name",

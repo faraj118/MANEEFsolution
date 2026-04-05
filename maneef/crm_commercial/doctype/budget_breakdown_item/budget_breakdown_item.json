@@ -1,0 +1,50 @@
+{
+    "doctype": "DocType",
+    "name": "Budget Breakdown Item",
+    "module": "Crm Commercial",
+    "custom": 1,
+    "istable": 1,
+    "fields": [
+        {
+            "fieldname": "category",
+            "fieldtype": "Select",
+            "label": "Category",
+            "options": "Labor\nMaterials\nEquipment\nOverhead\nSubcontractor\nOther",
+            "reqd": 1
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Data",
+            "label": "Description"
+        },
+        {
+            "fieldname": "amount",
+            "fieldtype": "Currency",
+            "label": "Amount",
+            "options": "currency",
+            "reqd": 1
+        },
+        {
+            "fieldname": "percentage",
+            "fieldtype": "Percent",
+            "label": "Percentage",
+            "read_only": 1
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ]
+}

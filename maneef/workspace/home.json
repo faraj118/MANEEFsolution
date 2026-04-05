@@ -1,0 +1,126 @@
+{
+ "charts": [],
+ "content": "[{\"id\": \"WfW19G-fH1\", \"type\": \"header\", \"data\": {\"text\": \"AEC Project Lifecycle\", \"level\": 4}}, {\"id\": \"JdY8QdG1H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Charters\"}}, {\"id\": \"KdY8QdG2H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sales Orders\"}}, {\"id\": \"MdY8QdG4H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Deliverables\"}}, {\"id\": \"NdY8QdG5H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transmittals\"}}, {\"id\": \"PdY8QdG6H_\", \"type\": \"header\", \"data\": {\"text\": \"Control & Monitoring\", \"level\": 4}}, {\"id\": \"C1ConstructHeader\", \"type\": \"header\", \"data\": {\"text\": \"Construction Control\", \"level\": 4}}, {\"id\": \"C2ProjectVariationOrders\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Variation Orders\"}}, {\"id\": \"C3ProjectBOQs\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project BOQs\"}}, {\"id\": \"C4DailyProgressReports\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Progress Reports\"}}, {\"id\": \"C5SVRIssues\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"SVR Issues\"}}, {\"id\": \"C6TaskBriefs\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Task Briefs\"}}, {\"id\": \"QdY8QdG7H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Site Visit Reports\"}}, {\"id\": \"RdY8QdG8H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"RFI Records\"}}, {\"id\": \"LdY8QdG3H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Stop Work Notices\"}}, {\"id\": \"SdY8QdG9H_\", \"type\": \"header\", \"data\": {\"text\": \"Regional Offices & Setup\", \"level\": 4}}, {\"id\": \"TdY8QdG0H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Production Offices\"}}, {\"id\": \"UdY8QdG1H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Health Matrix\"}}, {\"id\": \"WdY8QdG3H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Chart of Accounts\"}}]",
+ "creation": "2024-01-01 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "project",
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "Home",
+ "links": [
+  {
+   "label": "Project Charter",
+   "link_type": "DocType",
+   "link_to": "Project Charter",
+   "type": "Link"
+  },
+  {
+   "label": "Sales Order",
+   "link_type": "DocType",
+   "link_to": "Sales Order",
+   "type": "Link"
+  },
+  {
+   "label": "Project Deliverable",
+   "link_type": "DocType",
+   "link_to": "Project Deliverable",
+   "type": "Link"
+  },
+  {
+   "label": "Project Variation Order",
+   "link_type": "DocType",
+   "link_to": "Project Variation Order",
+   "type": "Link"
+  },
+  {
+   "label": "Project BOQ",
+   "link_type": "DocType",
+   "link_to": "Project BOQ",
+   "type": "Link"
+  },
+  {
+   "label": "Daily Progress Report",
+   "link_type": "DocType",
+   "link_to": "Daily Progress Report",
+   "type": "Link"
+  },
+  {
+   "label": "SVR Issue",
+   "link_type": "DocType",
+   "link_to": "SVR Issue",
+   "type": "Link"
+  },
+  {
+   "label": "Task Brief",
+   "link_type": "DocType",
+   "link_to": "Task Brief",
+   "type": "Link"
+  },
+  {
+   "label": "Transmittal",
+   "link_type": "DocType",
+   "link_to": "Transmittal",
+   "type": "Link"
+  },
+  {
+   "label": "Site Visit Report",
+   "link_type": "DocType",
+   "link_to": "Site Visit Report",
+   "type": "Link"
+  },
+  {
+   "label": "RFI Record",
+   "link_type": "DocType",
+   "link_to": "RFI Record",
+   "type": "Link"
+  },
+  {
+   "label": "Stop Work Notice",
+   "link_type": "DocType",
+   "link_to": "Stop Work Notice",
+   "type": "Link"
+  },
+  {
+   "label": "Production Office",
+   "link_type": "DocType",
+   "link_to": "AEC Production Office",
+   "type": "Link"
+  },
+  {
+   "label": "Project Health Matrix",
+   "link_type": "Report",
+   "link_to": "Project Health Matrix",
+   "type": "Link"
+  },
+  {
+   "label": "Chart of Accounts",
+   "link_type": "DocType",
+   "link_to": "Account",
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Design Operations",
+ "name": "home",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Managing Partner"
+  }
+ ],
+ "sequence_id": 1.0,
+ "shortcuts": [],
+ "title": "Home"
+}

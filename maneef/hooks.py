@@ -46,7 +46,8 @@ required_apps = ["erpnext"]
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 doctype_js = {
-    "Company": "public/js/company.js"
+    "Company": "public/js/company.js",
+    "Project Charter": "public/js/project_charter_sidebar.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -98,7 +99,8 @@ fixtures = [
     "Workflow Action", 
     "Custom Field", 
     "Property Setter",
-    "Print Format"
+    "Print Format",
+    "Workspace"
 ]
 
 # Uninstallation
@@ -161,10 +163,10 @@ doc_events = {
         "validate": "maneef.crm_commercial.opportunity_hooks.validate",
         "on_update": "maneef.crm_commercial.opportunity_hooks.on_update"
     },
-    "Sales Order": {
-        "before_submit": "maneef.crm_commercial.sales_order_hooks.before_submit",
-        "on_submit": "maneef.crm_commercial.sales_order_hooks.on_submit"
-    },
+    # Project Charter: on_submit, on_cancel, on_update_after_submit
+    # are handled natively by the ProjectCharter controller class
+    # in crm_commercial/doctype/project_charter/project_charter.py
+    # No doc_events registration needed here.
     "Sales Invoice": {
         "before_submit": "maneef.financial_control.sales_invoice_hooks.before_submit"
     },

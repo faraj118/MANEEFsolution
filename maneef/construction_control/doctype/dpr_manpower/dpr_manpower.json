@@ -1,0 +1,40 @@
+{
+    "doctype": "DocType",
+    "name": "DPR Manpower",
+    "module": "Construction Control",
+    "custom": 0,
+    "istable": 1,
+    "editable_grid": 1,
+    "track_changes": 1,
+    "fields": [
+        {
+            "fieldname": "trade_role",
+            "fieldtype": "Data",
+            "label": "Trade/Role",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "count",
+            "fieldtype": "Int",
+            "label": "Headcount",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "hours_worked",
+            "fieldtype": "Float",
+            "label": "Total Hours Worked",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "remarks",
+            "fieldtype": "Small Text",
+            "label": "Remarks"
+        }
+    ]
+}

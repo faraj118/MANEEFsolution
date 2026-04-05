@@ -37,6 +37,27 @@
             "fieldtype": "Float",
             "label": "Est. Hours",
             "in_list_view": 1
+        },
+        {
+            "fieldname": "start_date",
+            "fieldtype": "Date",
+            "label": "Start Date"
+        },
+        {
+            "fieldname": "bim_discipline",
+            "fieldtype": "Data",
+            "label": "BIM Discipline"
+        },
+        {
+            "fieldname": "bim_zone",
+            "fieldtype": "Data",
+            "label": "BIM Zone"
+        },
+        {
+            "fieldname": "depends_on",
+            "fieldtype": "Link",
+            "label": "Depends On",
+            "options": "Task Brief"
         }
     ]
 }

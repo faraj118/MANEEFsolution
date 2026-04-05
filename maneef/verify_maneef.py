@@ -20,6 +20,14 @@ def verify_setup():
         else:
             print(f"❌ Action '{action}' MISSING")
             
+    # Workspace Check
+    workspaces = ["aec-architecture-square"]
+    for ws in workspaces:
+        if frappe.db.exists("Workspace", ws):
+            print(f"✅ Workspace '{ws}' exists")
+        else:
+            print(f"❌ Workspace '{ws}' MISSING")
+            
     print("\n--- 🚨 Error Log Check (Recent Maneef) ---")
     
     # Dynamically detect fields to avoid 'Unknown column' errors on different Frappe versions

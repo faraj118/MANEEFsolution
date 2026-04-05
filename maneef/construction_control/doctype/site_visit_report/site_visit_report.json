@@ -1,21 +1,124 @@
 {
     "doctype": "DocType",
     "module": "Construction Control",
+    "custom": 1,
+    "is_submittable": 1,
+    "autoname": "naming_series:",
+    "track_changes": 1,
     "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Naming Series",
+            "options": "SVR-.YYYY.-.####"
+        },
+        {
+            "fieldname": "visit_info_section",
+            "fieldtype": "Section Break",
+            "label": "Visit Information"
+        },
+        {
+            "fieldname": "assigned_engineer",
+            "fieldtype": "Link",
+            "options": "Employee",
+            "label": "Assigned Engineer",
+            "reqd": 1,
+            "in_list_view": 1
+        },
         {
             "fieldname": "visit_date",
             "fieldtype": "Date",
-            "label": "Visit Date"
+            "label": "Visit Date",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "visit_type",
+            "fieldtype": "Select",
+            "options": "Initial Audit\nBIM Survey\nCoordination Meeting\nQuality Inspection\nRoutine Monitoring",
+            "label": "Visit Type",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "complexity_level",
+            "fieldtype": "Select",
+            "options": "Standard\nHigh Complexity\nOut-of-Town",
+            "label": "Complexity Level",
+            "reqd": 1
+        },
+        {
+            "fieldname": "column_break_project",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "options": "Project",
+            "label": "Project",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "customer",
+            "fieldtype": "Link",
+            "options": "Customer",
+            "label": "Customer",
+            "read_only": 1,
+            "fetch_from": "project.customer"
+        },
+        {
+            "fieldname": "task",
+            "fieldtype": "Link",
+            "options": "Task",
+            "label": "Linked Task"
         },
         {
             "fieldname": "site",
             "fieldtype": "Data",
-            "label": "Site"
+            "label": "Site Location",
+            "fetch_from": "project.custom_primary_office"
+        },
+        {
+            "fieldname": "financial_section",
+            "fieldtype": "Section Break",
+            "label": "Cost & Billing"
+        },
+        {
+            "fieldname": "is_billable",
+            "fieldtype": "Check",
+            "label": "Is Billable",
+            "default": "0"
+        },
+        {
+            "fieldname": "column_break_fin",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "visit_cost",
+            "fieldtype": "Currency",
+            "label": "Visit Cost / Billable Amount",
+            "depends_on": "eval:doc.is_billable == 1"
+        },
+        {
+            "fieldname": "reporting_section",
+            "fieldtype": "Section Break",
+            "label": "Reporting"
+        },
+        {
+            "fieldname": "attendees",
+            "fieldtype": "Small Text",
+            "label": "Attendees"
         },
         {
             "fieldname": "remarks",
-            "fieldtype": "Text",
-            "label": "Remarks"
+            "fieldtype": "Text Editor",
+            "label": "Remarks & Observations"
+        },
+        {
+            "fieldname": "next_steps",
+            "fieldtype": "Text Editor",
+            "label": "Next Steps & Recommendations"
         }
     ],
     "permissions": [
