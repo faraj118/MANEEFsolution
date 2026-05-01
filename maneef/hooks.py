@@ -54,7 +54,8 @@ doctype_js = {
     "RFI Record": "public/js/rfi_sidebar.js",
     "Site Visit Report": "public/js/svr_sidebar.js",
     "Transmittal": "public/js/transmittal_sidebar.js",
-    "Risk Assessment": "public/js/risk_assessment_sidebar.js"
+    "Risk Assessment": "public/js/risk_assessment_sidebar.js",
+    "Task": "public/js/task.py.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -371,6 +372,3 @@ scheduler_events = {
 app_include_js = [
     "/assets/maneef/js/project_deliverable.js"
 ]
-
-
-

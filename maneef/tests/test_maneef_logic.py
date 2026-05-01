@@ -9,9 +9,9 @@ class TestManeefLogic(FrappeTestCase):
             frappe.get_doc({"doctype": "Role", "role_name": "Production Team"}).insert(ignore_permissions=True)
 
         # Create a test office
-        if not frappe.db.exists("Maneef Office", "Test Office"):
+        if not frappe.db.exists("AEC Production Office", "Test Office"):
             frappe.get_doc({
-                "doctype": "Maneef Office",
+                "doctype": "AEC Production Office",
                 "office_name": "Test Office",
                 "city": "Test City",
                 "office_type": "Technical & Production"

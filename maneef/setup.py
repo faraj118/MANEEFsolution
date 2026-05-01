@@ -159,7 +159,7 @@ def run_post_migrate_setup():
     set_naming_series()
     create_number_cards()
     frappe.logger().info("Setup complete: AEC Roles, Offices, Naming, and Cards (Workflows/Fields moved to Fixtures).")
-    frappe.logger().info("Setup complete: AEC Roles, Offices, Fields, Naming, Workflows, and Cards.")
+    frappe.db.commit()
 
 def before_uninstall():
     # Remove Custom Fields added to ERPNext DocTypes

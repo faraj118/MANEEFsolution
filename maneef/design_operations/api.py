@@ -35,7 +35,7 @@ def task_check_in(task_name):
         office = frappe.db.get_value("Project", task.project, "custom_primary_office")
     
     if not office:
-        frappe.throw(_("Please assign a Maneef Office to your User profile or the Project to track production location."))
+        frappe.throw(_("Please assign an AEC Production Office to your User profile or the Project to track production location."))
 
     task.custom_check_in_status = 'Checked In'
     task.custom_last_check_in = now_datetime()

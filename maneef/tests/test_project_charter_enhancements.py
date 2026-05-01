@@ -45,8 +45,8 @@ class TestProjectCharterEnhancements(unittest.TestCase):
     def _get_or_create_office(self):
         """Get or create a test production office"""
         office_name = "Test Technical Office"
-        if not frappe.db.exists("Maneef Office", office_name):
-            office = frappe.new_doc("Maneef Office")
+        if not frappe.db.exists("AEC Production Office", office_name):
+            office = frappe.new_doc("AEC Production Office")
             office.office_name = office_name
             office.office_type = "Technical & Production"
             office.insert()

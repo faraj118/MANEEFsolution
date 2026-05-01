@@ -262,7 +262,7 @@ class ProjectCharter(Document):
             # Primary Production Office setup
             office = self.get_production_office()
             if not office:
-                frappe.throw(_("No 'Technical & Production' office found. Please create one in Maneef Office Master first."))
+                frappe.throw(_("No 'Technical & Production' office found. Please create one in AEC Production Office Master first."))
             project.custom_primary_office = office
 
         # Mandatory Field Synchronization (prevents re-entry/duplicates)
