@@ -102,15 +102,15 @@ after_migrate = ["maneef.setup.run_post_migrate_setup"]
 # Fixtures
 # --------
 fixtures = [
-    "Workflow",
-    "Workflow State",
-    "Workflow Action",
-    "Custom Field",
-    "Property Setter",
-    "Print Format",
-    "Workspace",
-    "Number Card",
-    "Dashboard Chart"
+    "custom_field",
+    "property_setter",
+    "workflow_state",
+    "workflow_action",
+    "workflow",
+    "print_format",
+    "number_card",
+    "dashboard_chart",
+    "workspace"
 ]
 
 # Custom Fields for Project Charter risk assessment
