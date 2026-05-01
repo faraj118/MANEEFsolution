@@ -1,6 +1,9 @@
 import frappe
 from frappe.model.document import Document
 from frappe import _
+from frappe import json
+
+from maneef.utils.permission_guard import require_permission
 
 class ProjectCharter(Document):
     def validate(self):
@@ -8,6 +11,109 @@ class ProjectCharter(Document):
         self.fetch_customer_details()
         self.validate_budget_breakdown()
         self.validate_required_fields()
+        self.validate_gate_status_change()
+        self.calculate_risk_totals()
+        self.sync_risk_assessment()
+        # NEW: Ensure Risk Assessment is updated when child tables change
+        self.sync_risk_assessment_to_ra()
+
+    def sync_risk_assessment_to_ra(self):
+        """Sync child table data from Charter to linked Risk Assessment."""
+        if self.linked_risk_assessment:
+            ra = frappe.get_doc("Risk Assessment", self.linked_risk_assessment)
+            
+            # Update child table fields on RA with current Charter child table data
+            if self.custom_payment_risk_items:
+                ra.set('payment_risk_items', self.custom_payment_risk_items)
+            if self.custom_commercial_risk_items:
+                ra.set('commercial_risk_items', self.custom_commercial_risk_items)
+            if self.custom_duration_risk_items:
+                ra.set('duration_risk_items', self.custom_duration_risk_items)
+            
+            # Update risk scores and ratings based on current child table data
+            # This ensures RA has up-to-date data for validation and calculations
+            ra.calculate_risk_totals()
+            
+            # Save the updated RA (ignore permissions for bulk updates)
+            frappe.db.set_value("Risk Assessment", ra.name, {
+                'payment_risk_items': json.dumps(self.get('custom_payment_risk_items', [])),
+                'commercial_risk_items': json.dumps(self.get('custom_commercial_risk_items', [])),
+                'duration_risk_items': json.dumps(self.get('custom_duration_risk_items', [])),
+                'total_payment_risk_score': self.custom_total_payment_risk_score,
+                'total_commercial_risk_score': self.custom_total_commercial_risk_score,
+                'total_duration_risk_score': self.custom_total_duration_risk_score,
+                'payment_risk_rating': self.custom_payment_risk_rating,
+                'commercial_risk_rating': self.custom_commercial_risk_rating,
+                'duration_risk_rating': self.custom_duration_risk_rating,
+            })
+
+    def sync_risk_assessment(self):
+        """Sync risk ratings from standalone Risk Assessment back to Charter."""
+        if self.linked_risk_assessment:
+            ra = frappe.get_doc("Risk Assessment", self.linked_risk_assessment)
+
+            # Pull ratings from Risk Assessment
+            if ra.payment_risk_rating:
+                self.custom_payment_risk_rating = ra.payment_risk_rating
+            if ra.commercial_risk_rating:
+                self.custom_commercial_risk_rating = ra.commercial_risk_rating
+            if ra.duration_risk_rating:
+                self.custom_duration_risk_rating = ra.duration_risk_rating
+
+            # Pull scores
+            if ra.total_payment_risk_score:
+                self.custom_total_payment_risk_score = ra.total_payment_risk_score
+            if ra.total_commercial_risk_score:
+                self.custom_total_commercial_risk_score = ra.total_commercial_risk_score
+            if ra.total_duration_risk_score:
+                self.custom_total_duration_risk_score = ra.total_duration_risk_score
+
+            self.risk_assessment_status = "Completed"
+        elif self.custom_payment_risk_items or self.custom_commercial_risk_items or self.custom_duration_risk_items:
+            self.risk_assessment_status = "In Progress"
+        else:
+            self.risk_assessment_status = "Not Started"
+
+    @frappe.whitelist()
+    @require_permission("Risk Assessment", "create")
+    def create_risk_assessment(self):
+        """Create a new Risk Assessment linked to this Charter."""
+        ra = frappe.new_doc("Risk Assessment")
+        ra.project_charter = self.name
+        ra.project = self.project if hasattr(self, 'project') and self.project else None
+        ra.customer = self.customer
+        ra.assessment_date = frappe.utils.today()
+        ra.assessed_by = frappe.session.user
+
+        ra.insert(ignore_permissions=True)
+
+        frappe.db.set_value("Project Charter", self.name, "linked_risk_assessment", ra.name)
+        frappe.db.set_value("Project Charter", self.name, "risk_assessment_status", "In Progress")
+
+        frappe.msgprint(_("Risk Assessment {0} created successfully.").format(ra.name), indicator="green", alert=True)
+
+        return ra.name
+
+    def validate_gate_status_change(self):
+        if not self.is_new():
+            old_gate = frappe.db.get_value("Project Charter", self.name, "custom_gate_status")
+            if old_gate != self.custom_gate_status:
+                allowed_roles = ["Managing Partner", "System Manager"]
+                user_roles = frappe.get_roles(frappe.session.user)
+                if not any(r in user_roles for r in allowed_roles):
+                    frappe.throw("Only Managing Partner or System Manager can change gate status")
+
+                # Enforce sequential gates
+                gate_order = {"Gate 1": 1, "Gate 2": 2, "Gate 3": 3}
+                old_level = gate_order.get(old_gate, 0)
+                new_level = gate_order.get(self.custom_gate_status, 0)
+                if new_level > old_level + 1:
+                    frappe.throw(f"Cannot skip gates. Current: {old_gate}. Requested: {self.custom_gate_status}. Pass each gate sequentially.")
+
+                frappe.logger().info(
+                    "Gate status change: charter=%s from=%s to=%s user=%s",
+                    self.name, old_gate, self.custom_gate_status, frappe.session.user
+                )
 
     def on_submit(self):
         self.update_sales_order_links()
@@ -16,6 +122,17 @@ class ProjectCharter(Document):
     def on_cancel(self):
         self.unlink_sales_order()
         self.deactivate_project()
+
+    def on_trash(self):
+        from maneef.utils.deletion_guard import protect_deletion
+
+        protect_deletion(self, [
+            {"doctype": "Sales Order", "link_field": "custom_project_charter", "label": "Sales Orders"},
+            {"doctype": "Project", "link_field": "custom_project_charter", "label": "Projects"},
+            {"doctype": "Task", "link_field": "custom_source_charter", "label": "Tasks"},
+            {"doctype": "Project BOQ", "link_field": "project_charter", "label": "Project BOQs"},
+            {"doctype": "Project Variation Order", "link_field": "project_charter", "label": "Variation Orders"},
+        ])
 
     def on_update_after_submit(self):
         """
@@ -30,6 +147,44 @@ class ProjectCharter(Document):
                 "custom_contracted_fee": self.total_budget
             })
             self.sync_project_status()
+
+    def calculate_risk_totals(self):
+        payment_items = self.get("custom_payment_risk_items", [])
+        if payment_items:
+            total = sum(item.risk_score for item in payment_items)
+            self.custom_total_payment_risk_score = total
+            if total <= 7:
+                self.custom_payment_risk_rating = "Low"
+            elif total <= 14:
+                self.custom_payment_risk_rating = "Medium"
+            elif total <= 21:
+                self.custom_payment_risk_rating = "High"
+            else:
+                self.custom_payment_risk_rating = "Unacceptable"
+
+        commercial_items = self.get("custom_commercial_risk_items", [])
+        if commercial_items:
+            total = sum(item.risk_score for item in commercial_items)
+            self.custom_total_commercial_risk_score = total
+            if total <= 10:
+                self.custom_commercial_risk_rating = "Green"
+            elif total <= 20:
+                self.custom_commercial_risk_rating = "Amber"
+            else:
+                self.custom_commercial_risk_rating = "Red"
+
+        duration_items = self.get("custom_duration_risk_items", [])
+        if duration_items:
+            total = sum(item.risk_score for item in duration_items)
+            self.custom_total_duration_risk_score = total
+            if total <= 7:
+                self.custom_duration_risk_rating = "Green"
+            elif total <= 14:
+                self.custom_duration_risk_rating = "Amber"
+            elif total <= 21:
+                self.custom_duration_risk_rating = "Red"
+            else:
+                self.custom_duration_risk_rating = "Critical"
 
     def validate_dates(self):
         if self.start_date and self.end_date and self.start_date > self.end_date:
@@ -75,11 +230,25 @@ class ProjectCharter(Document):
             })
 
     @frappe.whitelist()
+    @require_permission("Project", "create", ["Managing Partner", "Project Manager", "System Manager"])
     def create_or_update_project(self):
         """
         Exclusive trigger for Project creation in Maneef AEC.
         Ensures dates, PM, and budget are strictly synced from Charter to Project.
         """
+        if self.docstatus != 1:
+            frappe.throw("Project Charter must be submitted before creating a Project")
+
+        existing_project = self.project and frappe.db.exists("Project", self.project)
+        action = "update" if existing_project else "create"
+        frappe.logger().info(
+            "Project Charter action: charter=%s project=%s user=%s action=%s",
+            self.name,
+            self.project,
+            frappe.session.user,
+            action,
+        )
+
         project_name = f"{self.customer} - {self.charter_name}"
         
         # Check if project already exists or needs to be created
@@ -165,6 +334,11 @@ class ProjectCharter(Document):
         )
 
     @frappe.whitelist()
+    @require_permission(
+        "Task",
+        "create",
+        ["Design Lead", "Design Director", "Project Manager", "Managing Partner", "System Manager"],
+    )
     def generate_tasks_from_briefs(self, project_name):
         """
         Task-Based Production Engine:
@@ -172,6 +346,9 @@ class ProjectCharter(Document):
         mapping all BIM-specific metadata to custom fields.
         Idempotent: skips briefs whose tasks already exist.
         """
+        if self.docstatus != 1:
+            frappe.throw("Project Charter must be submitted before generating tasks")
+
         created_count = 0
         for brief in self.custom_task_briefs:
             # Idempotency check - don't duplicate if re-submitted
@@ -210,6 +387,13 @@ class ProjectCharter(Document):
             frappe.logger().info(f"[Maneef] Auto-created Task '{task.name}' from Brief '{brief.task_title}' for Project {project_name}")
 
         if created_count:
+            frappe.logger().info(
+                "Project Charter task generation: charter=%s project=%s created_count=%s user=%s",
+                self.name,
+                project_name,
+                created_count,
+                frappe.session.user,
+            )
             frappe.msgprint(
                 _("Created {0} Task(s) from Charter Task Briefs.").format(created_count),
                 indicator="green",
@@ -223,6 +407,30 @@ class ProjectCharter(Document):
         """
         if not self.project or not frappe.db.exists("Project", self.project):
             return
+
+        # Check for activity (Timesheets, POs, Invoices)
+        has_activity = False
+        activity_types = []
+        
+        if frappe.db.count("Timesheet Detail", {"project": self.project, "docstatus": 1}) > 0:
+            has_activity = True
+            activity_types.append("Timesheets")
+        
+        if frappe.db.count("Purchase Order", {"project": self.project, "docstatus": ["!=", 2]}) > 0:
+            has_activity = True
+            activity_types.append("Purchase Orders")
+            
+        if frappe.db.count("Sales Invoice", {"project": self.project, "docstatus": ["!=", 2]}) > 0:
+            has_activity = True
+            activity_types.append("Sales Invoices")
+            
+        if has_activity:
+            frappe.msgprint(
+                _("Warning: Linked Project {0} has existing activity ({1}). Cancellation will proceed, but historical records remain linked.").format(
+                    self.project, ", ".join(activity_types)
+                ),
+                indicator="orange"
+            )
 
         try:
             frappe.db.set_value("Project", self.project, {
@@ -263,6 +471,7 @@ class ProjectCharter(Document):
     @frappe.whitelist()
     def get_project_summary(self, project_name):
         """Get project summary for sidebar display"""
+        frappe.has_permission("Project", "read", project_name, throw=True)
         project = frappe.db.get_value("Project", project_name, [
             "name", "status", "custom_contracted_fee", "custom_burn_percentage"
         ], as_dict=True)

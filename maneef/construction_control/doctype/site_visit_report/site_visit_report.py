@@ -23,6 +23,15 @@ class SiteVisitReport(Document):
         if "Site Architect" in user_roles and not any(r in user_roles for r in ["Project Manager", "Managing Partner", "System Manager"]):
             frappe.throw(_("Edits to submitted reports are blocked for Site Architects unless you are a Project Manager or above."))
 
+    def on_trash(self):
+        from maneef.utils.deletion_guard import protect_deletion
+        protect_deletion(self, [
+            {"doctype": "SVR Issue", "link_field": "site_visit_report", "label": "SVR Issues"},
+            {"doctype": "SVR Photo", "link_field": "site_visit_report", "label": "SVR Photos"},
+            {"doctype": "SVR Contractor Log", "link_field": "site_visit_report", "label": "Contractor Logs"},
+            {"doctype": "Issue", "link_field": "custom_site_visit_report", "label": "Issues"},
+        ])
+
     def _auto_fill_defaults(self):
         if hasattr(self, 'site_architect') and not self.site_architect:
             self.site_architect = frappe.session.user
@@ -31,6 +40,8 @@ class SiteVisitReport(Document):
             emp = frappe.db.get_value("Employee", {"user_id": frappe.session.user}, "name")
             if emp:
                 self.assigned_engineer = emp
+            elif getattr(self, "is_billable", False):
+                frappe.throw(_("Your user account is not linked to an Employee profile. Required for billable visits."))
 
         if not self.visit_date:
             self.visit_date = frappe.utils.today()
@@ -46,13 +57,16 @@ class SiteVisitReport(Document):
         for row in self.get("issues_raised", []):
             subj = f"[SVR {self.name}] {row.issue_description}"
             if not frappe.db.exists("Issue", {"subject": subj, "custom_site_visit_report": self.name}):
-                issue = frappe.new_doc("Issue")
-                issue.subject = subj
-                issue.priority = row.priority
-                issue.custom_project = self.project
-                issue.custom_site_visit_report = self.name
-                issue.custom_contractor = row.contractor
-                issue.insert(ignore_permissions=True)
+                try:
+                    issue = frappe.new_doc("Issue")
+                    issue.subject = subj
+                    issue.priority = row.priority
+                    issue.custom_project = self.project
+                    issue.custom_site_visit_report = self.name
+                    issue.custom_contractor = row.contractor
+                    issue.insert(ignore_permissions=True)
+                except Exception as e:
+                    frappe.log_error(f"Failed to create Issue for SVR {self.name}: {str(e)}", "SVR Issue Creation Error")
 
     def _alert_pm_on_critical(self):
         critical_count = sum(1 for row in self.get("issues_raised", []) if row.priority in ("High", "Critical"))

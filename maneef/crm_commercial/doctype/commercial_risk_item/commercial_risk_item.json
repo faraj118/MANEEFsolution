@@ -1,0 +1,36 @@
+{
+  "doctype": "DocType",
+  "name": "Commercial Risk Item",
+  "module": "CRM Commercial",
+  "custom": 0,
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "risk_factor",
+      "fieldtype": "Select",
+      "label": "Risk Factor",
+      "options": "Margin Analysis\nScope Clarity\nCompetition Level\nRelationship Value\nChange Order Probability\nClient Decision Speed",
+      "reqd": 1
+    },
+    {
+      "fieldname": "factor_value",
+      "fieldtype": "Select",
+      "label": "Assessment",
+      "options": "Above 30%\n20-30%\n10-20%\n5-10%\nBelow 5% or negative\nCrystal clear, detailed brief\nMostly clear\nSome ambiguity\nVague\nUndefined\nSole source (invited only)\nLimited competition (2-3)\nCompetitive (4-6)\nHighly competitive (7+)\nPrice war\nStrategic long-term partner\nRecurring client\nSecond project\nOne-time opportunity\nCold lead\nVery low (fixed scope)\nLow\nMedium\nHigh (complex project)\nVery high (vague scope)\nUnder 3 days\n1 week\n2-4 weeks\n1-2 months\nOver 2 months",
+      "reqd": 1
+    },
+    {
+      "fieldname": "risk_score",
+      "fieldtype": "Int",
+      "label": "Score",
+      "default": 0,
+      "read_only": 1
+    },
+    {
+      "fieldname": "justification",
+      "fieldtype": "Small Text",
+      "label": "Justification",
+      "depends_on": "eval:doc.risk_score>=4"
+    }
+  ]
+}

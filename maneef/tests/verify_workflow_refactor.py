@@ -1,3 +1,4 @@
+# Tests should only be run via: bench --site <site> execute maneef.tests.verify_workflow_refactor.run_all
 """
 Maneef AEC - Workflow Refactoring Verification Script
 ======================================================
@@ -27,7 +28,6 @@ def section(title):
     print(f"{'='*60}")
 
 
-@frappe.whitelist()
 def run_all():
     results = []
     section("Phase 1 — Sales Order Decoupled")

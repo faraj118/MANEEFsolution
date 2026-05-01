@@ -22,8 +22,10 @@ def get_columns():
 
 def get_data(filters):
     conditions = ""
+    params = ()
     if filters and filters.get("status"):
-        conditions = f"WHERE status = '{filters.get('status')}'"
+        conditions = "WHERE status = %s"
+        params = (filters.get("status"),)
         
     return frappe.db.sql(f"""
         SELECT
@@ -40,4 +42,4 @@ def get_data(filters):
         FROM `tabProject`
         {conditions}
         ORDER BY custom_burn_percentage DESC
-    """, as_dict=1)
+    """, params, as_dict=1)

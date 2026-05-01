@@ -1,6 +1,7 @@
 import frappe
 from frappe.model.document import Document
 from frappe import _
+from maneef.utils.permission_guard import require_permission
 
 class StopWorkNotice(Document):
     def before_submit(self):
@@ -17,6 +18,7 @@ class StopWorkNotice(Document):
         frappe.throw(_("Stop-Work Notices cannot be cancelled. Use the Lift Notice action if the issue has been resolved."))
 
     @frappe.whitelist()
+    @require_permission("Stop Work Notice", "write")
     def lift_stop_work(self):
         if not frappe.db.exists("Has Role", {"parent": frappe.session.user, "role": "Managing Partner"}):
             frappe.throw(_("Only a Managing Partner can lift a Stop-Work Notice."))

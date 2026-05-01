@@ -1,71 +1,67 @@
-_REVISIONS = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-_DISC_CODE = {"Architecture":"A","Interior":"I","Landscape":"L","Structure":"S","MEP":"M","BIM":"B"}
-_LOD_ORDER = ["LOD 100","LOD 200","LOD 300","LOD 400","LOD 500"]
-_MAX_LOD = {"Innovation Projects":"LOD 200","Landscape Projects":"LOD 300",
-           "Small Construction":"LOD 300","Medium Construction":"LOD 300",
-           "Large Construction":"LOD 400","Complex Construction":"LOD 500"}
-
 import frappe
 from frappe.model.document import Document
 
 class ProjectDeliverable(Document):
     def before_insert(self):
-        self._enforce_ip_lock()
-        self._auto_generate_drawing_id()
-        self._assign_first_revision()
+        if not self.project:
+            frappe.throw("Project is required for all deliverables")
 
-    def before_save(self):
-        self._handle_revision_on_new_upload()
-        self._sync_client_visibility()
+        # IP Protection: Check signed contract
+        contract_status = frappe.db.get_value("Project", self.project, "custom_contract_status")
+        if contract_status != "Active":
+            frappe.throw("Cannot create deliverables. Project contract status is not Active.")
+
+        # Reset status if amended
+        if getattr(self, "amended_from", None):
+            self.status = "Draft"
 
     def validate(self):
-        self._validate_bim_lod()
-        self._validate_stop_work_not_active()
+        self.check_design_freeze()
+        self.check_approval_chain()
 
-    def _enforce_ip_lock(self):
-        if not frappe.db.exists("Sales Order", {"project": self.project, "custom_contract_status": ["in", ["Signed", "Active"]], "docstatus": 1}):
-            frappe.throw("IP Protection Lock (BR-01): No signed or active contract for this project.")
+    def check_design_freeze(self):
+        if self.design_freeze_status == "Frozen":
+            if not self.has_value_changed("design_freeze_status"):
+                frappe.throw("This deliverable is design-frozen. Create a Change Order to modify.")
 
-    def _auto_generate_drawing_id(self):
-        if not self.drawing_id:
-            seq = frappe.db.count("Project Deliverable", {"project": self.project, "discipline": self.discipline}) + 1
-            disc = _DISC_CODE.get(self.discipline, "X")
-            self.drawing_id = f"AS-{self.project}-{disc}-{seq:03d}"
+    def check_approval_chain(self):
+        if self.docstatus == 1:
+            return
+        if self.doc_controller_issued:
+            if not self.principal_approved:
+                frappe.throw("Cannot mark as issued. Principal approval is required first.")
+            if not self.technical_lead_approved:
+                frappe.throw("Cannot mark as issued. Technical Lead approval is required first.")
+            if not self.design_lead_approved:
+                frappe.throw("Cannot mark as issued. Design Lead approval is required first.")
 
-    def _assign_first_revision(self):
-        if not self.revision_no:
-            self.revision_no = "A"
+    def on_submit(self):
+        self.status = "Issued"
 
-    def _handle_revision_on_new_upload(self):
-        if not self.is_new() and self.drawing_id and self.file_attachment:
-            prev = frappe.get_all("Project Deliverable", filters={"drawing_id": self.drawing_id, "name": ["!=", self.name]}, order_by="creation DESC", limit=1)
-            if prev:
-                prev_doc = frappe.get_doc("Project Deliverable", prev[0]["name"])
-                idx = _REVISIONS.index(prev_doc.revision_no) if prev_doc.revision_no in _REVISIONS else 0
-                new_rev = _REVISIONS[idx+1] if idx+1 < len(_REVISIONS) else prev_doc.revision_no
-                self.previous_revision = prev_doc.name
-                frappe.db.set_value("Project Deliverable", prev_doc.name, {"status": "Superseded", "superseded_by": self.name, "client_visible": 0})
-                self.revision_no = new_rev
-
-    def _sync_client_visibility(self):
-        self.client_visible = 1 if self.status == "Issued" else 0
-
-    def _validate_bim_lod(self):
-        project_type = frappe.db.get_value("Project", self.project, "custom_project_type")
-        max_lod = _MAX_LOD.get(project_type)
-        if max_lod and self.bim_lod and self.bim_lod in _LOD_ORDER and _LOD_ORDER.index(self.bim_lod) > _LOD_ORDER.index(max_lod):
-            frappe.throw(f"LOD {self.bim_lod} exceeds max allowed {max_lod} for project type {project_type}.")
-
-    def _validate_stop_work_not_active(self):
-        if frappe.db.get_value("Project", self.project, "custom_stop_work_active"):
-            frappe.throw("Cannot modify deliverable while Stop Work is active on this project.")
+    def on_cancel(self):
+        self.status = "Superseded"
 
     @frappe.whitelist()
     def create_new_revision(self):
+        if self.docstatus != 1:
+            frappe.throw(frappe._("Only submitted deliverables can be revised."))
         new_doc = frappe.copy_doc(self)
-        new_doc.name = None
+        
+        curr_rev = self.revision or ""
+        if not curr_rev:
+            new_rev = "1"
+        elif curr_rev.isdigit():
+            new_rev = str(int(curr_rev) + 1)
+        elif curr_rev.startswith("R") and curr_rev[1:].isdigit():
+            new_rev = f"R{int(curr_rev[1:]) + 1}"
+        elif len(curr_rev) == 1 and curr_rev.isalpha():
+            new_rev = chr(ord(curr_rev) + 1)
+        else:
+            new_rev = curr_rev + "-1"
+            
+        new_doc.revision = new_rev
         new_doc.status = "Draft"
-        new_doc.issued_by = None
-        new_doc.revision_no = None
-        new_doc.insert(ignore_permissions=True)
-        return {"status": "success", "message": "Revision created", "new_name": new_doc.name}
+        new_doc.amended_from = self.name
+        new_doc.insert(ignore_permissions=False)
+        frappe.msgprint(frappe._("New revision created: {0}").format(new_doc.name), alert=True)
+        return new_doc.name

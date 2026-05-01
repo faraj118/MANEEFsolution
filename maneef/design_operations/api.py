@@ -1,8 +1,9 @@
 import frappe
-from frappe import _
+from frappe import _, rate_limit
 from frappe.utils import now_datetime, get_datetime
 
 @frappe.whitelist()
+@rate_limit(limit=30, seconds=3600)
 def task_check_in(task_name):
     task = frappe.get_doc("Task", task_name)
     user = frappe.session.user
@@ -44,7 +45,20 @@ def task_check_in(task_name):
     return True
 
 @frappe.whitelist()
+@rate_limit(limit=30, seconds=3600)
 def task_check_out(task_name):
+    user = frappe.session.user
+    
+    # Logic Guard 1: Task Assignment
+    assignments = frappe.get_all("ToDo", filters={
+        "reference_type": "Task",
+        "reference_name": task_name,
+        "allocated_to": user,
+        "status": "Open"
+    })
+    if not assignments and "System Manager" not in frappe.get_roles():
+        frappe.throw(_("You are not assigned to this task. Only assigned technical staff can check out."))
+
     task = frappe.get_doc("Task", task_name)
     
     if task.custom_check_in_status == 'Checked Out':

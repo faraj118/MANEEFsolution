@@ -1,3 +1,4 @@
+# Tests should only be run via: bench --site <site> execute maneef.tests.verify_site_visit.run_all
 """
 Maneef AEC - Site Visit & Workspace Expansion Verification Script
 ================================================================
@@ -19,7 +20,6 @@ def section(title):
     print(f"  {title}")
     print(f"{'='*60}")
 
-@frappe.whitelist()
 def run_all():
     results = []
 

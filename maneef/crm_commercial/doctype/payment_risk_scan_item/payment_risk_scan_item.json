@@ -1,0 +1,36 @@
+{
+  "doctype": "DocType",
+  "name": "Payment Risk Scan Item",
+  "module": "CRM Commercial",
+  "custom": 0,
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "risk_factor",
+      "fieldtype": "Select",
+      "label": "Risk Factor",
+      "options": "Funding Source\nPayment History\nBudget Realism\nContract Type\nPayment Terms\nPayment Security",
+      "reqd": 1
+    },
+    {
+      "fieldname": "factor_value",
+      "fieldtype": "Select",
+      "label": "Assessment",
+      "options": "Government\nBank-financed\nPrivate (established)\nPrivate (new)\nSelf-funded (individual)\nNew client\nReliable (3+ projects)\nMostly reliable\nDelayed (past issues)\nDefaulted\nRealistic\nSlightly optimistic\nOptimistic\nUnrealistic\nUnknown\nLump Sum\nPercentage of Construction\nTime and Materials\nCost Plus\nNo contract yet\nMonthly\nBi-monthly\nMilestone-based\nEnd of phase\nOn-demand / unclear\nBank Guarantee\nLetter of Credit\nPost-dated Cheques\nCheque on delivery\nNone",
+      "reqd": 1
+    },
+    {
+      "fieldname": "risk_score",
+      "fieldtype": "Int",
+      "label": "Score",
+      "default": 0,
+      "read_only": 1
+    },
+    {
+      "fieldname": "justification",
+      "fieldtype": "Small Text",
+      "label": "Justification",
+      "depends_on": "eval:doc.risk_score>=4"
+    }
+  ]
+}

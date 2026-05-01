@@ -5,11 +5,12 @@ from frappe import _
 
 class ProjectVariationOrder(Document):
     def validate(self):
+        from frappe.utils import flt
         # Calculate new total budget
         if not self.original_budget:
             self.original_budget = frappe.db.get_value("Project", self.project, "custom_contracted_fee") or 0.0
             
-        self.new_total_budget = float(self.original_budget) + float(self.variation_amount or 0.0)
+        self.new_total_budget = flt(self.original_budget) + flt(self.variation_amount)
 
         # Calculate new end date
         if not self.original_end_date:
@@ -38,6 +39,11 @@ class ProjectVariationOrder(Document):
         self.revert_variation_from_project()
 
     def apply_variation_to_project(self):
+        allowed_roles = ["Managing Partner", "Project Manager", "System Manager"]
+        user_roles = frappe.get_roles(frappe.session.user)
+        if not any(r in user_roles for r in allowed_roles):
+            frappe.throw("Not permitted to apply project variations")
+
         if not self.project: return
         
         project = frappe.get_doc("Project", self.project)
@@ -49,17 +55,24 @@ class ProjectVariationOrder(Document):
         frappe.msgprint(_("Project '{0}' updated. New Budget: {1}").format(self.project, self.new_total_budget), indicator="green", alert=True)
 
     def revert_variation_from_project(self):
+        from frappe.utils import flt
+        allowed_roles = ["Managing Partner", "Project Manager", "System Manager"]
+        user_roles = frappe.get_roles(frappe.session.user)
+        if not any(r in user_roles for r in allowed_roles):
+            frappe.throw("Not permitted to revert project variations")
+
         if not self.project: return
-        
+
         project = frappe.get_doc("Project", self.project)
         # Safely subtract the variation amount
-        current_fee = float(project.custom_contracted_fee or 0.0)
-        project.custom_contracted_fee = current_fee - float(self.variation_amount or 0.0)
-        
+        current_fee = flt(project.custom_contracted_fee)
+        project.custom_contracted_fee = current_fee - flt(self.variation_amount)
+
         # We cannot magically guess the previous end date if multiple variations exist,
         # but we can revert the days we added for exactly this variation.
         if project.expected_end_date and self.requested_days_extension:
             project.expected_end_date = add_days(project.expected_end_date, -(self.requested_days_extension))
-            
+            frappe.msgprint(_("Warning: Date reverted by subtracting {0} days. Please manually verify the Project End Date if multiple variations exist.").format(self.requested_days_extension), indicator="orange", alert=True)
+
         project.save(ignore_permissions=True)
-        frappe.msgprint(_("Variation Reverted for '{0}'.").format(self.project), indicator="orange", alert=True)
+        frappe.msgprint(_("Variation Reverted for '{0}'.").format(self.project), indicator="green", alert=True)

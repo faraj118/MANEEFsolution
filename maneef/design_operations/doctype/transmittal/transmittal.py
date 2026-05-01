@@ -20,6 +20,16 @@ class Transmittal(Document):
     def on_cancel(self):
         frappe.throw(_("Transmittals are permanent legal records and cannot be cancelled."))
 
+    def on_trash(self):
+        from maneef.utils.deletion_guard import protect_deletion
+
+        if self.docstatus == 1:
+            frappe.throw("Cannot delete a submitted Transmittal. Transmittals are part of the immutable audit trail.")
+
+        protect_deletion(self, [
+            {"doctype": "Transmittal Drawings", "link_field": "transmittal", "label": "Transmittal Drawings"},
+        ])
+
     def _check_doc_controller_role(self):
         if not frappe.db.exists("Has Role", {"parent": frappe.session.user, "role": ["in", ["Doc Controller", "Managing Partner", "System Manager"]]}):
             frappe.throw(_("You must have Doc Controller, Managing Partner, or System Manager role to submit a Transmittal."))
@@ -28,10 +38,10 @@ class Transmittal(Document):
         non_issued = []
         for d in self.attached_drawings:
             status = frappe.db.get_value("Project Deliverable", d.project_deliverable, "status")
-            if status != "Issued":
+            if not status or status != "Issued":
                 non_issued.append(d.project_deliverable)
         if non_issued:
-            frappe.throw(_("The following drawings are not Issued: {0}").format(", ".join(non_issued)))
+            frappe.throw(_("The following drawings do not exist or are not Issued: {0}").format(", ".join(non_issued)))
 
     def _validate_principal_signoff(self):
         missing = []
@@ -54,15 +64,12 @@ class Transmittal(Document):
 
     def _send_transmittal_email(self):
         if self.recipient_email:
-            try:
-                frappe.sendmail(
-                    recipients=[self.recipient_email],
-                    subject=f"Transmittal {self.name}",
-                    message=f"Please find attached the transmittal {self.name}.<br><br>Issued by {self.issued_by}.",
-                    attachments=[self._build_pdf_attachment()]
-                )
-            except Exception as e:
-                frappe.log_error(str(e), "Transmittal Email Error")
+            frappe.sendmail(
+                recipients=[self.recipient_email],
+                subject=f"Transmittal {self.name}",
+                message=f"Please find attached the transmittal {self.name}.<br><br>Issued by {self.issued_by}.",
+                attachments=[self._build_pdf_attachment()]
+            )
 
     def _build_pdf_attachment(self):
         pdf = frappe.get_print(self.doctype, self.name, as_pdf=True)

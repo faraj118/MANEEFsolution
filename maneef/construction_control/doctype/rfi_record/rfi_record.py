@@ -4,6 +4,14 @@ from frappe import _
 
 class RfiRecord(Document):
     def validate(self):
+        if not getattr(self, "is_billable", True):
+            allowed_roles = ["Project Manager", "Managing Partner", "System Manager"]
+            user_roles = frappe.get_roles(frappe.session.user)
+            if not any(r in user_roles for r in allowed_roles):
+                frappe.throw("Only Project Manager or above can mark an RFI as non-billable")
+            if not self.get("non_billable_justification"):
+                frappe.throw("Justification is required when marking RFI as non-billable")
+
         self.check_variation_impact()
 
     def check_variation_impact(self):
@@ -23,4 +31,4 @@ def weekly_open_items_report():
     if open_rfis:
         mps = frappe.get_all("Has Role", filters={"role": "Managing Partner"}, pluck="parent")
         if mps:
-            frappe.sendmail(recipients=mps, subject="Open High-Impact RFIs", message=f"There are {open_rfis} open RFIs with commercial impact.")
+            frappe.sendmail(recipients=mps, subject=_("Open High-Impact RFIs"), message=_("There are {0} open RFIs with commercial impact.").format(open_rfis))

@@ -6,7 +6,7 @@ def create_default_roles():
     roles = [
         "Managing Partner", "Design Lead", "Technical Lead", "Doc Controller",
         "Site Architect", "BIM Coordinator", "Procurement Officer", "Project Coordinator",
-        "Production Team"
+        "Production Team", "Design Engineer"
     ]
     for role_name in roles:
         try:
@@ -42,7 +42,7 @@ def create_project_type_master():
     try:
         if frappe.db.exists("DocType", "Project Type"):
             for pt in project_types:
-                if not frappe.db.exists("Project Type", pt):
+                if not frappe.db.exists("Project Type", {"project_type": pt}):
                     frappe.get_doc({"doctype": "Project Type", "project_type": pt}).insert(ignore_permissions=True)
                     frappe.logger().info(f"Created Project Type: {pt}")
         else:
@@ -119,12 +119,30 @@ def create_number_cards():
             frappe.log_error(title="Number Card Setup Failed", message=error_msg)
             print(f"  ❌ Failed to create Number Card '{card['name']}': {str(e)}")
 
-def setup_all_companies_coa():
+def setup_all_companies_coa(doc=None, method=None):
     """Automatically ensures any existing company has the Maneef AEC COA injected."""
+    # Only inject COA if the company has no existing GL Entries
+    if doc and frappe.db.count("GL Entry", {"company": doc.name}) > 0:
+        frappe.msgprint(
+            frappe._(
+                "Maneef COA injection skipped for {0}: "
+                "existing transactions found."
+            ).format(doc.name),
+            alert=True
+        )
+        return
+
     from maneef.financial_control.chart_of_accounts.coa_builder import setup_maneef_coa
-    companies = frappe.get_all("Company", fields=["name"])
+    
+    # If doc is provided (hook), only process that company. Otherwise (migration), process all.
+    companies = [doc] if doc else frappe.get_all("Company", fields=["name"])
+    
     for company in companies:
         try:
+            # Re-check for GL entries in migration case (doc is None)
+            if not doc and frappe.db.count("GL Entry", {"company": company.name}) > 0:
+                continue
+                
             setup_maneef_coa(company.name)
         except Exception as e:
             frappe.log_error(title="AEC COA Auto-Injection Failed", message=f"Company {company.name}: {str(e)}")
@@ -142,3 +160,40 @@ def run_post_migrate_setup():
     create_number_cards()
     frappe.logger().info("Setup complete: AEC Roles, Offices, Naming, and Cards (Workflows/Fields moved to Fixtures).")
     frappe.logger().info("Setup complete: AEC Roles, Offices, Fields, Naming, Workflows, and Cards.")
+
+def before_uninstall():
+    # Remove Custom Fields added to ERPNext DocTypes
+    custom_fields = frappe.get_list(
+        "Custom Field",
+        filters={"dt": ["not in", frappe.get_list(
+            "DocType",
+            filters={"module": "Maneef"},
+            pluck="name"
+        )]},
+        pluck="name"
+    )
+    # Read the actual custom field names from fixtures/custom_field.json
+    # and delete only those — do not delete custom fields from other apps
+    import json, os
+    fixtures_path = frappe.get_app_path("maneef", "fixtures", "custom_field.json")
+    if os.path.exists(fixtures_path):
+        with open(fixtures_path) as f:
+            maneef_custom_fields = json.load(f)
+        for cf in maneef_custom_fields:
+            if frappe.db.exists("Custom Field", cf.get("name")):
+                frappe.delete_doc("Custom Field", cf.get("name"), 
+                                  ignore_missing=True, force=True)
+
+    # Remove Property Setters
+    ps_path = frappe.get_app_path("maneef", "fixtures", "property_setter.json")
+    if os.path.exists(ps_path):
+        with open(ps_path) as f:
+            maneef_ps = json.load(f)
+        for ps in maneef_ps:
+            if frappe.db.exists("Property Setter", ps.get("name")):
+                frappe.delete_doc("Property Setter", ps.get("name"),
+                                  ignore_missing=True, force=True)
+
+    frappe.db.commit()
+    frappe.msgprint("Maneef: Custom Fields and Property Setters removed.", 
+                    alert=True)

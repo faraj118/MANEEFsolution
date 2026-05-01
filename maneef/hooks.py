@@ -47,7 +47,14 @@ required_apps = ["erpnext"]
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 doctype_js = {
     "Company": "public/js/company.js",
-    "Project Charter": "public/js/project_charter_sidebar.js"
+    "Project Charter": "public/js/project_charter_sidebar.js",
+    "Project": "public/js/project_sidebar.js",
+    "Customer": "public/js/customer_sidebar.js",
+    "Sales Order": "public/js/sales_order_sidebar.js",
+    "RFI Record": "public/js/rfi_sidebar.js",
+    "Site Visit Report": "public/js/svr_sidebar.js",
+    "Transmittal": "public/js/transmittal_sidebar.js",
+    "Risk Assessment": "public/js/risk_assessment_sidebar.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -89,19 +96,95 @@ doctype_js = {
 
 # before_install = "maneef.install.before_install"
 after_install = ["maneef.setup.run_post_migrate_setup"]
+before_uninstall = "maneef.setup.before_uninstall"
 after_migrate = ["maneef.setup.run_post_migrate_setup"]
 
 # Fixtures
 # --------
 fixtures = [
-    "Workflow", 
-    "Workflow State", 
-    "Workflow Action", 
-    "Custom Field", 
+    "Workflow",
+    "Workflow State",
+    "Workflow Action",
+    "Custom Field",
     "Property Setter",
     "Print Format",
-    "Workspace"
+    "Workspace",
+    "Number Card",
+    "Dashboard Chart"
 ]
+
+# Custom Fields for Project Charter risk assessment
+# These will be automatically installed via fixtures
+custom_fields = {
+    "Project Charter": [
+        {
+            "fieldname": "custom_payment_risk_items",
+            "fieldtype": "Table",
+            "label": "Payment Risk Items",
+            "options": "Payment Risk Scan Item",
+            "insert_after": "custom_commercial_risk_items"
+        },
+        {
+            "fieldname": "custom_commercial_risk_items",
+            "fieldtype": "Table",
+            "label": "Commercial Risk Items",
+            "options": "Commercial Risk Item",
+            "insert_after": "custom_duration_risk_items"
+        },
+        {
+            "fieldname": "custom_duration_risk_items",
+            "fieldtype": "Table",
+            "label": "Duration Risk Items",
+            "options": "Duration Risk Item",
+            "insert_after": "custom_go_no_go_decision"
+        },
+        {
+            "fieldname": "custom_payment_risk_rating",
+            "fieldtype": "Select",
+            "label": "Payment Risk Rating",
+            "options": "Low\nMedium\nHigh\nUnacceptable",
+            "read_only": 1,
+            "insert_after": "custom_total_payment_risk_score"
+        },
+        {
+            "fieldname": "custom_commercial_risk_rating",
+            "fieldtype": "Select",
+            "label": "Commercial Risk Rating",
+            "options": "Green\nAmber\nRed",
+            "read_only": 1,
+            "insert_after": "custom_total_commercial_risk_score"
+        },
+        {
+            "fieldname": "custom_duration_risk_rating",
+            "fieldtype": "Select",
+            "label": "Duration Risk Rating",
+            "options": "Green\nAmber\nRed\nCritical",
+            "read_only": 1,
+            "insert_after": "custom_total_duration_risk_score"
+        },
+        {
+            "fieldname": "custom_total_payment_risk_score",
+            "fieldtype": "Int",
+            "label": "Total Payment Risk Score",
+            "read_only": 1,
+            "insert_after": "custom_payment_risk_items"
+        },
+        {
+            "fieldname": "custom_total_commercial_risk_score",
+            "fieldtype": "Int",
+            "label": "Total Commercial Risk Score",
+            "read_only": 1,
+            "insert_after": "custom_commercial_risk_items"
+        },
+        {
+            "fieldname": "custom_total_duration_risk_score",
+            "fieldtype": "Int",
+            "label": "Total Duration Risk Score",
+            "read_only": 1,
+            "insert_after": "custom_duration_risk_items"
+        }
+    ]
+}
 
 # Uninstallation
 # ------------
@@ -175,7 +258,17 @@ doc_events = {
     },
     "Timesheet": {
         "before_submit": "maneef.financial_control.timesheet_hooks.before_submit",
-        "on_submit": "maneef.financial_control.sales_invoice_hooks.on_timesheet_submit"
+        "on_submit": "maneef.financial_control.timesheet_hooks.on_submit"
+    },
+    "Customer": {
+        "on_trash": "maneef.crm_commercial.customer_hooks.validate_customer_deletion"
+    },
+    "Project": {
+        "validate": "maneef.design_operations.project_gate_hooks.validate_project_gate_status",
+        "on_trash": "maneef.design_operations.project_hooks.validate_project_deletion"
+    },
+    "Sales Order": {
+        "on_trash": "maneef.crm_commercial.sales_order_hooks.validate_sales_order_deletion"
     }
 }
 
@@ -184,10 +277,10 @@ doc_events = {
 
 scheduler_events = {
     "daily": [
-        "maneef.financial_control.sales_invoice_hooks.daily_burn_rate_update"
+        "maneef.financial_control.timesheet_hooks.daily_burn_rate_update"
     ],
     "hourly": [
-        "maneef.financial_control.sales_invoice_hooks.hourly_burn_alert_check"
+        "maneef.financial_control.timesheet_hooks.hourly_burn_alert_check"
     ],
     "weekly": [
         "maneef.construction_control.doctype.rfi_record.rfi_record.weekly_open_items_report"

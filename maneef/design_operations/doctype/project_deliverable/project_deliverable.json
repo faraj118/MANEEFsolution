@@ -1,22 +1,144 @@
 {
     "doctype": "DocType",
     "module": "Design Operations",
+    "is_submittable": 1,
     "fields": [
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "label": "Project",
+            "options": "Project",
+            "reqd": 1
+        },
+        {
+            "fieldname": "project_charter",
+            "fieldtype": "Link",
+            "label": "Project Charter",
+            "options": "Project Charter"
+        },
+        {
+            "fieldname": "customer",
+            "fieldtype": "Link",
+            "label": "Customer",
+            "options": "Customer"
+        },
         {
             "fieldname": "deliverable_name",
             "fieldtype": "Data",
-            "label": "Deliverable Name"
+            "label": "Deliverable Name",
+            "reqd": 1
+        },
+        {
+            "fieldname": "deliverable_type",
+            "fieldtype": "Select",
+            "label": "Deliverable Type",
+            "options": "SD Sketch\nSD Drawing\nDD Drawing\nCD Drawing\nBOQ\nSpecification\nBIM Model\nReport\nPresentation\nOther"
+        },
+        {
+            "fieldname": "discipline",
+            "fieldtype": "Select",
+            "label": "Discipline",
+            "options": "Architectural\nStructural\nMEP\nInterior\nLandscape\nBIM\nGeneral"
+        },
+        {
+            "fieldname": "revision",
+            "fieldtype": "Data",
+            "label": "Revision",
+            "default": "R0"
         },
         {
             "fieldname": "status",
             "fieldtype": "Select",
             "label": "Status",
-            "options": "Draft\nIn Progress\nCompleted"
+            "options": "Draft\nIn Progress\nCompleted\nApproved\nRejected\nIssued\nSuperseded"
+        },
+        {
+            "fieldname": "assigned_to",
+            "fieldtype": "Link",
+            "label": "Assigned To",
+            "options": "User"
+        },
+        {
+            "fieldname": "design_lead_reviewer",
+            "fieldtype": "Link",
+            "label": "Design Lead Reviewer",
+            "options": "User"
+        },
+        {
+            "fieldname": "technical_lead_reviewer",
+            "fieldtype": "Link",
+            "label": "Technical Lead Reviewer",
+            "options": "User"
+        },
+        {
+            "fieldname": "principal_approver",
+            "fieldtype": "Link",
+            "label": "Principal Approver",
+            "options": "User"
+        },
+        {
+            "fieldname": "design_lead_approved",
+            "fieldtype": "Check",
+            "label": "Design Lead Approved",
+            "default": "0"
+        },
+        {
+            "fieldname": "technical_lead_approved",
+            "fieldtype": "Check",
+            "label": "Technical Lead Approved",
+            "default": "0"
+        },
+        {
+            "fieldname": "principal_approved",
+            "fieldtype": "Check",
+            "label": "Principal Approved",
+            "default": "0"
+        },
+        {
+            "fieldname": "doc_controller_issued",
+            "fieldtype": "Check",
+            "label": "Doc Controller Issued",
+            "default": "0"
+        },
+        {
+            "fieldname": "approval_date",
+            "fieldtype": "Date",
+            "label": "Approval Date"
+        },
+        {
+            "fieldname": "file_attachment",
+            "fieldtype": "Attach",
+            "label": "File Attachment"
+        },
+        {
+            "fieldname": "comments",
+            "fieldtype": "Small Text",
+            "label": "Comments"
+        },
+        {
+            "fieldname": "linked_transmittal",
+            "fieldtype": "Link",
+            "label": "Linked Transmittal",
+            "options": "Transmittal"
+        },
+        {
+            "fieldname": "design_freeze_status",
+            "fieldtype": "Select",
+            "label": "Design Freeze Status",
+            "options": "Active\nFrozen\nUnfrozen with Change Order"
         },
         {
             "fieldname": "due_date",
             "fieldtype": "Date",
             "label": "Due Date"
+        },
+        {
+            "fieldname": "amended_from",
+            "fieldtype": "Link",
+            "options": "Project Deliverable",
+            "label": "Amended From",
+            "read_only": 1,
+            "no_copy": 1
         }
     ],
     "permissions": [
@@ -32,6 +154,35 @@
             "read": 1,
             "write": 1,
             "create": 1
+        },
+        {
+            "role": "Design Lead",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        },
+        {
+            "role": "Technical Lead",
+            "read": 1,
+            "write": 1,
+            "create": 1
+        },
+        {
+            "role": "Managing Partner",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        },
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1
         }
     ],
     "name": "Project Deliverable"

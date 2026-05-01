@@ -6,6 +6,11 @@ from frappe import _
 @frappe.whitelist()
 def check_coa_compliance(company):
     """Checks if the Maneef AEC accounts exist for the company."""
+    allowed_roles = ["Financial Controller", "Managing Partner", "Accounts Manager", "System Manager"]
+    user_roles = frappe.get_roles(frappe.session.user)
+    if not any(r in user_roles for r in allowed_roles):
+        frappe.throw("Not permitted to view Chart of Accounts compliance")
+
     critical_accounts = [
         "1150 Work in Progress - WIP (Projects) | أعمال تحت التنفيذ - WIP",
         "5110 Project Salaries Allocation | توزيع رواتب المشاريع"

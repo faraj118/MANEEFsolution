@@ -71,6 +71,18 @@
             "label": "Has Schedule Impact?"
         },
         {
+            "fieldname": "is_billable",
+            "fieldtype": "Check",
+            "label": "Is Billable",
+            "default": 1
+        },
+        {
+            "fieldname": "non_billable_justification",
+            "fieldtype": "Small Text",
+            "label": "Non-Billable Justification",
+            "depends_on": "eval:doc.is_billable==0"
+        },
+        {
             "fieldname": "resolution_section",
             "fieldtype": "Section Break",
             "label": "Resolution"

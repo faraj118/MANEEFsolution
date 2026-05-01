@@ -1,0 +1,36 @@
+{
+  "doctype": "DocType",
+  "name": "Duration Risk Item",
+  "module": "CRM Commercial",
+  "custom": 0,
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "risk_factor",
+      "fieldtype": "Select",
+      "label": "Risk Factor",
+      "options": "Expected Duration\nCash Flow Gap\nClient Decision Speed\nExternal Dependencies\nTeam Lock Duration\nScope Creep Probability\nHistorical Overrun",
+      "reqd": 1
+    },
+    {
+      "fieldname": "factor_value",
+      "fieldtype": "Select",
+      "label": "Assessment",
+      "options": "Under 3 months\n3-6 months\n6-12 months\n12-18 months\nOver 18 months\nMonthly billing\nBi-monthly\nQuarterly milestones\nEnd of phase only\nLump sum on completion\nUnder 3 days\n1 week\n2-4 weeks\n1-2 months\nOver 2 months\nNone\n1 dependency (internal)\n2 dependencies\n3+ dependencies\nGovernment approvals required\nFully flexible\nMostly flexible\nPartial lock\nSignificant lock\nFull lock until completion\nVery low (fixed scope)\nLow\nMedium\nHigh (client-driven changes)\nVery high (T&M, vague)\nNo history or on-time\nUnder 10% overrun\n10-25% overrun\n25-50% overrun\nOver 50% overrun",
+      "reqd": 1
+    },
+    {
+      "fieldname": "risk_score",
+      "fieldtype": "Int",
+      "label": "Score",
+      "default": 0,
+      "read_only": 1
+    },
+    {
+      "fieldname": "justification",
+      "fieldtype": "Small Text",
+      "label": "Justification",
+      "depends_on": "eval:doc.risk_score>=4"
+    }
+  ]
+}

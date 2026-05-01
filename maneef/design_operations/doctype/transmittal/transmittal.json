@@ -1,7 +1,16 @@
 {
     "doctype": "DocType",
     "module": "Design Operations",
+    "autoname": "naming_series/",
     "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Series",
+            "options": "MAN-TR-.YYYY.-\nTR-.YYYY.-",
+            "default": "MAN-TR-.YYYY.-",
+            "reqd": 1
+        },
         {
             "fieldname": "transmittal_no",
             "fieldtype": "Data",
@@ -16,6 +25,19 @@
             "fieldname": "recipient",
             "fieldtype": "Data",
             "label": "Recipient"
+        },
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "label": "Project",
+            "options": "Project",
+            "reqd": 1
+        },
+        {
+            "fieldname": "drawings",
+            "fieldtype": "Table",
+            "label": "Drawings",
+            "options": "Transmittal Drawings"
         }
     ],
     "permissions": [
@@ -31,6 +53,16 @@
             "read": 1,
             "write": 1,
             "create": 1
+        },
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1
         }
     ],
     "name": "Transmittal"

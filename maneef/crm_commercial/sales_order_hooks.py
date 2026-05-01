@@ -1,4 +1,5 @@
 import frappe
+from maneef.utils.deletion_guard import protect_deletion
 
 from frappe import _
 
@@ -8,6 +9,9 @@ def before_submit(doc, method=None):
 
 
 def on_submit(doc, method=None):
+    if not frappe.has_permission("Project", "create"):
+        frappe.throw("Not permitted to create projects from Sales Order")
+    
     if not frappe.db.exists("Project", {"sales_order": doc.name}):
         # Fetch data from Project Charter if linked
         charter_data = {}
@@ -34,3 +38,9 @@ def on_submit(doc, method=None):
         project.insert(ignore_permissions=True)
         frappe.db.set_value("Sales Order", doc.name, "project", project.name)
         frappe.logger().info(f"Auto-created Project {project.name} for Sales Order {doc.name}")
+
+
+def validate_sales_order_deletion(doc, method):
+    protect_deletion(doc, [
+        {"doctype": "Project Charter", "link_field": "sales_order", "label": "Project Charters"},
+    ])

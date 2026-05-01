@@ -1,0 +1,263 @@
+{
+  "doctype": "DocType",
+  "name": "Risk Assessment",
+  "module": "CRM Commercial",
+  "custom": 0,
+  "istable": 0,
+  "autoname": "naming_series:",
+  "naming_series": "MAN-RA-.YYYY.-",
+  "title_field": "assessment_title",
+  "fields": [
+    {
+      "fieldname": "assessment_title",
+      "fieldtype": "Data",
+      "label": "Assessment Title",
+      "reqd": 1
+    },
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "MAN-RA-.YYYY.-",
+      "hidden": 1
+    },
+    {
+      "fieldname": "assessment_date",
+      "fieldtype": "Date",
+      "label": "Assessment Date",
+      "default": "Today",
+      "reqd": 1
+    },
+    {
+      "fieldname": "project_charter",
+      "fieldtype": "Link",
+      "label": "Project Charter",
+      "options": "Project Charter"
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "label": "Project",
+      "options": "Project"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "options": "Customer",
+      "reqd": 1
+    },
+    {
+      "fieldname": "assessed_by",
+      "fieldtype": "Link",
+      "label": "Assessed By",
+      "options": "User",
+      "default": "__user"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nIn Progress\nCompleted\nApproved\nRejected",
+      "default": "Draft"
+    },
+    {
+      "fieldname": "linked_data_section",
+      "fieldtype": "Section Break",
+      "label": "Linked Record Data"
+    },
+    {
+      "fieldname": "customer_project_count",
+      "fieldtype": "Int",
+      "label": "Customer Project Count",
+      "read_only": 1
+    },
+    {
+      "fieldname": "customer_overdue_invoices",
+      "fieldtype": "Int",
+      "label": "Customer Overdue Invoices",
+      "read_only": 1
+    },
+    {
+      "fieldname": "project_burn_percentage",
+      "fieldtype": "Percent",
+      "label": "Project Burn Percentage",
+      "read_only": 1
+    },
+    {
+      "fieldname": "project_contracted_fee",
+      "fieldtype": "Currency",
+      "label": "Project Contracted Fee",
+      "read_only": 1
+    },
+    {
+      "fieldname": "project_open_rfis",
+      "fieldtype": "Int",
+      "label": "Project Open RFIs",
+      "read_only": 1
+    },
+    {
+      "fieldname": "project_open_snags",
+      "fieldtype": "Int",
+      "label": "Project Open Snags",
+      "read_only": 1
+    },
+    {
+      "fieldname": "go_no_go_decision",
+      "fieldtype": "Data",
+      "label": "GO/NO-GO Decision",
+      "read_only": 1
+    },
+    {
+      "fieldname": "contract_status",
+      "fieldtype": "Data",
+      "label": "Contract Status",
+      "read_only": 1
+    },
+    {
+      "fieldname": "payment_risk_section",
+      "fieldtype": "Section Break",
+      "label": "Payment Risk Assessment"
+    },
+    {
+      "fieldname": "payment_risk_items",
+      "fieldtype": "Table",
+      "label": "Payment Risk Items",
+      "options": "Payment Risk Scan Item"
+    },
+    {
+      "fieldname": "total_payment_risk_score",
+      "fieldtype": "Int",
+      "label": "Total Payment Risk Score",
+      "read_only": 1
+    },
+    {
+      "fieldname": "payment_risk_rating",
+      "fieldtype": "Select",
+      "label": "Payment Risk Rating",
+      "options": "Low\nMedium\nHigh\nUnacceptable",
+      "read_only": 1
+    },
+    {
+      "fieldname": "commercial_risk_section",
+      "fieldtype": "Section Break",
+      "label": "Commercial Risk Assessment"
+    },
+    {
+      "fieldname": "commercial_risk_items",
+      "fieldtype": "Table",
+      "label": "Commercial Risk Items",
+      "options": "Commercial Risk Item"
+    },
+    {
+      "fieldname": "total_commercial_risk_score",
+      "fieldtype": "Int",
+      "label": "Total Commercial Risk Score",
+      "read_only": 1
+    },
+    {
+      "fieldname": "commercial_risk_rating",
+      "fieldtype": "Select",
+      "label": "Commercial Risk Rating",
+      "options": "Green\nAmber\nRed",
+      "read_only": 1
+    },
+    {
+      "fieldname": "duration_risk_section",
+      "fieldtype": "Section Break",
+      "label": "Duration Risk Assessment"
+    },
+    {
+      "fieldname": "duration_risk_items",
+      "fieldtype": "Table",
+      "label": "Duration Risk Items",
+      "options": "Duration Risk Item"
+    },
+    {
+      "fieldname": "total_duration_risk_score",
+      "fieldtype": "Int",
+      "label": "Total Duration Risk Score",
+      "read_only": 1
+    },
+    {
+      "fieldname": "duration_risk_rating",
+      "fieldtype": "Select",
+      "label": "Duration Risk Rating",
+      "options": "Green\nAmber\nRed\nCritical",
+      "read_only": 1
+    },
+    {
+      "fieldname": "summary_section",
+      "fieldtype": "Section Break",
+      "label": "Summary & Recommendations"
+    },
+    {
+      "fieldname": "overall_risk_score",
+      "fieldtype": "Float",
+      "label": "Overall Risk Score",
+      "read_only": 1
+    },
+    {
+      "fieldname": "overall_risk_rating",
+      "fieldtype": "Select",
+      "label": "Overall Risk Rating",
+      "options": "Low\nMedium\nHigh\nCritical",
+      "read_only": 1
+    },
+    {
+      "fieldname": "risk_trend",
+      "fieldtype": "Select",
+      "label": "Risk Trend",
+      "options": "Improving\nStable\nDeteriorating"
+    },
+    {
+      "fieldname": "risk_recommendations",
+      "fieldtype": "Text Editor",
+      "label": "Risk Recommendations",
+      "read_only": 1
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Text",
+      "label": "Additional Notes"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "options": "Risk Assessment",
+      "hidden": 1,
+      "read_only": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1
+    },
+    {
+      "role": "Managing Partner",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1
+    },
+    {
+      "role": "Project Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    }
+  ],
+  "is_submittable": 1,
+  "track_changes": 1
+}
