@@ -88,7 +88,7 @@
     {
       "label": "Snag Lists",
       "link_type": "DocType",
-      "link_to": "snag_item",
+      "link_to": "Snag Item",
       "type": "Link"
     },
     {
@@ -229,11 +229,11 @@
     {
       "label": "Project BOQs",
       "link_to": "Project BOQ",
-      "type": "Link"
+      "type": "DocType"
     },
     {
       "label": "Snag Lists",
-      "link_to": "snag_item",
+      "link_to": "Snag Item",
       "type": "DocType"
     },
     {
