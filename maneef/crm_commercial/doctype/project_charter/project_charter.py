@@ -1,9 +1,9 @@
 import frappe
 from frappe.model.document import Document
 from frappe import _
-from frappe import json
 
 from maneef.utils.permission_guard import require_permission
+from maneef.utils.gate_utils import validate_gate_change
 
 class ProjectCharter(Document):
     def validate(self):
@@ -18,34 +18,24 @@ class ProjectCharter(Document):
         self.sync_risk_assessment_to_ra()
 
     def sync_risk_assessment_to_ra(self):
-        """Sync child table data from Charter to linked Risk Assessment."""
-        if self.linked_risk_assessment:
-            ra = frappe.get_doc("Risk Assessment", self.linked_risk_assessment)
-            
-            # Update child table fields on RA with current Charter child table data
-            if self.custom_payment_risk_items:
-                ra.set('payment_risk_items', self.custom_payment_risk_items)
-            if self.custom_commercial_risk_items:
-                ra.set('commercial_risk_items', self.custom_commercial_risk_items)
-            if self.custom_duration_risk_items:
-                ra.set('duration_risk_items', self.custom_duration_risk_items)
-            
-            # Update risk scores and ratings based on current child table data
-            # This ensures RA has up-to-date data for validation and calculations
-            ra.calculate_risk_totals()
-            
-            # Save the updated RA (ignore permissions for bulk updates)
-            frappe.db.set_value("Risk Assessment", ra.name, {
-                'payment_risk_items': json.dumps(self.get('custom_payment_risk_items', [])),
-                'commercial_risk_items': json.dumps(self.get('custom_commercial_risk_items', [])),
-                'duration_risk_items': json.dumps(self.get('custom_duration_risk_items', [])),
-                'total_payment_risk_score': self.custom_total_payment_risk_score,
-                'total_commercial_risk_score': self.custom_total_commercial_risk_score,
-                'total_duration_risk_score': self.custom_total_duration_risk_score,
-                'payment_risk_rating': self.custom_payment_risk_rating,
-                'commercial_risk_rating': self.custom_commercial_risk_rating,
-                'duration_risk_rating': self.custom_duration_risk_rating,
-            })
+        """Sync Charter risk child tables to the linked Risk Assessment."""
+        if not self.linked_risk_assessment:
+            return
+
+        ra = frappe.get_doc("Risk Assessment", self.linked_risk_assessment)
+
+        child_map = [
+            ("payment_risk_items", "custom_payment_risk_items"),
+            ("commercial_risk_items", "custom_commercial_risk_items"),
+            ("duration_risk_items", "custom_duration_risk_items"),
+        ]
+        for ra_field, charter_field in child_map:
+            charter_rows = self.get(charter_field, [])
+            if charter_rows:
+                ra.set(ra_field, [row.as_dict() for row in charter_rows])
+
+        ra.calculate_risk_totals()
+        ra.save(ignore_permissions=True)
 
     def sync_risk_assessment(self):
         """Sync risk ratings from standalone Risk Assessment back to Charter."""
@@ -95,25 +85,7 @@ class ProjectCharter(Document):
         return ra.name
 
     def validate_gate_status_change(self):
-        if not self.is_new():
-            old_gate = frappe.db.get_value("Project Charter", self.name, "custom_gate_status")
-            if old_gate != self.custom_gate_status:
-                allowed_roles = ["Managing Partner", "System Manager"]
-                user_roles = frappe.get_roles(frappe.session.user)
-                if not any(r in user_roles for r in allowed_roles):
-                    frappe.throw("Only Managing Partner or System Manager can change gate status")
-
-                # Enforce sequential gates
-                gate_order = {"Gate 1": 1, "Gate 2": 2, "Gate 3": 3}
-                old_level = gate_order.get(old_gate, 0)
-                new_level = gate_order.get(self.custom_gate_status, 0)
-                if new_level > old_level + 1:
-                    frappe.throw(f"Cannot skip gates. Current: {old_gate}. Requested: {self.custom_gate_status}. Pass each gate sequentially.")
-
-                frappe.logger().info(
-                    "Gate status change: charter=%s from=%s to=%s user=%s",
-                    self.name, old_gate, self.custom_gate_status, frappe.session.user
-                )
+        validate_gate_change(self)
 
     def on_submit(self):
         self.update_sales_order_links()

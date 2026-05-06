@@ -114,79 +114,6 @@ fixtures = [
     "workspace"
 ]
 
-# Custom Fields for Project Charter risk assessment
-# These will be automatically installed via fixtures
-custom_fields = {
-    "Project Charter": [
-        {
-            "fieldname": "custom_payment_risk_items",
-            "fieldtype": "Table",
-            "label": "Payment Risk Items",
-            "options": "Payment Risk Scan Item",
-            "insert_after": "custom_commercial_risk_items"
-        },
-        {
-            "fieldname": "custom_commercial_risk_items",
-            "fieldtype": "Table",
-            "label": "Commercial Risk Items",
-            "options": "Commercial Risk Item",
-            "insert_after": "custom_duration_risk_items"
-        },
-        {
-            "fieldname": "custom_duration_risk_items",
-            "fieldtype": "Table",
-            "label": "Duration Risk Items",
-            "options": "Duration Risk Item",
-            "insert_after": "custom_go_no_go_decision"
-        },
-        {
-            "fieldname": "custom_payment_risk_rating",
-            "fieldtype": "Select",
-            "label": "Payment Risk Rating",
-            "options": "Low\nMedium\nHigh\nUnacceptable",
-            "read_only": 1,
-            "insert_after": "custom_total_payment_risk_score"
-        },
-        {
-            "fieldname": "custom_commercial_risk_rating",
-            "fieldtype": "Select",
-            "label": "Commercial Risk Rating",
-            "options": "Green\nAmber\nRed",
-            "read_only": 1,
-            "insert_after": "custom_total_commercial_risk_score"
-        },
-        {
-            "fieldname": "custom_duration_risk_rating",
-            "fieldtype": "Select",
-            "label": "Duration Risk Rating",
-            "options": "Green\nAmber\nRed\nCritical",
-            "read_only": 1,
-            "insert_after": "custom_total_duration_risk_score"
-        },
-        {
-            "fieldname": "custom_total_payment_risk_score",
-            "fieldtype": "Int",
-            "label": "Total Payment Risk Score",
-            "read_only": 1,
-            "insert_after": "custom_payment_risk_items"
-        },
-        {
-            "fieldname": "custom_total_commercial_risk_score",
-            "fieldtype": "Int",
-            "label": "Total Commercial Risk Score",
-            "read_only": 1,
-            "insert_after": "custom_commercial_risk_items"
-        },
-        {
-            "fieldname": "custom_total_duration_risk_score",
-            "fieldtype": "Int",
-            "label": "Total Duration Risk Score",
-            "read_only": 1,
-            "insert_after": "custom_duration_risk_items"
-        }
-    ]
-}
-
 # Uninstallation
 # ------------
 
@@ -269,6 +196,7 @@ doc_events = {
         "on_trash": "maneef.design_operations.project_hooks.validate_project_deletion"
     },
     "Sales Order": {
+        "before_submit": "maneef.crm_commercial.sales_order_hooks.before_submit",
         "on_trash": "maneef.crm_commercial.sales_order_hooks.validate_sales_order_deletion"
     }
 }
@@ -370,5 +298,6 @@ scheduler_events = {
 # ignore_translatable_strings_from = []
 
 app_include_js = [
+    "/assets/maneef/js/sidebar_utils.js",
     "/assets/maneef/js/project_deliverable.js"
 ]

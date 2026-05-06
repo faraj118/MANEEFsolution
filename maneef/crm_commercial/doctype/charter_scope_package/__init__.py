@@ -1,1 +1,0 @@
-# __init__.py for charter_scope_package

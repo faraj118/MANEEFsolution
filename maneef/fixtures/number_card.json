@@ -21,7 +21,7 @@
     "aggregate_function_based_on": "total_budget",
     "filters_json": "[[\"Project Charter\",\"go_no_go_decision\",\"=\",\"GO\"]]",
     "color": "#10b981",
-    "module": "CRM Commercial",
+    "module": "Crm Commercial",
     "is_public": 1,
     "show_percentage_stats": 1,
     "stats_time_interval": "Monthly"
@@ -47,7 +47,7 @@
     "function": "Count",
     "filters_json": "[[\"Risk Assessment\",\"overall_risk_rating\",\"in\",[\"High\",\"Critical\"]]]",
     "color": "#ef4444",
-    "module": "CRM Commercial",
+    "module": "Crm Commercial",
     "is_public": 1,
     "show_percentage_stats": 1,
     "stats_time_interval": "Monthly"

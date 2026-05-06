@@ -1,7 +1,7 @@
 {
   "doctype": "DocType",
   "name": "Payment Risk Scan Item",
-  "module": "CRM Commercial",
+  "module": "Crm Commercial",
   "custom": 0,
   "istable": 1,
   "fields": [

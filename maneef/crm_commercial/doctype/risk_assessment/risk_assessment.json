@@ -1,7 +1,7 @@
 {
   "doctype": "DocType",
   "name": "Risk Assessment",
-  "module": "CRM Commercial",
+  "module": "Crm Commercial",
   "custom": 0,
   "istable": 0,
   "autoname": "naming_series:",

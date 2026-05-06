@@ -6,8 +6,8 @@ frappe.ui.form.on("Risk Assessment", {
 
         // Overall Risk Rating
         let overall = frm.doc.overall_risk_rating || "Not Calculated";
-        let overallColor = getRiskColor(overall);
-        html += sidebarItem("Overall Risk", overall, overallColor);
+        let overallColor = maneef.sidebar.getRiskColor(overall);
+        html += maneef.sidebar.sidebarItem("Overall Risk", overall, overallColor);
 
         // Overall Score
         if (frm.doc.overall_risk_score !== undefined && frm.doc.overall_risk_score !== null) {

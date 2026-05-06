@@ -7,23 +7,23 @@ frappe.ui.form.on("Project", {
         // Gate Status
         let gate = frm.doc.custom_gate_status || "Not Set";
         let gateColor = {"Gate 1": "#3b82f6", "Gate 2": "#8b5cf6", "Gate 3": "#06b6d4", "Complete": "#10b981"}[gate] || "#64748b";
-        html += sidebarItem("Current Gate", gate, gateColor);
+        html += maneef.sidebar.sidebarItem("Current Gate", gate, gateColor);
 
         // Contract Status
         let contract = frm.doc.custom_contract_status || "Not Set";
         let contractColor = contract === "Active" ? "#10b981" : contract === "Closed" ? "#64748b" : "#f59e0b";
-        html += sidebarItem("Contract Status", contract, contractColor);
+        html += maneef.sidebar.sidebarItem("Contract Status", contract, contractColor);
 
         // Burn Percentage
         if (frm.doc.custom_burn_percentage !== undefined && frm.doc.custom_burn_percentage !== null) {
             let burn = frm.doc.custom_burn_percentage;
             let burnColor = burn >= 100 ? "#ef4444" : burn >= 80 ? "#f59e0b" : "#10b981";
-            html += sidebarItem("Burn Rate", burn + "%", burnColor);
+            html += maneef.sidebar.sidebarItem("Burn Rate", burn + "%", burnColor);
         }
 
         // Contracted Fee
         if (frm.doc.custom_contracted_fee) {
-            html += sidebarItem("Contracted Fee", formatCurrency(frm.doc.custom_contracted_fee), "#e2e8f0");
+            html += maneef.sidebar.sidebarItem("Contracted Fee", maneef.sidebar.formatCurrency(frm.doc.custom_contracted_fee), "#e2e8f0");
         }
 
         html += '</div>';
@@ -60,13 +60,13 @@ frappe.ui.form.on("Project", {
                     riskHtml += '<div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Risk Profile</div>';
                     
                     let paymentRisk = r.message.custom_payment_risk_rating || "N/A";
-                    riskHtml += sidebarItem("Payment Risk", paymentRisk, getRiskColor(paymentRisk));
+                    riskHtml += maneef.sidebar.sidebarItem("Payment Risk", paymentRisk, maneef.sidebar.getRiskColor(paymentRisk));
 
                     let commercialRisk = r.message.custom_commercial_risk_rating || "N/A";
-                    riskHtml += sidebarItem("Commercial Risk", commercialRisk, getRiskColor(commercialRisk));
+                    riskHtml += maneef.sidebar.sidebarItem("Commercial Risk", commercialRisk, maneef.sidebar.getRiskColor(commercialRisk));
 
                     let durationRisk = r.message.custom_duration_risk_rating || "N/A";
-                    riskHtml += sidebarItem("Duration Risk", durationRisk, getRiskColor(durationRisk));
+                    riskHtml += maneef.sidebar.sidebarItem("Duration Risk", durationRisk, maneef.sidebar.getRiskColor(durationRisk));
 
                     riskHtml += '</div>';
                     frm.sidebar_area.find('#risk_profile_area').html(riskHtml);
@@ -75,24 +75,3 @@ frappe.ui.form.on("Project", {
         }
     }
 });
-
-function sidebarItem(label, value, color) {
-    return '<div style="margin-bottom:10px;">' +
-        '<div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px;">' + label + '</div>' +
-        '<div style="font-size:13px;font-weight:600;color:' + color + ';">' + value + '</div>' +
-        '</div>';
-}
-
-function getRiskColor(rating) {
-    let colors = {
-        "Low": "#10b981", "Green": "#10b981",
-        "Medium": "#f59e0b", "Amber": "#f59e0b",
-        "High": "#ef4444", "Red": "#ef4444",
-        "Unacceptable": "#ef4444", "Critical": "#ef4444"
-    };
-    return colors[rating] || "#64748b";
-}
-
-function formatCurrency(value) {
-    return new Intl.NumberFormat('en-US', {style: 'currency', currency: frappe.defaults.get_default("currency") || "USD"}).format(value);
-}

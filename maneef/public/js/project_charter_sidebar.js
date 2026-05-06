@@ -7,30 +7,30 @@ frappe.ui.form.on("Project Charter", {
         // GO/NO-GO Status
         let goStatus = frm.doc.go_no_go_decision || "Not Set";
         let goColor = goStatus === "GO" ? "#10b981" : goStatus === "NO-GO" ? "#ef4444" : "#64748b";
-        html += sidebarItem("GO/NO-GO Decision", goStatus, goColor);
+        html += maneef.sidebar.sidebarItem("GO/NO-GO Decision", goStatus, goColor);
 
         // Contract Status
         let contractStatus = frm.doc.custom_contract_status || "Not Set";
         let contractColor = contractStatus === "Signed" ? "#10b981" : "#f59e0b";
-        html += sidebarItem("Contract Status", contractStatus, contractColor);
+        html += maneef.sidebar.sidebarItem("Contract Status", contractStatus, contractColor);
 
         // Payment Risk
         let paymentRisk = frm.doc.custom_payment_risk_rating || "Not Assessed";
-        html += sidebarItem("Payment Risk", paymentRisk, getRiskColor(paymentRisk));
+        html += maneef.sidebar.sidebarItem("Payment Risk", paymentRisk, maneef.sidebar.getRiskColor(paymentRisk));
 
         // Commercial Risk
         let commercialRisk = frm.doc.custom_commercial_risk_rating || "Not Assessed";
-        html += sidebarItem("Commercial Risk", commercialRisk, getRiskColor(commercialRisk));
+        html += maneef.sidebar.sidebarItem("Commercial Risk", commercialRisk, maneef.sidebar.getRiskColor(commercialRisk));
 
         // Duration Risk
         let durationRisk = frm.doc.custom_duration_risk_rating || "Not Assessed";
-        html += sidebarItem("Duration Risk", durationRisk, getRiskColor(durationRisk));
+        html += maneef.sidebar.sidebarItem("Duration Risk", durationRisk, maneef.sidebar.getRiskColor(durationRisk));
 
         // Projected Margin
         if (frm.doc.custom_projected_margin !== undefined && frm.doc.custom_projected_margin !== null) {
             let margin = frm.doc.custom_projected_margin;
             let marginColor = margin >= 20 ? "#10b981" : margin >= 10 ? "#f59e0b" : "#ef4444";
-            html += sidebarItem("Projected Margin", margin + "%", marginColor);
+            html += maneef.sidebar.sidebarItem("Projected Margin", margin + "%", marginColor);
         }
 
         html += '</div>';
@@ -66,29 +66,3 @@ frappe.ui.form.on("Project Charter", {
         frm.sidebar_area.empty().append(html);
     }
 });
-
-function sidebarItem(label, value, color) {
-    return '<div style="margin-bottom:10px;">' +
-        '<div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px;">' + label + '</div>' +
-        '<div style="font-size:13px;font-weight:600;color:' + color + ';">' + value + '</div>' +
-        '</div>';
-}
-
-function getRiskColor(rating) {
-    let colors = {
-        "Low": "#10b981", "Green": "#10b981",
-        "Medium": "#f59e0b", "Amber": "#f59e0b",
-        "High": "#ef4444", "Red": "#ef4444",
-        "Unacceptable": "#ef4444", "Critical": "#ef4444"
-    };
-    return colors[rating] || "#64748b";
-}
-
-function createRiskAssessment(charter_name) {
-    cur_frm.call({
-        method: "create_risk_assessment",
-        callback: function(r) {
-            cur_frm.reload_doc();
-        }
-    });
-}
