@@ -36,7 +36,7 @@ class Transmittal(Document):
 
     def _validate_all_drawings_issued(self):
         non_issued = []
-        for d in self.attached_drawings:
+        for d in self.drawings:
             status = frappe.db.get_value("Project Deliverable", d.project_deliverable, "status")
             if not status or status != "Issued":
                 non_issued.append(d.project_deliverable)
@@ -45,8 +45,8 @@ class Transmittal(Document):
 
     def _validate_principal_signoff(self):
         missing = []
-        for d in self.attached_drawings:
-            signoff = frappe.db.get_value("Project Deliverable", d.project_deliverable, "principal_signoff")
+        for d in self.drawings:
+            signoff = frappe.db.get_value("Project Deliverable", d.project_deliverable, "principal_approved")
             if not signoff:
                 missing.append(d.project_deliverable)
         if missing:
@@ -57,7 +57,7 @@ class Transmittal(Document):
         self.issued_by = frappe.session.user
 
     def _flag_billing_trigger(self):
-        for d in self.attached_drawings:
+        for d in self.drawings:
             if frappe.db.get_value("Project Deliverable", d.project_deliverable, "custom_is_milestone"):
                 self.billing_trigger_active = 1
                 break

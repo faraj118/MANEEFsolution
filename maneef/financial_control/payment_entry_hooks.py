@@ -15,5 +15,5 @@ def before_submit(doc, method=None):
         "status": ["!=", "Resolved"]
     }, fields=["name", "subject", "priority"])
     if snags:
-        snag_list = ", ".join([f"{s['name']} ({s['priority']})" for s in snags])
-        frappe.throw(_(f"Payment Certificate Blocked (BRD Section 7). Open snags: {snag_list}. All High and Critical snags must be Resolved before payment can be released."))
+        snag_list = ", ".join(["{0} ({1})".format(s["name"], s["priority"]) for s in snags])
+        frappe.throw(_("Payment Certificate Blocked (BRD Section 7). Open snags: {0}. All High and Critical snags must be Resolved before payment can be released.").format(snag_list))

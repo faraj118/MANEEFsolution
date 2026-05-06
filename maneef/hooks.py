@@ -55,7 +55,7 @@ doctype_js = {
     "Site Visit Report": "public/js/svr_sidebar.js",
     "Transmittal": "public/js/transmittal_sidebar.js",
     "Risk Assessment": "public/js/risk_assessment_sidebar.js",
-    "Task": "public/js/task.py.js"
+    "Task": "public/js/task.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}

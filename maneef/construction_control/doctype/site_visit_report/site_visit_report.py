@@ -26,7 +26,6 @@ class SiteVisitReport(Document):
     def on_trash(self):
         from maneef.utils.deletion_guard import protect_deletion
         protect_deletion(self, [
-            {"doctype": "SVR Issue", "link_field": "site_visit_report", "label": "SVR Issues"},
             {"doctype": "SVR Photo", "link_field": "site_visit_report", "label": "SVR Photos"},
             {"doctype": "SVR Contractor Log", "link_field": "site_visit_report", "label": "Contractor Logs"},
             {"doctype": "Issue", "link_field": "custom_site_visit_report", "label": "Issues"},

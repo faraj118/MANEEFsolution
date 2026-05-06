@@ -119,6 +119,17 @@
             "fieldname": "next_steps",
             "fieldtype": "Text Editor",
             "label": "Next Steps & Recommendations"
+        },
+        {
+            "fieldname": "issues_section",
+            "fieldtype": "Section Break",
+            "label": "Issues Raised"
+        },
+        {
+            "fieldname": "issues_raised",
+            "fieldtype": "Table",
+            "label": "Issues Raised",
+            "options": "SVR Issue"
         }
     ],
     "permissions": [

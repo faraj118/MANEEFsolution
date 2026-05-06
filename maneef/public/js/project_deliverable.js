@@ -11,7 +11,7 @@ frappe.ui.form.on('Project Deliverable', {
             }).addClass('btn-primary');
         }
         if (!frm.doc.project) return;
-        frappe.db.get_value('Sales Order', {project: frm.doc.project, docstatus: 1}, 'custom_contract_status')
+        frappe.db.get_value('Project', frm.doc.project, 'custom_contract_status')
             .then(r => {
                 const status = r.message && r.message.custom_contract_status;
                 if (["Signed", "Active"].includes(status)) {

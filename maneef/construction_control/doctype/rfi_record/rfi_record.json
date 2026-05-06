@@ -105,7 +105,8 @@
             "role": "Project Manager",
             "read": 1,
             "write": 1,
-            "create": 1
+            "create": 1,
+            "submit": 1
         }
     ],
     "name": "RFI Record"
