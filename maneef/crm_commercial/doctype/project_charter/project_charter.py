@@ -296,9 +296,7 @@ class ProjectCharter(Document):
         except Exception as e:
             frappe.log_error(f"Failed to sync financial control: {str(e)}")
 
-    @frappe.whitelist()
     def get_production_office(self):
-        """Lookup the primary Technical & Production office."""
         return frappe.db.get_value(
             "AEC Production Office",
             {"office_type": "Technical & Production"},

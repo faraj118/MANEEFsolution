@@ -104,8 +104,9 @@
     },
     {
       "fieldname": "go_no_go_decision",
-      "fieldtype": "Data",
+      "fieldtype": "Select",
       "label": "GO/NO-GO Decision",
+      "options": "Pending\nGo\nNo Go\nConditional Go",
       "read_only": 1
     },
     {

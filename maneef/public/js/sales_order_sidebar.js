@@ -2,14 +2,12 @@ frappe.ui.form.on("Sales Order", {
     refresh: function(frm) {
         if (frm.doc.__islocal) return;
 
-        let html = '<div style="padding:12px 0;">';
-
-        // Charter Status
         let charterStatus = frm.doc.custom_charter_approved ? "Approved" : "Not Approved";
         let charterColor = frm.doc.custom_charter_approved ? "#10b981" : "#f59e0b";
-        html += sidebarItem("Charter Status", charterStatus, charterColor);
 
-        // Project Gate (if project exists)
+        let html = '<div style="padding:12px 0;">';
+        html += maneef.sidebar.sidebarItem("Charter Status", charterStatus, charterColor);
+
         if (frm.doc.project) {
             frappe.call({
                 method: "frappe.client.get_value",
@@ -22,52 +20,35 @@ frappe.ui.form.on("Sales Order", {
                     if (r.message) {
                         let gate = r.message.custom_gate_status || "Not Set";
                         let gateColor = {"Gate 1": "#3b82f6", "Gate 2": "#8b5cf6", "Gate 3": "#06b6d4", "Complete": "#10b981"}[gate] || "#64748b";
-                        html += sidebarItem("Project Gate", gate, gateColor);
+                        html += maneef.sidebar.sidebarItem("Project Gate", gate, gateColor);
 
                         let contract = r.message.custom_contract_status || "Not Set";
                         let contractColor = contract === "Active" ? "#10b981" : contract === "Closed" ? "#64748b" : "#f59e0b";
-                        html += sidebarItem("Project Status", contract, contractColor);
+                        html += maneef.sidebar.sidebarItem("Project Status", contract, contractColor);
                     }
 
                     html += '</div>';
-
-                    // Quick Links
-                    html += '<div style="padding:8px 0;border-top:1px solid #1e293b;margin-top:8px;">';
-                    html += '<div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Quick Links</div>';
-
-                    if (frm.doc.custom_project_charter) {
-                        html += '<div style="margin-bottom:6px;"><a href="/app/project-charter/' + frm.doc.custom_project_charter + '" style="font-size:12px;color:#60a5fa;text-decoration:none;">Charter: ' + frm.doc.custom_project_charter + ' &rarr;</a></div>';
-                    }
-                    if (frm.doc.project) {
-                        html += '<div style="margin-bottom:6px;"><a href="/app/project/' + frm.doc.project + '" style="font-size:12px;color:#60a5fa;text-decoration:none;">Project: ' + frm.doc.project + ' &rarr;</a></div>';
-                    }
-
-                    html += '</div>';
-
+                    html += _quickLinks(frm);
                     frm.sidebar_area.empty().append(html);
                 }
             });
         } else {
             html += '</div>';
-
-            // Quick Links (no project)
-            html += '<div style="padding:8px 0;border-top:1px solid #1e293b;margin-top:8px;">';
-            html += '<div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Quick Links</div>';
-
-            if (frm.doc.custom_project_charter) {
-                html += '<div style="margin-bottom:6px;"><a href="/app/project-charter/' + frm.doc.custom_project_charter + '" style="font-size:12px;color:#60a5fa;text-decoration:none;">Charter: ' + frm.doc.custom_project_charter + ' &rarr;</a></div>';
-            }
-
-            html += '</div>';
-
+            html += _quickLinks(frm);
             frm.sidebar_area.empty().append(html);
         }
     }
 });
 
-function sidebarItem(label, value, color) {
-    return '<div style="margin-bottom:10px;">' +
-        '<div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px;">' + label + '</div>' +
-        '<div style="font-size:13px;font-weight:600;color:' + color + ';">' + value + '</div>' +
-        '</div>';
+function _quickLinks(frm) {
+    let html = '<div style="padding:8px 0;border-top:1px solid #1e293b;margin-top:8px;">';
+    html += '<div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Quick Links</div>';
+    if (frm.doc.custom_project_charter) {
+        html += '<div style="margin-bottom:6px;"><a href="/app/project-charter/' + frm.doc.custom_project_charter + '" style="font-size:12px;color:#60a5fa;text-decoration:none;">Charter: ' + frm.doc.custom_project_charter + ' &rarr;</a></div>';
+    }
+    if (frm.doc.project) {
+        html += '<div style="margin-bottom:6px;"><a href="/app/project/' + frm.doc.project + '" style="font-size:12px;color:#60a5fa;text-decoration:none;">Project: ' + frm.doc.project + ' &rarr;</a></div>';
+    }
+    html += '</div>';
+    return html;
 }

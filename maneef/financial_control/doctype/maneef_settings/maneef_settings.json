@@ -1,0 +1,40 @@
+{
+    "doctype": "DocType",
+    "name": "Maneef Settings",
+    "module": "Financial Control",
+    "issingle": 1,
+    "custom": 0,
+    "fields": [
+        {
+            "fieldname": "financial_settings_section",
+            "fieldtype": "Section Break",
+            "label": "Financial Settings"
+        },
+        {
+            "fieldname": "salary_allocation_account",
+            "fieldtype": "Link",
+            "label": "Salary Allocation Account",
+            "options": "Account",
+            "description": "Account used for AEC labor cost allocation on Timesheet submission (e.g. 5110 - Salaries Allocation)"
+        },
+        {
+            "fieldname": "default_activity_type",
+            "fieldtype": "Link",
+            "label": "Default Activity Type",
+            "options": "Activity Type",
+            "description": "Default activity type applied to Timesheet rows when none is set"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1
+        },
+        {
+            "role": "Managing Partner",
+            "read": 1,
+            "write": 1
+        }
+    ]
+}

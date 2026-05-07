@@ -1,8 +1,18 @@
 {
     "doctype": "DocType",
     "module": "Design Operations",
+    "autoname": "naming_series:",
+    "naming_rule": "By \"Naming Series\" field",
     "is_submittable": 1,
     "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Series",
+            "options": "DEL-.YYYY.-.#####",
+            "default": "DEL-.YYYY.-.#####",
+            "set_only_once": 1
+        },
         {
             "fieldname": "project",
             "fieldtype": "Link",

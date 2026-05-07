@@ -1,10 +1,11 @@
 import frappe
 from frappe import _
+from frappe.query_builder import DocType
+
 
 def execute(filters=None):
-    columns = get_columns()
-    data = get_data(filters)
-    return columns, data
+    return get_columns(), get_data(filters)
+
 
 def get_columns():
     return [
@@ -17,29 +18,30 @@ def get_columns():
         {"fieldname": "contracted_fee", "label": _("Contracted Fee"), "fieldtype": "Currency", "width": 130},
         {"fieldname": "actual_cost", "label": _("Actual Cost (WIP)"), "fieldtype": "Currency", "width": 130},
         {"fieldname": "burn_pct", "label": _("Burn %"), "fieldtype": "Percent", "width": 100},
-        {"fieldname": "stop_work", "label": _("Stop Work Active"), "fieldtype": "Check", "width": 100}
+        {"fieldname": "stop_work", "label": _("Stop Work Active"), "fieldtype": "Check", "width": 100},
     ]
 
+
 def get_data(filters):
-    conditions = ""
-    params = ()
+    Project = DocType("Project")
+    query = (
+        frappe.qb.from_(Project)
+        .select(
+            Project.name.as_("project"),
+            Project.project_name,
+            Project.status,
+            Project.custom_project_manager.as_("pm"),
+            Project.custom_contract_status.as_("contract_status"),
+            Project.custom_gate_status.as_("gate_status"),
+            Project.custom_contracted_fee.as_("contracted_fee"),
+            Project.custom_actual_cost_to_date.as_("actual_cost"),
+            Project.custom_burn_percentage.as_("burn_pct"),
+            Project.custom_stop_work_active.as_("stop_work"),
+        )
+        .orderby(Project.custom_burn_percentage, order=frappe.qb.desc)
+    )
+
     if filters and filters.get("status"):
-        conditions = "WHERE status = %s"
-        params = (filters.get("status"),)
-        
-    return frappe.db.sql(f"""
-        SELECT
-            name as project,
-            project_name,
-            status,
-            custom_project_manager as pm,
-            custom_contract_status as contract_status,
-            custom_gate_status as gate_status,
-            custom_contracted_fee as contracted_fee,
-            custom_actual_cost_to_date as actual_cost,
-            custom_burn_percentage as burn_pct,
-            custom_stop_work_active as stop_work
-        FROM `tabProject`
-        {conditions}
-        ORDER BY custom_burn_percentage DESC
-    """, params, as_dict=1)
+        query = query.where(Project.status == filters.get("status"))
+
+    return query.run(as_dict=True)

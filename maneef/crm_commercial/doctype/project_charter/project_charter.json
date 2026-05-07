@@ -28,7 +28,8 @@
       "fieldname": "project_manager",
       "fieldtype": "Link",
       "label": "Project Manager",
-      "options": "User"
+      "options": "User",
+      "reqd": 1
     },
     {
       "fieldname": "bim_standards",
@@ -67,12 +68,14 @@
     {
       "fieldname": "start_date",
       "fieldtype": "Date",
-      "label": "Estimated Start Date"
+      "label": "Estimated Start Date",
+      "reqd": 1
     },
     {
       "fieldname": "end_date",
       "fieldtype": "Date",
-      "label": "Estimated End Date"
+      "label": "Estimated End Date",
+      "reqd": 1
     },
     {
       "fieldname": "column_break_3",
