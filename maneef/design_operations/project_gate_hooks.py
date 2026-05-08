@@ -5,7 +5,33 @@ from maneef.utils.gate_utils import validate_gate_change
 
 def validate_project_gate_status(doc, method):
     validate_gate_change(doc)
+    _require_gate_review(doc)
     _validate_gate_criteria(doc)
+
+
+def _require_gate_review(doc):
+    """Block direct gate changes unless an approved Gate Review exists."""
+    if doc.is_new():
+        return
+    old_gate = frappe.db.get_value("Project", doc.name, "custom_gate_status")
+    if old_gate == doc.custom_gate_status:
+        return
+    # Allow if triggered programmatically from GateReview.on_submit
+    if frappe.flags.get("via_gate_review"):
+        return
+    settings = frappe.get_single("Maneef Settings")
+    if not settings.gate_review_required:
+        return
+    approved = frappe.db.exists(
+        "Gate Review",
+        {"project": doc.name, "gate": doc.custom_gate_status, "decision": "Approved", "docstatus": 1},
+    )
+    if not approved:
+        frappe.throw(
+            _("Gate status cannot be changed directly. Create and submit an approved Gate Review for {0}.").format(
+                doc.custom_gate_status
+            )
+        )
 
 
 def _validate_gate_criteria(doc):

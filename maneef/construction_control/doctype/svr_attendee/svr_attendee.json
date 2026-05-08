@@ -1,0 +1,42 @@
+{
+    "doctype": "DocType",
+    "name": "SVR Attendee",
+    "module": "Construction Control",
+    "custom": 0,
+    "istable": 1,
+    "editable_grid": 1,
+    "fields": [
+        {
+            "fieldname": "attendee_name",
+            "fieldtype": "Data",
+            "label": "Name",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Data",
+            "label": "Company / Organisation",
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "role",
+            "fieldtype": "Select",
+            "label": "Role",
+            "options": "Client Representative\nContractor\nSub-Contractor\nConsultant\nEngineer\nSite Manager\nOther",
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "signature_obtained",
+            "fieldtype": "Check",
+            "label": "Signed",
+            "default": "0",
+            "in_list_view": 1,
+            "columns": 1
+        }
+    ],
+    "permissions": []
+}

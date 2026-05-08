@@ -22,14 +22,6 @@
             "in_list_view": 1
         },
         {
-            "fieldname": "customer",
-            "fieldtype": "Link",
-            "options": "Customer",
-            "label": "Customer",
-            "fetch_from": "project.customer",
-            "read_only": 1
-        },
-        {
             "fieldname": "variation_type",
             "fieldtype": "Select",
             "options": "Scope Addition\nScope Reduction\nTime Extension Only",

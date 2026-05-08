@@ -37,6 +37,16 @@
             "default": "Today"
         },
         {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Claimed\nVerified\nCertified\nPaid",
+            "default": "Claimed",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
             "fieldname": "items_section",
             "fieldtype": "Section Break",
             "label": "Work In Progress (WIP)"
@@ -71,6 +81,37 @@
             "fieldtype": "Currency",
             "label": "Net Certified Payable",
             "read_only": 1
+        },
+        {
+            "fieldname": "certification_section",
+            "fieldtype": "Section Break",
+            "label": "Certification & Payment"
+        },
+        {
+            "fieldname": "certificate_no",
+            "fieldtype": "Data",
+            "label": "Certificate No.",
+            "depends_on": "eval:['Certified','Paid'].includes(doc.status)",
+            "in_list_view": 0
+        },
+        {
+            "fieldname": "approver",
+            "fieldtype": "Link",
+            "label": "Certified By",
+            "options": "User",
+            "depends_on": "eval:['Certified','Paid'].includes(doc.status)"
+        },
+        {
+            "fieldname": "payment_reference",
+            "fieldtype": "Data",
+            "label": "Payment Reference",
+            "depends_on": "eval:doc.status == 'Paid'"
+        },
+        {
+            "fieldname": "payment_date",
+            "fieldtype": "Date",
+            "label": "Payment Date",
+            "depends_on": "eval:doc.status == 'Paid'"
         }
     ],
     "permissions": [

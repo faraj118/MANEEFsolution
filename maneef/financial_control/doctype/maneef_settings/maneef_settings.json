@@ -23,6 +23,61 @@
             "label": "Default Activity Type",
             "options": "Activity Type",
             "description": "Default activity type applied to Timesheet rows when none is set"
+        },
+        {
+            "fieldname": "col_break_fin",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "default_vat_rate",
+            "fieldtype": "Percent",
+            "label": "Default VAT Rate (%)",
+            "default": "19",
+            "description": "Applied to Sales Invoices when no tax template is set"
+        },
+        {
+            "fieldname": "default_payment_terms",
+            "fieldtype": "Link",
+            "label": "Default Payment Terms",
+            "options": "Payment Terms Template",
+            "description": "Applied to new Project Charters and Sales Orders"
+        },
+        {
+            "fieldname": "project_controls_section",
+            "fieldtype": "Section Break",
+            "label": "Project Controls"
+        },
+        {
+            "fieldname": "budget_alert_threshold",
+            "fieldtype": "Percent",
+            "label": "Burn Rate Alert Threshold (%)",
+            "default": "80",
+            "description": "Projects exceeding this burn % trigger an email alert to PM and Managing Partner"
+        },
+        {
+            "fieldname": "default_retention_pct",
+            "fieldtype": "Percent",
+            "label": "Default Retention (%)",
+            "default": "10",
+            "description": "Default retention % applied to new Subcontractor Valuations"
+        },
+        {
+            "fieldname": "col_break_proj",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "snag_resolution_sla_days",
+            "fieldtype": "Int",
+            "label": "Snag Resolution SLA (Days)",
+            "default": "14",
+            "description": "Days after which an unresolved Critical snag blocks payment"
+        },
+        {
+            "fieldname": "gate_review_required",
+            "fieldtype": "Check",
+            "label": "Gate Review Document Required",
+            "default": "1",
+            "description": "If checked, a Gate Review record must exist before gate progression is approved"
         }
     ],
     "permissions": [

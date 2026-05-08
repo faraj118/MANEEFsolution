@@ -1,0 +1,59 @@
+{
+    "doctype": "DocType",
+    "name": "Drawing Revision",
+    "module": "Design Operations",
+    "custom": 0,
+    "istable": 1,
+    "editable_grid": 1,
+    "track_changes": 1,
+    "fields": [
+        {
+            "fieldname": "revision",
+            "fieldtype": "Data",
+            "label": "Rev",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 1
+        },
+        {
+            "fieldname": "revision_date",
+            "fieldtype": "Date",
+            "label": "Date",
+            "reqd": 1,
+            "default": "Today",
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Preliminary\nIssued for Review\nIssued for Approval\nIssued for Construction\nSuperseded\nArchived",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "issued_by",
+            "fieldtype": "Link",
+            "label": "Issued By",
+            "options": "User",
+            "default": "__user",
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "description_of_change",
+            "fieldtype": "Small Text",
+            "label": "Description of Change",
+            "in_list_view": 1,
+            "columns": 4
+        },
+        {
+            "fieldname": "file",
+            "fieldtype": "Attach",
+            "label": "File"
+        }
+    ],
+    "permissions": []
+}

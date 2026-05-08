@@ -1,7 +1,10 @@
 {
     "doctype": "DocType",
+    "name": "Transmittal",
     "module": "Design Operations",
-    "autoname": "naming_series/",
+    "autoname": "naming_series:",
+    "is_submittable": 1,
+    "track_changes": 1,
     "fields": [
         {
             "fieldname": "naming_series",
@@ -12,58 +15,110 @@
             "reqd": 1
         },
         {
-            "fieldname": "transmittal_no",
-            "fieldtype": "Data",
-            "label": "Transmittal No"
-        },
-        {
-            "fieldname": "date",
-            "fieldtype": "Date",
-            "label": "Date"
-        },
-        {
-            "fieldname": "recipient",
-            "fieldtype": "Data",
-            "label": "Recipient"
-        },
-        {
             "fieldname": "project",
             "fieldtype": "Link",
             "label": "Project",
             "options": "Project",
-            "reqd": 1
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "date",
+            "fieldtype": "Date",
+            "label": "Transmittal Date",
+            "reqd": 1,
+            "default": "Today",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "col_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "recipient",
+            "fieldtype": "Link",
+            "label": "Recipient",
+            "options": "Contact",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "distribution_method",
+            "fieldtype": "Select",
+            "label": "Distribution Method",
+            "options": "Email\nPrint\nPortal\nHand Delivery",
+            "default": "Email"
+        },
+        {
+            "fieldname": "purpose",
+            "fieldtype": "Select",
+            "label": "Purpose",
+            "options": "For Information\nFor Review\nFor Approval\nFor Construction\nFor Record",
+            "default": "For Information"
+        },
+        {
+            "fieldname": "drawings_section",
+            "fieldtype": "Section Break",
+            "label": "Drawings & Documents"
         },
         {
             "fieldname": "drawings",
             "fieldtype": "Table",
             "label": "Drawings",
-            "options": "Transmittal Drawings"
+            "options": "Transmittal Drawings",
+            "reqd": 1
+        },
+        {
+            "fieldname": "receipt_section",
+            "fieldtype": "Section Break",
+            "label": "Receipt Confirmation"
+        },
+        {
+            "fieldname": "receipt_confirmed",
+            "fieldtype": "Check",
+            "label": "Receipt Confirmed",
+            "default": "0"
+        },
+        {
+            "fieldname": "receipt_date",
+            "fieldtype": "Date",
+            "label": "Receipt Date",
+            "depends_on": "eval:doc.receipt_confirmed == 1"
+        },
+        {
+            "fieldname": "col_break_receipt",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "confirmed_by",
+            "fieldtype": "Data",
+            "label": "Confirmed By (Name)",
+            "depends_on": "eval:doc.receipt_confirmed == 1"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Small Text",
+            "label": "Notes"
         }
     ],
     "permissions": [
         {
             "role": "Project Manager",
-            "read": 1,
-            "write": 1,
-            "create": 1,
-            "delete": 1
+            "read": 1, "write": 1, "create": 1, "delete": 1,
+            "submit": 1, "cancel": 0, "amend": 1
         },
         {
             "role": "Design Engineer",
-            "read": 1,
-            "write": 1,
-            "create": 1
+            "read": 1, "write": 1, "create": 1
+        },
+        {
+            "role": "Managing Partner",
+            "read": 1, "write": 1, "create": 1, "delete": 1,
+            "submit": 1, "cancel": 1, "amend": 1
         },
         {
             "role": "System Manager",
-            "read": 1,
-            "write": 1,
-            "create": 1,
-            "delete": 1,
-            "submit": 1,
-            "cancel": 1,
-            "amend": 1
+            "read": 1, "write": 1, "create": 1, "delete": 1,
+            "submit": 1, "cancel": 1, "amend": 1
         }
-    ],
-    "name": "Transmittal"
+    ]
 }

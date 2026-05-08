@@ -30,7 +30,6 @@
             "fieldname": "total_budget",
             "fieldtype": "Currency",
             "label": "Total Budget",
-            "options": "currency",
             "reqd": 1,
             "in_list_view": 1
         },
@@ -38,7 +37,6 @@
             "fieldname": "actual_cost_to_date",
             "fieldtype": "Currency",
             "label": "Actual Cost to Date",
-            "options": "currency",
             "read_only": 1,
             "in_list_view": 1
         },

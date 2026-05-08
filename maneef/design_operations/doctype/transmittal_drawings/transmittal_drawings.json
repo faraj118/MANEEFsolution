@@ -1,37 +1,59 @@
 {
-  "doctype": "DocType",
-  "name": "Transmittal Drawings",
-  "module": "Design Operations",
-  "custom": 0,
-  "istable": 1,
-  "fields": [
-    {
-      "fieldname": "drawing_number",
-      "fieldtype": "Data",
-      "label": "Drawing Number",
-      "reqd": 1
-    },
-    {
-      "fieldname": "drawing_title",
-      "fieldtype": "Data",
-      "label": "Drawing Title",
-      "reqd": 1
-    },
-    {
-      "fieldname": "revision",
-      "fieldtype": "Data",
-      "label": "Revision"
-    },
-    {
-      "fieldname": "format",
-      "fieldtype": "Select",
-      "label": "Format",
-      "options": "PDF\nDWG\nIFC\nBoth"
-    },
-    {
-      "fieldname": "file_attachment",
-      "fieldtype": "Attach",
-      "label": "File"
-    }
-  ]
+    "doctype": "DocType",
+    "name": "Transmittal Drawings",
+    "module": "Design Operations",
+    "custom": 0,
+    "istable": 1,
+    "editable_grid": 1,
+    "fields": [
+        {
+            "fieldname": "drawing",
+            "fieldtype": "Link",
+            "label": "Drawing",
+            "options": "Drawing",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "drawing_number",
+            "fieldtype": "Data",
+            "label": "Drawing No.",
+            "fetch_from": "drawing.drawing_number",
+            "read_only": 1,
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "drawing_title",
+            "fieldtype": "Data",
+            "label": "Title",
+            "fetch_from": "drawing.drawing_title",
+            "read_only": 1,
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "revision",
+            "fieldtype": "Data",
+            "label": "Rev",
+            "fetch_from": "drawing.current_revision",
+            "read_only": 1,
+            "in_list_view": 1,
+            "columns": 1
+        },
+        {
+            "fieldname": "format",
+            "fieldtype": "Select",
+            "label": "Format",
+            "options": "PDF\nDWG\nIFC\nRVT\nBoth",
+            "in_list_view": 1,
+            "columns": 1
+        },
+        {
+            "fieldname": "file_attachment",
+            "fieldtype": "Attach",
+            "label": "File"
+        }
+    ]
 }

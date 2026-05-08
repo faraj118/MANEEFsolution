@@ -54,10 +54,12 @@ def _update_project_burn(project_name):
         "custom_burn_percentage": burn_pct
     })
     
-    if burn_pct >= 80:
-        _send_burn_alert(project_name, burn_pct)
+    settings = frappe.get_single("Maneef Settings")
+    threshold = settings.budget_alert_threshold or 80
+    if burn_pct >= threshold:
+        _send_burn_alert(project_name, burn_pct, threshold)
 
-def _send_burn_alert(project_name, burn_pct):
+def _send_burn_alert(project_name, burn_pct, threshold=80):
     last_sent = frappe.db.get_value("Project", project_name, "custom_burn_alert_sent_at")
     if last_sent and frappe.utils.time_diff_in_hours(frappe.utils.now(), last_sent) < 24:
         return
@@ -66,7 +68,8 @@ def _send_burn_alert(project_name, burn_pct):
     mps = frappe.get_all("Has Role", filters={"role": "Managing Partner"}, pluck="parent")
     recipients = [pm] if pm else []
     recipients += mps
-    subject = f"{'CRITICAL (OVER BUDGET)' if burn_pct >= 100 else 'WARNING (80%+ burn)'}: Project {project_name} at {burn_pct:.1f}% burn"
+    label = "CRITICAL (OVER BUDGET)" if burn_pct >= 100 else f"WARNING ({threshold}%+ burn)"
+    subject = f"{label}: Project {project_name} at {burn_pct:.1f}% burn"
     frappe.sendmail(recipients=recipients, subject=subject, message=f"Project {project_name} has reached {burn_pct:.1f}% of its contracted fee.")
     frappe.db.set_value("Project", project_name, "custom_burn_alert_sent_at", frappe.utils.now())
 
@@ -79,10 +82,13 @@ def daily_burn_rate_update():
             frappe.log_error(str(e), "Burn Rate Update Error")
 
 def hourly_burn_alert_check():
-    projects = frappe.db.sql("""
-        SELECT name FROM `tabProject` WHERE status='Open' AND custom_burn_percentage >= 80
-    """, as_dict=True)
+    threshold = frappe.get_single("Maneef Settings").budget_alert_threshold or 80
+    projects = frappe.db.sql(
+        "SELECT name FROM `tabProject` WHERE status='Open' AND custom_burn_percentage >= %s",
+        (threshold,),
+        as_dict=True,
+    )
     for project in projects:
         project_name = project.name
         burn_pct = frappe.db.get_value("Project", project_name, "custom_burn_percentage")
-        _send_burn_alert(project_name, burn_pct)
+        _send_burn_alert(project_name, burn_pct, threshold)

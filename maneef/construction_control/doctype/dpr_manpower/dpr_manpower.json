@@ -9,8 +9,9 @@
     "fields": [
         {
             "fieldname": "trade_role",
-            "fieldtype": "Data",
-            "label": "Trade/Role",
+            "fieldtype": "Select",
+            "label": "Trade / Role",
+            "options": "Architect\nBIM Technician\nCivil Engineer\nStructural Engineer\nMEP Engineer\nSite Engineer\nForeman\nMason\nCarpenter\nPlumber\nElectrician\nWelder\nPainter\nLabourer\nSurveyor\nSafety Officer\nOther",
             "reqd": 1,
             "in_list_view": 1,
             "columns": 3
@@ -28,6 +29,14 @@
             "fieldtype": "Float",
             "label": "Total Hours Worked",
             "reqd": 1,
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "contractor",
+            "fieldtype": "Link",
+            "label": "Contractor",
+            "options": "Supplier",
             "in_list_view": 1,
             "columns": 2
         },

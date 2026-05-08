@@ -16,18 +16,11 @@
             "in_list_view": 1
         },
         {
-            "fieldname": "item_name",
-            "fieldtype": "Data",
-            "label": "Item Name",
-            "fetch_from": "item_code.item_name",
-            "in_list_view": 1,
-            "read_only": 1
-        },
-        {
             "fieldname": "description",
-            "fieldtype": "Text Editor",
+            "fieldtype": "Small Text",
             "label": "Description",
-            "fetch_from": "item_code.description"
+            "in_list_view": 1,
+            "columns": 3
         },
         {
             "fieldname": "uom",

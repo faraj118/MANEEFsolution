@@ -1,0 +1,127 @@
+{
+    "doctype": "DocType",
+    "name": "Gate Review",
+    "module": "Construction Control",
+    "custom": 0,
+    "autoname": "naming_series:",
+    "is_submittable": 1,
+    "track_changes": 1,
+    "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Series",
+            "options": "GR-.YYYY.-.####",
+            "default": "GR-.YYYY.-.####"
+        },
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "label": "Project",
+            "options": "Project",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "bold": 1
+        },
+        {
+            "fieldname": "gate",
+            "fieldtype": "Select",
+            "label": "Gate",
+            "options": "Gate 1\nGate 2\nGate 3",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "review_date",
+            "fieldtype": "Date",
+            "label": "Review Date",
+            "reqd": 1,
+            "default": "Today",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "reviewed_by",
+            "fieldtype": "Link",
+            "label": "Chaired By",
+            "options": "User",
+            "reqd": 1,
+            "default": "__user",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "decision",
+            "fieldtype": "Select",
+            "label": "Decision",
+            "options": "\nApproved\nRejected\nDeferred",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "conditions_section",
+            "fieldtype": "Section Break",
+            "label": "Conditions & Notes"
+        },
+        {
+            "fieldname": "conditions",
+            "fieldtype": "Small Text",
+            "label": "Approval Conditions",
+            "depends_on": "eval:doc.decision == 'Approved'"
+        },
+        {
+            "fieldname": "rejection_reason",
+            "fieldtype": "Text Editor",
+            "label": "Rejection / Deferral Reason",
+            "depends_on": "eval:['Rejected','Deferred'].includes(doc.decision)"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text Editor",
+            "label": "Meeting Notes"
+        },
+        {
+            "fieldname": "attendees_section",
+            "fieldtype": "Section Break",
+            "label": "Attendees"
+        },
+        {
+            "fieldname": "attendees",
+            "fieldtype": "Table",
+            "label": "Attendees",
+            "options": "Gate Attendee"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1
+        },
+        {
+            "role": "Managing Partner",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 0,
+            "cancel": 0
+        }
+    ]
+}

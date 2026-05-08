@@ -1,0 +1,43 @@
+{
+    "doctype": "DocType",
+    "name": "Gate Attendee",
+    "module": "Construction Control",
+    "custom": 0,
+    "istable": 1,
+    "editable_grid": 1,
+    "fields": [
+        {
+            "fieldname": "attendee_name",
+            "fieldtype": "Data",
+            "label": "Name",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "role",
+            "fieldtype": "Select",
+            "label": "Role",
+            "options": "Managing Partner\nProject Manager\nDesign Lead\nClient Representative\nQA/QC Manager\nCommercial Manager\nOther",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Data",
+            "label": "Company",
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "decision_vote",
+            "fieldtype": "Select",
+            "label": "Vote",
+            "options": "\nApprove\nReject\nAbstain",
+            "in_list_view": 1,
+            "columns": 2
+        }
+    ],
+    "permissions": []
+}

@@ -21,7 +21,6 @@
             "fieldname": "amount",
             "fieldtype": "Currency",
             "label": "Amount",
-            "options": "currency",
             "reqd": 1
         },
         {

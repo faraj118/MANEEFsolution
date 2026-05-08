@@ -1,5 +1,6 @@
 import frappe
 from frappe.model.document import Document
 
-class BOQRoomDataSheetLink(Document):
+
+class GateAttendee(Document):
     pass

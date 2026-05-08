@@ -1,14 +1,18 @@
 {
     "doctype": "DocType",
     "module": "Construction Control",
+    "name": "SVR Issue",
     "istable": 1,
+    "editable_grid": 1,
+    "track_changes": 1,
     "fields": [
         {
             "fieldname": "issue_description",
             "fieldtype": "Text",
             "label": "Issue Description",
             "reqd": 1,
-            "in_list_view": 1
+            "in_list_view": 1,
+            "columns": 4
         },
         {
             "fieldname": "priority",
@@ -16,23 +20,48 @@
             "label": "Priority",
             "options": "Low\nMedium\nHigh\nCritical",
             "default": "Medium",
-            "in_list_view": 1
+            "in_list_view": 1,
+            "columns": 1
         },
         {
             "fieldname": "status",
             "fieldtype": "Select",
             "label": "Status",
-            "options": "Open\nClosed",
+            "options": "Open\nIn Progress\nResolved\nClosed",
             "default": "Open",
-            "in_list_view": 1
+            "in_list_view": 1,
+            "columns": 1
         },
         {
             "fieldname": "contractor",
-            "fieldtype": "Data",
-            "label": "Contractor",
-            "in_list_view": 1
+            "fieldtype": "Link",
+            "label": "Responsible Contractor",
+            "options": "Supplier",
+            "in_list_view": 1,
+            "columns": 2
+        },
+        {
+            "fieldname": "assigned_to",
+            "fieldtype": "Link",
+            "label": "Assigned To",
+            "options": "User"
+        },
+        {
+            "fieldname": "due_date",
+            "fieldtype": "Date",
+            "label": "Due Date"
+        },
+        {
+            "fieldname": "resolved_date",
+            "fieldtype": "Date",
+            "label": "Resolved Date"
+        },
+        {
+            "fieldname": "resolution_notes",
+            "fieldtype": "Small Text",
+            "label": "Resolution Notes",
+            "depends_on": "eval:doc.status == 'Resolved' || doc.status == 'Closed'"
         }
     ],
-    "permissions": [],
-    "name": "SVR Issue"
+    "permissions": []
 }

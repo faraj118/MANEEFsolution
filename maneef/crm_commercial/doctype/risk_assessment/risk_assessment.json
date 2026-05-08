@@ -111,8 +111,9 @@
     },
     {
       "fieldname": "contract_status",
-      "fieldtype": "Data",
+      "fieldtype": "Select",
       "label": "Contract Status",
+      "options": "Draft\nUnder Review\nNegotiation\nSigned\nTerminated",
       "read_only": 1
     },
     {
@@ -214,8 +215,7 @@
     {
       "fieldname": "risk_recommendations",
       "fieldtype": "Text Editor",
-      "label": "Risk Recommendations",
-      "read_only": 1
+      "label": "Risk Recommendations"
     },
     {
       "fieldname": "notes",

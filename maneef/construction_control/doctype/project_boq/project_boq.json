@@ -22,12 +22,25 @@
             "in_list_view": 1
         },
         {
-            "fieldname": "customer",
+            "fieldname": "prepared_by",
             "fieldtype": "Link",
-            "options": "Customer",
-            "label": "Customer",
-            "fetch_from": "project.customer",
-            "read_only": 1
+            "options": "User",
+            "label": "Prepared By",
+            "default": "__user",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "preparation_date",
+            "fieldtype": "Date",
+            "label": "Preparation Date",
+            "default": "Today"
+        },
+        {
+            "fieldname": "revision",
+            "fieldtype": "Data",
+            "label": "Revision",
+            "default": "R0",
+            "in_list_view": 1
         },
         {
             "fieldname": "items_section",

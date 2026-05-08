@@ -1,38 +1,36 @@
 {
     "doctype": "DocType",
+    "name": "SVR Contractor Log",
     "module": "Construction Control",
+    "custom": 0,
+    "istable": 1,
+    "editable_grid": 1,
     "fields": [
         {
-            "fieldname": "contractor_name",
-            "fieldtype": "Data",
-            "label": "Contractor Name"
+            "fieldname": "contractor",
+            "fieldtype": "Link",
+            "label": "Contractor",
+            "options": "Supplier",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 3
+        },
+        {
+            "fieldname": "log_date",
+            "fieldtype": "Date",
+            "label": "Date",
+            "default": "Today",
+            "in_list_view": 1,
+            "columns": 1
         },
         {
             "fieldname": "log_entry",
             "fieldtype": "Text",
-            "label": "Log Entry"
-        },
-        {
-            "fieldname": "site_visit_report",
-            "fieldtype": "Link",
-            "label": "Site Visit Report",
-            "options": "Site Visit Report"
+            "label": "Log Entry",
+            "reqd": 1,
+            "in_list_view": 1,
+            "columns": 5
         }
     ],
-    "permissions": [
-        {
-            "role": "Site Engineer",
-            "read": 1,
-            "write": 1,
-            "create": 1,
-            "delete": 1
-        },
-        {
-            "role": "Project Manager",
-            "read": 1,
-            "write": 1,
-            "create": 1
-        }
-    ],
-    "name": "SVR Contractor Log"
+    "permissions": []
 }

@@ -3,7 +3,18 @@
     "name": "Commercial Risk Review",
     "module": "Crm Commercial",
     "custom": 1,
+    "autoname": "naming_series:",
+    "is_submittable": 1,
+    "track_changes": 1,
+    "title_field": "opportunity",
     "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Series",
+            "options": "CRR-.YYYY.-.####",
+            "default": "CRR-.YYYY.-.####"
+        },
         {
             "fieldname": "opportunity",
             "fieldtype": "Link",
@@ -13,35 +24,152 @@
             "in_list_view": 1
         },
         {
-            "fieldname": "risk_area",
-            "fieldtype": "Data",
-            "label": "Risk Area"
+            "fieldname": "project_charter",
+            "fieldtype": "Link",
+            "label": "Project Charter",
+            "options": "Project Charter"
+        },
+        {
+            "fieldname": "review_date",
+            "fieldtype": "Date",
+            "label": "Review Date",
+            "reqd": 1,
+            "default": "Today",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "reviewed_by",
+            "fieldtype": "Link",
+            "label": "Reviewed By",
+            "options": "User",
+            "default": "__user",
+            "reqd": 1
+        },
+        {
+            "fieldname": "col_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "overall_risk_rating",
+            "fieldtype": "Select",
+            "label": "Overall Risk Rating",
+            "options": "\nLow\nMedium\nHigh\nUnacceptable",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "recommendation",
+            "fieldtype": "Select",
+            "label": "Recommendation",
+            "options": "\nProceed\nProceed with Conditions\nDo Not Proceed",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "risk_areas_section",
+            "fieldtype": "Section Break",
+            "label": "Risk Areas"
+        },
+        {
+            "fieldname": "client_credibility_risk",
+            "fieldtype": "Select",
+            "label": "Client Credibility Risk",
+            "options": "Low\nMedium\nHigh",
+            "default": "Low"
+        },
+        {
+            "fieldname": "scope_clarity_risk",
+            "fieldtype": "Select",
+            "label": "Scope Clarity Risk",
+            "options": "Low\nMedium\nHigh",
+            "default": "Low"
+        },
+        {
+            "fieldname": "col_break_2",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "competition_level",
+            "fieldtype": "Select",
+            "label": "Competition Level",
+            "options": "None\nLow\nMedium\nHigh"
+        },
+        {
+            "fieldname": "change_order_probability",
+            "fieldtype": "Select",
+            "label": "Change Order Probability",
+            "options": "Low\nMedium\nHigh",
+            "default": "Low"
+        },
+        {
+            "fieldname": "financials_section",
+            "fieldtype": "Section Break",
+            "label": "Financial Viability"
+        },
+        {
+            "fieldname": "estimated_value",
+            "fieldtype": "Currency",
+            "label": "Estimated Contract Value"
+        },
+        {
+            "fieldname": "estimated_margin_pct",
+            "fieldtype": "Percent",
+            "label": "Estimated Margin (%)"
+        },
+        {
+            "fieldname": "col_break_3",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "payment_terms_risk",
+            "fieldtype": "Select",
+            "label": "Payment Terms Risk",
+            "options": "Acceptable\nMarginal\nUnacceptable",
+            "default": "Acceptable"
+        },
+        {
+            "fieldname": "budget_realism",
+            "fieldtype": "Select",
+            "label": "Budget Realism",
+            "options": "Realistic\nOptimistic\nUnrealistic",
+            "default": "Realistic"
+        },
+        {
+            "fieldname": "notes_section",
+            "fieldtype": "Section Break",
+            "label": "Notes & Mitigation"
         },
         {
             "fieldname": "review_notes",
-            "fieldtype": "Text",
+            "fieldtype": "Text Editor",
             "label": "Review Notes"
+        },
+        {
+            "fieldname": "mitigation_strategy",
+            "fieldtype": "Text Editor",
+            "label": "Mitigation Strategy",
+            "depends_on": "eval:doc.recommendation == 'Proceed with Conditions'"
+        },
+        {
+            "fieldname": "conditions",
+            "fieldtype": "Small Text",
+            "label": "Conditions for Proceeding",
+            "depends_on": "eval:doc.recommendation == 'Proceed with Conditions'"
         }
     ],
     "permissions": [
         {
             "role": "System Manager",
-            "read": 1,
-            "write": 1,
-            "create": 1,
-            "delete": 1
+            "read": 1, "write": 1, "create": 1, "delete": 1,
+            "submit": 1, "cancel": 1, "amend": 1
         },
         {
             "role": "Managing Partner",
-            "read": 1,
-            "write": 1,
-            "create": 1
+            "read": 1, "write": 1, "create": 1,
+            "submit": 1, "cancel": 1, "amend": 1
         },
         {
             "role": "Project Manager",
-            "read": 1,
-            "write": 1,
-            "create": 1
+            "read": 1, "write": 1, "create": 1, "submit": 1
         }
     ]
 }

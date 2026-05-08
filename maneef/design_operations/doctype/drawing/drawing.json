@@ -1,0 +1,110 @@
+{
+    "doctype": "DocType",
+    "name": "Drawing",
+    "module": "Design Operations",
+    "custom": 0,
+    "autoname": "field:drawing_number",
+    "title_field": "drawing_title",
+    "is_submittable": 0,
+    "track_changes": 1,
+    "fields": [
+        {
+            "fieldname": "drawing_number",
+            "fieldtype": "Data",
+            "label": "Drawing Number",
+            "reqd": 1,
+            "unique": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "bold": 1
+        },
+        {
+            "fieldname": "drawing_title",
+            "fieldtype": "Data",
+            "label": "Drawing Title",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "label": "Project",
+            "options": "Project",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "discipline",
+            "fieldtype": "Select",
+            "label": "Discipline",
+            "options": "Architectural\nStructural\nMEP\nInterior\nLandscape\nBIM Coordination\nGeneral",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "drawing_type",
+            "fieldtype": "Select",
+            "label": "Drawing Type",
+            "options": "Plan\nSection\nElevation\nDetail\n3D View\nSchematic\nOther",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "In Progress\nIssued for Review\nIssued for Approval\nIssued for Construction\nSuperseded\nArchived",
+            "default": "In Progress",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "current_revision",
+            "fieldtype": "Data",
+            "label": "Current Revision",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "revisions_section",
+            "fieldtype": "Section Break",
+            "label": "Revision History"
+        },
+        {
+            "fieldname": "revisions",
+            "fieldtype": "Table",
+            "label": "Revisions",
+            "options": "Drawing Revision"
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 0,
+            "cancel": 0
+        },
+        {
+            "role": "Project Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 0,
+            "cancel": 0
+        },
+        {
+            "role": "Projects User",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0
+        }
+    ]
+}

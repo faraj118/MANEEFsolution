@@ -4,39 +4,46 @@
     "module": "Design Operations",
     "custom": 1,
     "istable": 1,
+    "editable_grid": 1,
     "fields": [
         {
             "fieldname": "task_title",
             "fieldtype": "Data",
             "label": "Task Title",
             "in_list_view": 1,
-            "reqd": 1
+            "reqd": 1,
+            "columns": 3
         },
         {
             "fieldname": "task_type",
             "fieldtype": "Select",
             "label": "Task Type",
-            "options": "BIM Modeling\nDrafting\nVisualization\nTechnical Audit\nCoordination",
-            "in_list_view": 1
+            "options": "BIM Modeling\nDrafting\nVisualization\nTechnical Audit\nCoordination\nProject Management\nQA/QC Review\nOther",
+            "in_list_view": 1,
+            "columns": 2
         },
         {
-            "fieldname": "instruction",
-            "fieldtype": "Small Text",
-            "label": "Instruction / Objective",
-            "reqd": 1
+            "fieldname": "bim_discipline",
+            "fieldtype": "Select",
+            "label": "BIM Discipline",
+            "options": "\nArchitectural\nStructural\nMEP\nInterior\nLandscape\nBIM Coordination\nGeneral",
+            "in_list_view": 1,
+            "columns": 2
         },
         {
             "fieldname": "lod_requirement",
             "fieldtype": "Select",
-            "label": "LOD Requirement",
-            "options": "LOD 100\nLOD 200\nLOD 300\nLOD 350\nLOD 400",
-            "in_list_view": 1
+            "label": "LOD",
+            "options": "\nLOD 100\nLOD 200\nLOD 300\nLOD 350\nLOD 400",
+            "in_list_view": 1,
+            "columns": 1
         },
         {
             "fieldname": "estimated_hours",
             "fieldtype": "Float",
             "label": "Est. Hours",
-            "in_list_view": 1
+            "in_list_view": 1,
+            "columns": 1
         },
         {
             "fieldname": "start_date",
@@ -44,14 +51,21 @@
             "label": "Start Date"
         },
         {
-            "fieldname": "bim_discipline",
-            "fieldtype": "Data",
-            "label": "BIM Discipline"
+            "fieldname": "end_date",
+            "fieldtype": "Date",
+            "label": "End Date"
         },
         {
             "fieldname": "bim_zone",
-            "fieldtype": "Data",
-            "label": "BIM Zone"
+            "fieldtype": "Select",
+            "label": "BIM Zone",
+            "options": "\nZone A\nZone B\nZone C\nZone D\nCommon Area\nExternal\nEntire Building"
+        },
+        {
+            "fieldname": "instruction",
+            "fieldtype": "Small Text",
+            "label": "Instruction / Objective",
+            "reqd": 1
         }
     ]
 }
