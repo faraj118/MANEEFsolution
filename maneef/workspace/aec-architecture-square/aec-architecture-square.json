@@ -1,107 +1,23 @@
 {
  "charts": [],
- "content": "[{\"id\": \"WfW19G-fH1\", \"type\": \"header\", \"data\": {\"text\": \"AEC Project Lifecycle\", \"level\": 4}}, {\"id\": \"JdY8QdG1H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Charters\"}}, {\"id\": \"KdY8QdG2H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sales Orders\"}}, {\"id\": \"MdY8QdG4H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Deliverables\"}}, {\"id\": \"NdY8QdG5H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transmittals\"}}, {\"id\": \"PdY8QdG6H_\", \"type\": \"header\", \"data\": {\"text\": \"Control & Monitoring\", \"level\": 4}}, {\"id\": \"C1ConstructHeader\", \"type\": \"header\", \"data\": {\"text\": \"Construction Control\", \"level\": 4}}, {\"id\": \"C2ProjectVariationOrders\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Variation Orders\"}}, {\"id\": \"C3ProjectBOQs\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project BOQs\"}}, {\"id\": \"C4DailyProgressReports\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Progress Reports\"}}, {\"id\": \"C5SVRIssues\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"SVR Issues\"}}, {\"id\": \"C6TaskBriefs\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Task Briefs\"}}, {\"id\": \"QdY8QdG7H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Site Visit Reports\"}}, {\"id\": \"RdY8QdG8H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"RFI Records\"}}, {\"id\": \"LdY8QdG3H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Stop Work Notices\"}}, {\"id\": \"SdY8QdG9H_\", \"type\": \"header\", \"data\": {\"text\": \"Regional Offices & Setup\", \"level\": 4}}, {\"id\": \"TdY8QdG0H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Production Offices\"}}, {\"id\": \"UdY8QdG1H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Health Matrix\"}}, {\"id\": \"WdY8QdG3H_\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Chart of Accounts\"}}]",
+ "content": "[{\"id\":\"d-h1\",\"type\":\"header\",\"data\":{\"text\":\"Drawing Register\",\"level\":4}},{\"id\":\"d-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Drawings\"}},{\"id\":\"d-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transmittals\"}},{\"id\":\"d-h2\",\"type\":\"header\",\"data\":{\"text\":\"Project Delivery\",\"level\":4}},{\"id\":\"d-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Deliverables\"}},{\"id\":\"d-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate 2 Reviews\"}},{\"id\":\"d-h3\",\"type\":\"header\",\"data\":{\"text\":\"Monitoring\",\"level\":4}},{\"id\":\"d-n1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Issued Transmittals\"}},{\"id\":\"d-n2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Deliverables Pending Review\"}},{\"id\":\"d-n3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Projects\"}},{\"id\":\"d-h4\",\"type\":\"header\",\"data\":{\"text\":\"Setup & Reports\",\"level\":4}},{\"id\":\"d-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Offices\"}},{\"id\":\"d-s6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}}]",
  "creation": "2024-01-01 00:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "icon": "project",
+ "icon": "es-line-pen-ruler",
  "indicator_color": "blue",
  "is_hidden": 0,
- "label": "Architecture Square",
+ "label": "Design & Documentation",
  "links": [
-  {
-   "label": "Project Charter",
-   "link_type": "DocType",
-   "link_to": "Project Charter",
-   "type": "Link"
-  },
-  {
-   "label": "Sales Order",
-   "link_type": "DocType",
-   "link_to": "Sales Order",
-   "type": "Link"
-  },
-  {
-   "label": "Project Deliverable",
-   "link_type": "DocType",
-   "link_to": "Project Deliverable",
-   "type": "Link"
-  },
-  {
-   "label": "Project Variation Order",
-   "link_type": "DocType",
-   "link_to": "Project Variation Order",
-   "type": "Link"
-  },
-  {
-   "label": "Project BOQ",
-   "link_type": "DocType",
-   "link_to": "Project BOQ",
-   "type": "Link"
-  },
-  {
-   "label": "Daily Progress Report",
-   "link_type": "DocType",
-   "link_to": "Daily Progress Report",
-   "type": "Link"
-  },
-  {
-   "label": "SVR Issue",
-   "link_type": "DocType",
-   "link_to": "SVR Issue",
-   "type": "Link"
-  },
-  {
-   "label": "Task Brief",
-   "link_type": "DocType",
-   "link_to": "Task Brief",
-   "type": "Link"
-  },
-  {
-   "label": "Transmittal",
-   "link_type": "DocType",
-   "link_to": "Transmittal",
-   "type": "Link"
-  },
-  {
-   "label": "Site Visit Report",
-   "link_type": "DocType",
-   "link_to": "Site Visit Report",
-   "type": "Link"
-  },
-  {
-   "label": "RFI Record",
-   "link_type": "DocType",
-   "link_to": "RFI Record",
-   "type": "Link"
-  },
-  {
-   "label": "Stop Work Notice",
-   "link_type": "DocType",
-   "link_to": "Stop Work Notice",
-   "type": "Link"
-  },
-  {
-   "label": "Production Office",
-   "link_type": "DocType",
-   "link_to": "AEC Production Office",
-   "type": "Link"
-  },
-  {
-   "label": "Project Health Matrix",
-   "link_type": "Report",
-   "link_to": "Project Health Matrix",
-   "type": "Link"
-  },
-  {
-   "label": "Chart of Accounts",
-   "link_type": "DocType",
-   "link_to": "Account",
-   "type": "Link"
-  }
+  {"label": "Drawing", "link_type": "DocType", "link_to": "Drawing", "type": "Link"},
+  {"label": "Transmittal", "link_type": "DocType", "link_to": "Transmittal", "type": "Link"},
+  {"label": "Project Deliverable", "link_type": "DocType", "link_to": "Project Deliverable", "type": "Link"},
+  {"label": "Gate Review", "link_type": "DocType", "link_to": "Gate Review", "type": "Link"},
+  {"label": "AEC Production Office", "link_type": "DocType", "link_to": "AEC Production Office", "type": "Link"},
+  {"label": "Project Health Matrix", "link_type": "Report", "link_to": "Project Health Matrix", "type": "Link"}
  ],
  "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
@@ -113,109 +29,19 @@
  "public": 1,
  "quick_lists": [],
  "roles": [
-  {
-   "role": "System Manager"
-  },
-  {
-   "role": "Managing Partner"
-  },
-  {
-   "role": "Project Manager"
-  }
+  {"role": "System Manager"},
+  {"role": "Managing Partner"},
+  {"role": "Project Manager"},
+  {"role": "Projects User"}
  ],
- "sequence_id": 1.0,
+ "sequence_id": 3.0,
  "shortcuts": [
-  {
-   "color": "Green",
-   "label": "Project Charters",
-   "link_to": "Project Charter",
-   "type": "DocType"
-  },
-  {
-   "color": "Orange",
-   "label": "Sales Orders",
-   "link_to": "Sales Order",
-   "type": "DocType"
-  },
-  {
-   "color": "Blue",
-   "label": "Project Deliverables",
-   "link_to": "Project Deliverable",
-   "type": "DocType"
-  },
-  {
-   "color": "Yellow",
-   "label": "Project Variation Orders",
-   "link_to": "Project Variation Order",
-   "type": "DocType"
-  },
-  {
-   "color": "Cyan",
-   "label": "Project BOQs",
-   "link_to": "Project BOQ",
-   "type": "DocType"
-  },
-  {
-   "color": "Orange",
-   "label": "Daily Progress Reports",
-   "link_to": "Daily Progress Report",
-   "type": "DocType"
-  },
-  {
-   "color": "Purple",
-   "label": "SVR Issues",
-   "link_to": "SVR Issue",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "label": "Task Briefs",
-   "link_to": "Task Brief",
-   "type": "DocType"
-  },
-  {
-   "color": "Yellow",
-   "label": "Transmittals",
-   "link_to": "Transmittal",
-   "type": "DocType"
-  },
-  {
-   "color": "Purple",
-   "label": "Site Visit Reports",
-   "link_to": "Site Visit Report",
-   "type": "DocType"
-  },
-  {
-   "color": "Pink",
-   "label": "RFI Records",
-   "link_to": "RFI Record",
-   "type": "DocType"
-  },
-  {
-   "color": "Red",
-   "label": "Stop Work Notices",
-   "link_to": "Stop Work Notice",
-   "type": "DocType"
-  },
-  {
-   "color": "Cyan",
-   "label": "Production Offices",
-   "link_to": "AEC Production Office",
-   "type": "DocType"
-  },
-  {
-   "color": "Light Blue",
-   "label": "Project Health Matrix",
-   "link_to": "Project Health Matrix",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "label": "Chart of Accounts",
-   "link_to": "Account",
-   "type": "DocType",
-   "docview": "Tree"
-  }
+  {"color": "Blue", "label": "Drawings", "link_to": "Drawing", "type": "DocType"},
+  {"color": "Yellow", "label": "Transmittals", "link_to": "Transmittal", "type": "DocType"},
+  {"color": "Green", "label": "Project Deliverables", "link_to": "Project Deliverable", "type": "DocType"},
+  {"color": "Purple", "label": "Gate 2 Reviews", "link_to": "Gate Review", "type": "DocType", "docview": "List", "filters": "[[\"gate\",\"=\",\"Gate 2\"]]"},
+  {"color": "Cyan", "label": "Production Offices", "link_to": "AEC Production Office", "type": "DocType"},
+  {"color": "Light Blue", "label": "Project Health Matrix", "link_to": "Project Health Matrix", "type": "Report"}
  ],
- "title": "AEC Architecture Square"
+ "title": "Design & Documentation"
 }

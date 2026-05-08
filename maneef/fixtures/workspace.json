@@ -1,32 +1,16 @@
 [
   {
     "charts": [
-      {
-        "chart_name": "Projects by Gate Status"
-      },
-      {
-        "chart_name": "Risk Distribution"
-      },
-      {
-        "chart_name": "RFI Status Breakdown"
-      },
-      {
-        "chart_name": "Charters by GO/NO-GO Decision"
-      },
-      {
-        "chart_name": "Projects by Contract Status"
-      },
-      {
-        "chart_name": "Transmittals Issued Per Month"
-      },
-      {
-        "chart_name": "Deliverables by Discipline"
-      },
-      {
-        "chart_name": "Burn Rate Distribution"
-      }
+      {"chart_name": "Projects by Gate Status"},
+      {"chart_name": "Risk Distribution"},
+      {"chart_name": "RFI Status Breakdown"},
+      {"chart_name": "Charters by GO/NO-GO Decision"},
+      {"chart_name": "Projects by Contract Status"},
+      {"chart_name": "Transmittals Issued Per Month"},
+      {"chart_name": "Deliverables by Discipline"},
+      {"chart_name": "Burn Rate Distribution"}
     ],
-    "content": "[{\"id\": \"AECHeader\", \"type\": \"header\", \"data\": {\"text\": \"AEC Architecture Square\", \"level\": 4}}, {\"id\": \"AECDashHeader\", \"type\": \"header\", \"data\": {\"text\": \"Dashboard\", \"level\": 4}}, {\"id\": \"AECNumCardRow1\", \"type\": \"card\", \"data\": {\"cards\": [{\"card\": \"Active Projects\"}, {\"card\": \"Pipeline Value\"}, {\"card\": \"Open RFIs\"}, {\"card\": \"High Risk Projects\"}]}}, {\"id\": \"AECChartRow1\", \"type\": \"chart\", \"data\": {\"charts\": [{\"chart\": \"Projects by Gate Status\"}, {\"chart\": \"Risk Distribution\"}, {\"chart\": \"RFI Status Breakdown\"}, {\"chart\": \"Charters by GO/NO-GO Decision\"}]}}, {\"id\": \"AECNumCardRow2\", \"type\": \"card\", \"data\": {\"cards\": [{\"card\": \"Issued Transmittals\"}, {\"card\": \"Overdue Invoices\"}, {\"card\": \"Open Snags\"}, {\"card\": \"Deliverables Pending Review\"}]}}, {\"id\": \"AECChartRow2\", \"type\": \"chart\", \"data\": {\"charts\": [{\"chart\": \"Projects by Contract Status\"}, {\"chart\": \"Transmittals Issued Per Month\"}, {\"chart\": \"Deliverables by Discipline\"}, {\"chart\": \"Burn Rate Distribution\"}]}}, {\"id\": \"AECCommHeader\", \"type\": \"header\", \"data\": {\"text\": \"Commercial & Contracts\", \"level\": 4}}, {\"id\": \"AECPC\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Charters\"}}, {\"id\": \"AECSO\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sales Orders\"}}, {\"id\": \"AECVO\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Variation Orders\"}}, {\"id\": \"AECRiskAssess\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Risk Assessments\"}}, {\"id\": \"AECCust\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Customers\"}}, {\"id\": \"AECDesignHeader\", \"type\": \"header\", \"data\": {\"text\": \"Design Operations\", \"level\": 4}}, {\"id\": \"AECPD\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Deliverables\"}}, {\"id\": \"AECTrans\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transmittals\"}}, {\"id\": \"AECConstHeader\", \"type\": \"header\", \"data\": {\"text\": \"Construction Control\", \"level\": 4}}, {\"id\": \"AECSV\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Site Visit Reports\"}}, {\"id\": \"AECRFI\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"RFI Records\"}}, {\"id\": \"AECBOQ\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project BOQs\"}}, {\"id\": \"AECSnag\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Snag Lists\"}}, {\"id\": \"AECDPR\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Progress Reports\"}}, {\"id\": \"AECFinHeader\", \"type\": \"header\", \"data\": {\"text\": \"Financial\", \"level\": 4}}, {\"id\": \"AECSI\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sales Invoices\"}}, {\"id\": \"AECTS\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Timesheets\"}}, {\"id\": \"AECPE\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Payment Entries\"}}, {\"id\": \"AECSetupHeader\", \"type\": \"header\", \"data\": {\"text\": \"Setup & Configuration\", \"level\": 4}}, {\"id\": \"AECPO\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Production Offices\"}}, {\"id\": \"AECPT\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Types\"}}, {\"id\": \"AECCOA\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Chart of Accounts\"}}]",
+    "content": "[{\"id\":\"ov-h1\",\"type\":\"header\",\"data\":{\"text\":\"Dashboard & Analytics\",\"level\":4}},{\"id\":\"ov-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Active Projects\"},{\"card\":\"Pipeline Value\"},{\"card\":\"Open Snags\"},{\"card\":\"Open RFIs\"}]}},{\"id\":\"ov-ch1\",\"type\":\"chart\",\"data\":{\"charts\":[{\"chart\":\"Projects by Gate Status\"},{\"chart\":\"Risk Distribution\"},{\"chart\":\"RFI Status Breakdown\"},{\"chart\":\"Charters by GO/NO-GO Decision\"}]}},{\"id\":\"ov-c2\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Issued Transmittals\"},{\"card\":\"Overdue Invoices\"},{\"card\":\"High Risk Projects\"},{\"card\":\"Deliverables Pending Review\"}]}},{\"id\":\"ov-ch2\",\"type\":\"chart\",\"data\":{\"charts\":[{\"chart\":\"Projects by Contract Status\"},{\"chart\":\"Transmittals Issued Per Month\"},{\"chart\":\"Deliverables by Discipline\"},{\"chart\":\"Burn Rate Distribution\"}]}},{\"id\":\"ov-h2\",\"type\":\"header\",\"data\":{\"text\":\"Quick Access\",\"level\":4}},{\"id\":\"ov-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Risk Assessments\"}},{\"id\":\"ov-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Charters\"}},{\"id\":\"ov-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Drawings\"}},{\"id\":\"ov-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Snag Lists\"}},{\"id\":\"ov-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}}]",
     "creation": "2026-04-07 00:00:00.000000",
     "custom_blocks": [],
     "docstatus": 0,
@@ -38,151 +22,25 @@
     "is_hidden": 0,
     "label": "AEC Architecture Square",
     "links": [
-      {
-        "label": "Project Charters",
-        "link_type": "DocType",
-        "link_to": "Project Charter",
-        "type": "Link"
-      },
-      {
-        "label": "Sales Orders",
-        "link_type": "DocType",
-        "link_to": "Sales Order",
-        "type": "Link"
-      },
-      {
-        "label": "Variation Orders",
-        "link_type": "DocType",
-        "link_to": "Project Variation Order",
-        "type": "Link"
-      },
-      {
-        "label": "Risk Assessments",
-        "link_type": "DocType",
-        "link_to": "Risk Assessment",
-        "type": "Link"
-      },
-      {
-        "label": "Customers",
-        "link_type": "DocType",
-        "link_to": "Customer",
-        "type": "Link"
-      },
-      {
-        "label": "Project Deliverables",
-        "link_type": "DocType",
-        "link_to": "Project Deliverable",
-        "type": "Link"
-      },
-      {
-        "label": "Transmittals",
-        "link_type": "DocType",
-        "link_to": "Transmittal",
-        "type": "Link"
-      },
-      {
-        "label": "Site Visit Reports",
-        "link_type": "DocType",
-        "link_to": "Site Visit Report",
-        "type": "Link"
-      },
-      {
-        "label": "RFI Records",
-        "link_type": "DocType",
-        "link_to": "RFI Record",
-        "type": "Link"
-      },
-      {
-        "label": "Project BOQs",
-        "link_type": "DocType",
-        "link_to": "Project BOQ",
-        "type": "Link"
-      },
-      {
-        "label": "Snag Lists",
-        "link_type": "DocType",
-        "link_to": "snag_item",
-        "type": "Link"
-      },
-      {
-        "label": "Daily Progress Reports",
-        "link_type": "DocType",
-        "link_to": "Daily Progress Report",
-        "type": "Link"
-      },
-      {
-        "label": "Sales Invoices",
-        "link_type": "DocType",
-        "link_to": "Sales Invoice",
-        "type": "Link"
-      },
-      {
-        "label": "Timesheets",
-        "link_type": "DocType",
-        "link_to": "Timesheet",
-        "type": "Link"
-      },
-      {
-        "label": "Payment Entries",
-        "link_type": "DocType",
-        "link_to": "Payment Entry",
-        "type": "Link"
-      },
-      {
-        "label": "Production Offices",
-        "link_type": "DocType",
-        "link_to": "AEC Production Office",
-        "type": "Link"
-      },
-      {
-        "label": "Project Types",
-        "link_type": "DocType",
-        "link_to": "Project Type",
-        "type": "Link"
-      },
-      {
-        "label": "Chart of Accounts",
-        "link_type": "DocType",
-        "link_to": "Chart of Accounts",
-        "type": "Link"
-      }
+      {"label": "Risk Assessment", "link_type": "DocType", "link_to": "Risk Assessment", "type": "Link"},
+      {"label": "Project Charter", "link_type": "DocType", "link_to": "Project Charter", "type": "Link"},
+      {"label": "Drawing", "link_type": "DocType", "link_to": "Drawing", "type": "Link"},
+      {"label": "Snag List", "link_type": "DocType", "link_to": "Snag List", "type": "Link"},
+      {"label": "Project Health Matrix", "link_type": "Report", "link_to": "Project Health Matrix", "type": "Link"}
     ],
     "module": "Crm Commercial",
     "name": "AEC Architecture Square",
     "number_cards": [
-      {
-        "label": "Active Projects",
-        "number_card_name": "Active Projects"
-      },
-      {
-        "label": "Pipeline Value",
-        "number_card_name": "Pipeline Value"
-      },
-      {
-        "label": "Open RFIs",
-        "number_card_name": "Open RFIs"
-      },
-      {
-        "label": "High Risk Projects",
-        "number_card_name": "High Risk Projects"
-      },
-      {
-        "label": "Issued Transmittals",
-        "number_card_name": "Issued Transmittals"
-      },
-      {
-        "label": "Overdue Invoices",
-        "number_card_name": "Overdue Invoices"
-      },
-      {
-        "label": "Open Snags",
-        "number_card_name": "Open Snags"
-      },
-      {
-        "label": "Deliverables Pending Review",
-        "number_card_name": "Deliverables Pending Review"
-      }
+      {"label": "Active Projects", "number_card_name": "Active Projects"},
+      {"label": "Pipeline Value", "number_card_name": "Pipeline Value"},
+      {"label": "Open RFIs", "number_card_name": "Open RFIs"},
+      {"label": "High Risk Projects", "number_card_name": "High Risk Projects"},
+      {"label": "Issued Transmittals", "number_card_name": "Issued Transmittals"},
+      {"label": "Overdue Invoices", "number_card_name": "Overdue Invoices"},
+      {"label": "Open Snags", "number_card_name": "Open Snags"},
+      {"label": "Deliverables Pending Review", "number_card_name": "Deliverables Pending Review"}
     ],
+    "owner": "Administrator",
     "parent_page": "",
     "public": 1,
     "quick_lists": [],
@@ -190,97 +48,250 @@
     "roles": [],
     "sequence_id": 1.0,
     "shortcuts": [
-      {
-        "label": "Project Charters",
-        "link_to": "Project Charter",
-        "type": "DocType"
-      },
-      {
-        "label": "Sales Orders",
-        "link_to": "Sales Order",
-        "type": "DocType"
-      },
-      {
-        "label": "Variation Orders",
-        "link_to": "Project Variation Order",
-        "type": "DocType"
-      },
-      {
-        "label": "Risk Assessments",
-        "link_to": "Risk Assessment",
-        "type": "DocType"
-      },
-      {
-        "label": "Customers",
-        "link_to": "Customer",
-        "type": "DocType"
-      },
-      {
-        "label": "Project Deliverables",
-        "link_to": "Project Deliverable",
-        "type": "DocType"
-      },
-      {
-        "label": "Transmittals",
-        "link_to": "Transmittal",
-        "type": "DocType"
-      },
-      {
-        "label": "Site Visit Reports",
-        "link_to": "Site Visit Report",
-        "type": "DocType"
-      },
-      {
-        "label": "RFI Records",
-        "link_to": "RFI Record",
-        "type": "DocType"
-      },
-      {
-        "label": "Project BOQs",
-        "link_to": "Project BOQ",
-        "type": "Link"
-      },
-      {
-        "label": "Snag Lists",
-        "link_to": "snag_item",
-        "type": "DocType"
-      },
-      {
-        "label": "Daily Progress Reports",
-        "link_to": "Daily Progress Report",
-        "type": "DocType"
-      },
-      {
-        "label": "Sales Invoices",
-        "link_to": "Sales Invoice",
-        "type": "DocType"
-      },
-      {
-        "label": "Timesheets",
-        "link_to": "Timesheet",
-        "type": "DocType"
-      },
-      {
-        "label": "Payment Entries",
-        "link_to": "Payment Entry",
-        "type": "DocType"
-      },
-      {
-        "label": "Production Offices",
-        "link_to": "AEC Production Office",
-        "type": "DocType"
-      },
-      {
-        "label": "Project Types",
-        "link_to": "Project Type",
-        "type": "DocType"
-      },
-      {
-        "label": "Chart of Accounts",
-        "link_to": "Chart of Accounts",
-        "type": "Page"
-      }
+      {"color": "Red", "label": "Risk Assessments", "link_to": "Risk Assessment", "type": "DocType"},
+      {"color": "Green", "label": "Project Charters", "link_to": "Project Charter", "type": "DocType"},
+      {"color": "Blue", "label": "Drawings", "link_to": "Drawing", "type": "DocType"},
+      {"color": "Orange", "label": "Snag Lists", "link_to": "Snag List", "type": "DocType"},
+      {"color": "Light Blue", "label": "Project Health Matrix", "link_to": "Project Health Matrix", "type": "Report"}
     ],
     "title": "AEC Architecture Square"
+  },
+  {
+    "charts": [],
+    "content": "[{\"id\":\"cb-h1\",\"type\":\"header\",\"data\":{\"text\":\"Pre-Qualification & Risk\",\"level\":4}},{\"id\":\"cb-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Risk Assessments\"}},{\"id\":\"cb-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Commercial Risk Reviews\"}},{\"id\":\"cb-h2\",\"type\":\"header\",\"data\":{\"text\":\"Contract Signing \\u2014 Gate 1\",\"level\":4}},{\"id\":\"cb-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Charters\"}},{\"id\":\"cb-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate 1 Reviews\"}},{\"id\":\"cb-h3\",\"type\":\"header\",\"data\":{\"text\":\"Project Changes\",\"level\":4}},{\"id\":\"cb-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Variation Orders\"}},{\"id\":\"cb-h4\",\"type\":\"header\",\"data\":{\"text\":\"Pipeline Overview\",\"level\":4}},{\"id\":\"cb-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Pipeline Value\"},{\"card\":\"High Risk Projects\"}]}}]",
+    "creation": "2026-01-01 00:00:00.000000",
+    "custom_blocks": [],
+    "docstatus": 0,
+    "doctype": "Workspace",
+    "for_user": "",
+    "hide_custom": 0,
+    "icon": "es-line-handshake",
+    "indicator_color": "green",
+    "is_hidden": 0,
+    "label": "Commercial & Bidding",
+    "links": [
+      {"label": "Risk Assessment", "link_type": "DocType", "link_to": "Risk Assessment", "type": "Link"},
+      {"label": "Commercial Risk Review", "link_type": "DocType", "link_to": "Commercial Risk Review", "type": "Link"},
+      {"label": "Project Charter", "link_type": "DocType", "link_to": "Project Charter", "type": "Link"},
+      {"label": "Project Variation Order", "link_type": "DocType", "link_to": "Project Variation Order", "type": "Link"},
+      {"label": "Gate Review", "link_type": "DocType", "link_to": "Gate Review", "type": "Link"}
+    ],
+    "module": "Crm Commercial",
+    "name": "commercial-bidding",
+    "number_cards": [
+      {"label": "Pipeline Value", "number_card_name": "Pipeline Value"},
+      {"label": "High Risk Projects", "number_card_name": "High Risk Projects"}
+    ],
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "quick_lists": [],
+    "roles": [
+      {"role": "System Manager"},
+      {"role": "Managing Partner"},
+      {"role": "Project Manager"}
+    ],
+    "sequence_id": 2.0,
+    "shortcuts": [
+      {"color": "Red", "label": "Risk Assessments", "link_to": "Risk Assessment", "type": "DocType"},
+      {"color": "Orange", "label": "Commercial Risk Reviews", "link_to": "Commercial Risk Review", "type": "DocType"},
+      {"color": "Green", "label": "Project Charters", "link_to": "Project Charter", "type": "DocType"},
+      {"color": "Purple", "label": "Gate 1 Reviews", "link_to": "Gate Review", "type": "DocType", "docview": "List", "filters": "[[\"gate\",\"=\",\"Gate 1\"]]"},
+      {"color": "Yellow", "label": "Variation Orders", "link_to": "Project Variation Order", "type": "DocType"}
+    ],
+    "title": "Commercial & Bidding"
+  },
+  {
+    "charts": [],
+    "content": "[{\"id\":\"d-h1\",\"type\":\"header\",\"data\":{\"text\":\"Drawing Register\",\"level\":4}},{\"id\":\"d-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Drawings\"}},{\"id\":\"d-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transmittals\"}},{\"id\":\"d-h2\",\"type\":\"header\",\"data\":{\"text\":\"Project Delivery\",\"level\":4}},{\"id\":\"d-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Deliverables\"}},{\"id\":\"d-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate 2 Reviews\"}},{\"id\":\"d-h3\",\"type\":\"header\",\"data\":{\"text\":\"Monitoring\",\"level\":4}},{\"id\":\"d-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Issued Transmittals\"},{\"card\":\"Deliverables Pending Review\"},{\"card\":\"Active Projects\"}]}},{\"id\":\"d-h4\",\"type\":\"header\",\"data\":{\"text\":\"Setup & Reports\",\"level\":4}},{\"id\":\"d-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Offices\"}},{\"id\":\"d-s6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}}]",
+    "creation": "2026-01-01 00:00:00.000000",
+    "custom_blocks": [],
+    "docstatus": 0,
+    "doctype": "Workspace",
+    "for_user": "",
+    "hide_custom": 0,
+    "icon": "es-line-pen-ruler",
+    "indicator_color": "blue",
+    "is_hidden": 0,
+    "label": "Design & Documentation",
+    "links": [
+      {"label": "Drawing", "link_type": "DocType", "link_to": "Drawing", "type": "Link"},
+      {"label": "Transmittal", "link_type": "DocType", "link_to": "Transmittal", "type": "Link"},
+      {"label": "Project Deliverable", "link_type": "DocType", "link_to": "Project Deliverable", "type": "Link"},
+      {"label": "Gate Review", "link_type": "DocType", "link_to": "Gate Review", "type": "Link"},
+      {"label": "AEC Production Office", "link_type": "DocType", "link_to": "AEC Production Office", "type": "Link"},
+      {"label": "Project Health Matrix", "link_type": "Report", "link_to": "Project Health Matrix", "type": "Link"}
+    ],
+    "module": "Design Operations",
+    "name": "design-documentation",
+    "number_cards": [
+      {"label": "Issued Transmittals", "number_card_name": "Issued Transmittals"},
+      {"label": "Deliverables Pending Review", "number_card_name": "Deliverables Pending Review"},
+      {"label": "Active Projects", "number_card_name": "Active Projects"}
+    ],
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "quick_lists": [],
+    "roles": [
+      {"role": "System Manager"},
+      {"role": "Managing Partner"},
+      {"role": "Project Manager"},
+      {"role": "Projects User"}
+    ],
+    "sequence_id": 3.0,
+    "shortcuts": [
+      {"color": "Blue", "label": "Drawings", "link_to": "Drawing", "type": "DocType"},
+      {"color": "Yellow", "label": "Transmittals", "link_to": "Transmittal", "type": "DocType"},
+      {"color": "Green", "label": "Project Deliverables", "link_to": "Project Deliverable", "type": "DocType"},
+      {"color": "Purple", "label": "Gate 2 Reviews", "link_to": "Gate Review", "type": "DocType", "docview": "List", "filters": "[[\"gate\",\"=\",\"Gate 2\"]]"},
+      {"color": "Cyan", "label": "Production Offices", "link_to": "AEC Production Office", "type": "DocType"},
+      {"color": "Light Blue", "label": "Project Health Matrix", "link_to": "Project Health Matrix", "type": "Report"}
+    ],
+    "title": "Design & Documentation"
+  },
+  {
+    "charts": [],
+    "content": "[{\"id\":\"cc-h1\",\"type\":\"header\",\"data\":{\"text\":\"Daily Operations\",\"level\":4}},{\"id\":\"cc-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Progress Reports\"}},{\"id\":\"cc-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site Visit Reports\"}},{\"id\":\"cc-h2\",\"type\":\"header\",\"data\":{\"text\":\"Quality & Snagging\",\"level\":4}},{\"id\":\"cc-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Snag Lists\"}},{\"id\":\"cc-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Open Snags\"},{\"card\":\"Open RFIs\"}]}},{\"id\":\"cc-h3\",\"type\":\"header\",\"data\":{\"text\":\"BOQ & Subcontractors\",\"level\":4}},{\"id\":\"cc-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project BOQs\"}},{\"id\":\"cc-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Subcontractor Valuations\"}},{\"id\":\"cc-h4\",\"type\":\"header\",\"data\":{\"text\":\"Issues & Compliance\",\"level\":4}},{\"id\":\"cc-s6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"RFI Records\"}},{\"id\":\"cc-s7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stop Work Notices\"}},{\"id\":\"cc-h5\",\"type\":\"header\",\"data\":{\"text\":\"Gate 3 \\u2014 Closeout\",\"level\":4}},{\"id\":\"cc-s8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate 3 Reviews\"}}]",
+    "creation": "2026-01-01 00:00:00.000000",
+    "custom_blocks": [],
+    "docstatus": 0,
+    "doctype": "Workspace",
+    "for_user": "",
+    "hide_custom": 0,
+    "icon": "es-line-building",
+    "indicator_color": "orange",
+    "is_hidden": 0,
+    "label": "Construction Control",
+    "links": [
+      {"label": "Daily Progress Report", "link_type": "DocType", "link_to": "Daily Progress Report", "type": "Link"},
+      {"label": "Site Visit Report", "link_type": "DocType", "link_to": "Site Visit Report", "type": "Link"},
+      {"label": "Snag List", "link_type": "DocType", "link_to": "Snag List", "type": "Link"},
+      {"label": "Project BOQ", "link_type": "DocType", "link_to": "Project BOQ", "type": "Link"},
+      {"label": "Subcontractor Valuation", "link_type": "DocType", "link_to": "Subcontractor Valuation", "type": "Link"},
+      {"label": "RFI Record", "link_type": "DocType", "link_to": "RFI Record", "type": "Link"},
+      {"label": "Stop Work Notice", "link_type": "DocType", "link_to": "Stop Work Notice", "type": "Link"},
+      {"label": "Gate Review", "link_type": "DocType", "link_to": "Gate Review", "type": "Link"}
+    ],
+    "module": "Construction Control",
+    "name": "construction-control-ws",
+    "number_cards": [
+      {"label": "Open Snags", "number_card_name": "Open Snags"},
+      {"label": "Open RFIs", "number_card_name": "Open RFIs"}
+    ],
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "quick_lists": [],
+    "roles": [
+      {"role": "System Manager"},
+      {"role": "Managing Partner"},
+      {"role": "Project Manager"},
+      {"role": "Projects User"}
+    ],
+    "sequence_id": 4.0,
+    "shortcuts": [
+      {"color": "Orange", "label": "Daily Progress Reports", "link_to": "Daily Progress Report", "type": "DocType"},
+      {"color": "Purple", "label": "Site Visit Reports", "link_to": "Site Visit Report", "type": "DocType"},
+      {"color": "Red", "label": "Snag Lists", "link_to": "Snag List", "type": "DocType"},
+      {"color": "Cyan", "label": "Project BOQs", "link_to": "Project BOQ", "type": "DocType"},
+      {"color": "Blue", "label": "Subcontractor Valuations", "link_to": "Subcontractor Valuation", "type": "DocType"},
+      {"color": "Pink", "label": "RFI Records", "link_to": "RFI Record", "type": "DocType"},
+      {"color": "Red", "label": "Stop Work Notices", "link_to": "Stop Work Notice", "type": "DocType"},
+      {"color": "Green", "label": "Gate 3 Reviews", "link_to": "Gate Review", "type": "DocType", "docview": "List", "filters": "[[\"gate\",\"=\",\"Gate 3\"]]"}
+    ],
+    "title": "Construction Control"
+  },
+  {
+    "charts": [],
+    "content": "[{\"id\":\"fc-h1\",\"type\":\"header\",\"data\":{\"text\":\"Budget & Cost Control\",\"level\":4}},{\"id\":\"fc-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Budget Controls\"}},{\"id\":\"fc-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Subcontractor Valuations\"}},{\"id\":\"fc-h2\",\"type\":\"header\",\"data\":{\"text\":\"Compliance\",\"level\":4}},{\"id\":\"fc-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stop Work Notices\"}},{\"id\":\"fc-h3\",\"type\":\"header\",\"data\":{\"text\":\"Monitoring\",\"level\":4}},{\"id\":\"fc-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Overdue Invoices\"},{\"card\":\"Average Project Burn Rate\"}]}},{\"id\":\"fc-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}},{\"id\":\"fc-h4\",\"type\":\"header\",\"data\":{\"text\":\"Configuration\",\"level\":4}},{\"id\":\"fc-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Maneef Settings\"}}]",
+    "creation": "2026-01-01 00:00:00.000000",
+    "custom_blocks": [],
+    "docstatus": 0,
+    "doctype": "Workspace",
+    "for_user": "",
+    "hide_custom": 0,
+    "icon": "es-line-money",
+    "indicator_color": "yellow",
+    "is_hidden": 0,
+    "label": "Financial Control",
+    "links": [
+      {"label": "Project Budget Control", "link_type": "DocType", "link_to": "Project Budget Control", "type": "Link"},
+      {"label": "Subcontractor Valuation", "link_type": "DocType", "link_to": "Subcontractor Valuation", "type": "Link"},
+      {"label": "Stop Work Notice", "link_type": "DocType", "link_to": "Stop Work Notice", "type": "Link"},
+      {"label": "Project Health Matrix", "link_type": "Report", "link_to": "Project Health Matrix", "type": "Link"},
+      {"label": "Maneef Settings", "link_type": "DocType", "link_to": "Maneef Settings", "type": "Link"}
+    ],
+    "module": "Financial Control",
+    "name": "financial-control-ws",
+    "number_cards": [
+      {"label": "Overdue Invoices", "number_card_name": "Overdue Invoices"},
+      {"label": "Average Project Burn Rate", "number_card_name": "Average Project Burn Rate"}
+    ],
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "quick_lists": [],
+    "roles": [
+      {"role": "System Manager"},
+      {"role": "Managing Partner"},
+      {"role": "Accounts User"},
+      {"role": "Project Manager"}
+    ],
+    "sequence_id": 5.0,
+    "shortcuts": [
+      {"color": "Blue", "label": "Project Budget Controls", "link_to": "Project Budget Control", "type": "DocType"},
+      {"color": "Green", "label": "Subcontractor Valuations", "link_to": "Subcontractor Valuation", "type": "DocType"},
+      {"color": "Red", "label": "Stop Work Notices", "link_to": "Stop Work Notice", "type": "DocType"},
+      {"color": "Light Blue", "label": "Project Health Matrix", "link_to": "Project Health Matrix", "type": "Report"},
+      {"color": "Grey", "label": "Maneef Settings", "link_to": "Maneef Settings", "type": "DocType"}
+    ],
+    "title": "Financial Control"
+  },
+  {
+    "charts": [],
+    "content": "[{\"id\":\"gm-h1\",\"type\":\"header\",\"data\":{\"text\":\"Strategic Oversight\",\"level\":4}},{\"id\":\"gm-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Active Projects\"},{\"card\":\"Projects Exceeding Burn %\"},{\"card\":\"Open Snags\"},{\"card\":\"Global Pending Approvals\"}]}},{\"id\":\"gm-h2\",\"type\":\"header\",\"data\":{\"text\":\"Approval Queue\",\"level\":4}},{\"id\":\"gm-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pending Deliverables\"}},{\"id\":\"gm-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pending Gate Reviews\"}},{\"id\":\"gm-h3\",\"type\":\"header\",\"data\":{\"text\":\"Commercial Gates\",\"level\":4}},{\"id\":\"gm-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Unapproved Charters\"}},{\"id\":\"gm-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}},{\"id\":\"gm-h4\",\"type\":\"header\",\"data\":{\"text\":\"Active Issues\",\"level\":4}},{\"id\":\"gm-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Active Snag Lists\"}}]",
+    "creation": "2026-01-01 00:00:00.000000",
+    "custom_blocks": [],
+    "docstatus": 0,
+    "doctype": "Workspace",
+    "for_user": "",
+    "hide_custom": 0,
+    "icon": "dashboard",
+    "indicator_color": "green",
+    "is_hidden": 0,
+    "label": "Maneef GM Command",
+    "links": [
+      {"label": "Project Deliverable", "link_type": "DocType", "link_to": "Project Deliverable", "type": "Link"},
+      {"label": "Project Charter", "link_type": "DocType", "link_to": "Project Charter", "type": "Link"},
+      {"label": "Gate Review", "link_type": "DocType", "link_to": "Gate Review", "type": "Link"},
+      {"label": "Snag List", "link_type": "DocType", "link_to": "Snag List", "type": "Link"},
+      {"label": "Project Health Matrix", "link_type": "Report", "link_to": "Project Health Matrix", "type": "Link"}
+    ],
+    "module": "Design Operations",
+    "name": "maneef-gm-command",
+    "number_cards": [
+      {"label": "Active Projects", "number_card_name": "Active Projects"},
+      {"label": "Projects Exceeding Burn %", "number_card_name": "Projects Exceeding Burn %"},
+      {"label": "Open Snags", "number_card_name": "Open Snags"},
+      {"label": "Global Pending Approvals", "number_card_name": "Global Pending Approvals"}
+    ],
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "quick_lists": [],
+    "roles": [
+      {"role": "Managing Partner"},
+      {"role": "System Manager"}
+    ],
+    "sequence_id": 0.5,
+    "shortcuts": [
+      {"color": "Blue", "label": "Pending Deliverables", "link_to": "Project Deliverable", "type": "DocType", "docview": "List", "filters": "[[\"workflow_state\",\"=\",\"GM Approval Pending\"]]"},
+      {"color": "Purple", "label": "Pending Gate Reviews", "link_to": "Gate Review", "type": "DocType", "docview": "List", "filters": "[[\"docstatus\",\"=\",\"0\"]]"},
+      {"color": "Red", "label": "Unapproved Charters", "link_to": "Project Charter", "type": "DocType", "docview": "List", "filters": "[[\"docstatus\",\"=\",\"0\"]]"},
+      {"color": "Green", "label": "Project Health Matrix", "link_to": "Project Health Matrix", "type": "Report"},
+      {"color": "Orange", "label": "Active Snag Lists", "link_to": "Snag List", "type": "DocType", "docview": "List", "filters": "[[\"status\",\"=\",\"Active\"]]"}
+    ],
+    "title": "GM Command Center"
   }
 ]
