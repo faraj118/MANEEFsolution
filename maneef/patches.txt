@@ -6,3 +6,4 @@
 # Patches added in this section will be executed after doctypes are migrated
 maneef.patches.post_model_sync.add_project_charter_indexes
 maneef.patches.post_model_sync.cleanup_duplicate_workspaces
+maneef.patches.post_model_sync.rename_workspace_names_to_titles
