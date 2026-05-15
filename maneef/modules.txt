@@ -2,3 +2,4 @@ crm_commercial
 design_operations
 construction_control
 financial_control
+hr_integration

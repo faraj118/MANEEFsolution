@@ -1,0 +1,142 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"d-h1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Drawing Register</span>\",\"col\":12}},{\"id\":\"d-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Drawings\",\"col\":3}},{\"id\":\"d-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transmittals\",\"col\":3}},{\"id\":\"d-h2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Project Delivery</span>\",\"col\":12}},{\"id\":\"d-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Deliverables\",\"col\":3}},{\"id\":\"d-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate 2 Reviews\",\"col\":3}},{\"id\":\"d-h3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Monitoring</span>\",\"col\":12}},{\"id\":\"d-h4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Setup &amp; Reports</span>\",\"col\":12}},{\"id\":\"d-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Offices\",\"col\":3}},{\"id\":\"d-s6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\",\"col\":3}}]",
+ "creation": "2026-01-01 00:00:00",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "es-line-pen-ruler",
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "Design & Documentation",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Drawing",
+   "link_count": 0,
+   "link_to": "Drawing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transmittal",
+   "link_count": 0,
+   "link_to": "Transmittal",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Deliverable",
+   "link_count": 0,
+   "link_to": "Project Deliverable",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gate Review",
+   "link_count": 0,
+   "link_to": "Gate Review",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "AEC Production Office",
+   "link_count": 0,
+   "link_to": "AEC Production Office",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Health Matrix",
+   "link_count": 0,
+   "link_to": "Project Health Matrix",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Project",
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-05-15 16:23:58.252811",
+ "modified_by": "farajadil1@gmail.com",
+ "module": "Design Operations",
+ "name": "Design & Documentation",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Managing Partner"
+  },
+  {
+   "role": "Project Manager"
+  },
+  {
+   "role": "Projects User"
+  }
+ ],
+ "sequence_id": 3.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "label": "Drawings",
+   "link_to": "Drawing",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "label": "Transmittals",
+   "link_to": "Transmittal",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "label": "Project Deliverables",
+   "link_to": "Project Deliverable",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "label": "Gate 2 Reviews",
+   "link_to": "Gate Review",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "label": "Production Offices",
+   "link_to": "AEC Production Office",
+   "type": "DocType"
+  },
+  {
+   "color": "Light Blue",
+   "label": "Project Health Matrix",
+   "link_to": "Project Health Matrix",
+   "report_ref_doctype": "Project",
+   "type": "Report"
+  }
+ ],
+ "title": "Design & Documentation"
+}

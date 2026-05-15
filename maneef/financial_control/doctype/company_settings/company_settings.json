@@ -1,6 +1,6 @@
 {
     "doctype": "DocType",
-    "name": "Maneef Settings",
+    "name": "Company Settings",
     "module": "Financial Control",
     "issingle": 1,
     "custom": 0,
@@ -71,6 +71,13 @@
             "label": "Snag Resolution SLA (Days)",
             "default": "14",
             "description": "Days after which an unresolved Critical snag blocks payment"
+        },
+        {
+            "fieldname": "burn_alert_cooldown_hours",
+            "fieldtype": "Int",
+            "label": "Burn Alert Cooldown (Hours)",
+            "default": "24",
+            "description": "Minimum hours between repeat burn-rate alert emails for the same project"
         },
         {
             "fieldname": "gate_review_required",

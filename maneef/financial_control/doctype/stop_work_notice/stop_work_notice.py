@@ -28,4 +28,5 @@ class StopWorkNotice(Document):
             "lifted_date": frappe.utils.now()
         })
         frappe.db.set_value("Project", self.project, "custom_stop_work_active", 0)
+        self.reload()
         frappe.msgprint(_("Stop-Work Notice lifted. Project deliverables are unblocked."), indicator="green")

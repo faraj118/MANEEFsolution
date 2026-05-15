@@ -1,4 +1,4 @@
-"""Product utility for protecting deletions across DocTypes."""
+"""Utility for protecting deletions across DocTypes."""
 
 import frappe
 

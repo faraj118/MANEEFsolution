@@ -9,7 +9,7 @@ app_license = "mit"
 # ------------------
 
 # required_apps = []
-required_apps = ["erpnext"]
+required_apps = ["erpnext", "hrms"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -99,6 +99,7 @@ doctype_js = {
 after_install = ["maneef.setup.run_post_migrate_setup"]
 before_uninstall = "maneef.setup.before_uninstall"
 after_migrate = ["maneef.setup.run_post_migrate_setup"]
+after_app_install = "maneef.setup.after_app_install"
 
 # Fixtures
 # --------
@@ -170,6 +171,18 @@ doc_events = {
     "Company": {
         "on_update": "maneef.setup.setup_all_companies_coa"
     },
+    # ── HRMS Integration ──────────────────────────────────────
+    "Employee": {
+        "after_insert": "maneef.hr_integration.employee_hooks.after_insert",
+        "on_update": "maneef.hr_integration.employee_hooks.on_update",
+    },
+    "Salary Slip": {
+        "on_submit": "maneef.hr_integration.payroll_hooks.on_submit",
+    },
+    "Leave Application": {
+        "on_update": "maneef.hr_integration.leave_hooks.on_update",
+    },
+    # ─────────────────────────────────────────────────────────
     "Opportunity": {
         "validate": "maneef.crm_commercial.opportunity_hooks.validate",
         "on_update": "maneef.crm_commercial.opportunity_hooks.on_update"

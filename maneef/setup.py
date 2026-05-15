@@ -148,33 +148,34 @@ def setup_all_companies_coa(doc=None, method=None):
             frappe.log_error(title="AEC COA Auto-Injection Failed", message=f"Company {company.name}: {str(e)}")
 
 def run_post_migrate_setup():
-    # Main entry point for AEC system initialization
-    # All Custom Fields, Workflows, and Property Setters are now 
-    # handled via standard Frappe Fixtures (JSON) in maneef/fixtures/
     create_default_roles()
     create_default_offices()
     create_project_type_master()
     setup_all_companies_coa()
-    
     set_naming_series()
     create_number_cards()
-    frappe.logger().info("Setup complete: AEC Roles, Offices, Naming, and Cards (Workflows/Fields moved to Fixtures).")
+    _setup_hrms_masters()
+    frappe.logger().info("Maneef setup complete.")
     frappe.db.commit()
 
+
+def _setup_hrms_masters():
+    """Run HRMS master data setup if HRMS is installed."""
+    if "hrms" not in frappe.get_installed_apps():
+        return
+    try:
+        from maneef.hr_integration.hr_setup import setup_hr_masters
+        setup_hr_masters()
+    except Exception as e:
+        frappe.log_error(str(e), "Maneef HRMS Master Setup Failed")
+
+
+def after_app_install(app_name):
+    """Called when another app is installed alongside maneef."""
+    if app_name == "hrms":
+        _setup_hrms_masters()
+
 def before_uninstall():
-    # Remove Custom Fields added to ERPNext DocTypes
-    custom_fields = frappe.get_list(
-        "Custom Field",
-        filters={"dt": ["not in", frappe.get_list(
-            "DocType",
-            filters={"module": "Maneef"},
-            pluck="name"
-        )]},
-        pluck="name"
-    )
-    # Read the actual custom field names from fixtures/custom_field.json
-    # and delete only those — do not delete custom fields from other apps
-    import json, os
     fixtures_path = frappe.get_app_path("maneef", "fixtures", "custom_field.json")
     if os.path.exists(fixtures_path):
         with open(fixtures_path) as f:

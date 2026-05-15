@@ -1,0 +1,114 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"ov-h1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Dashboard &amp; Analytics</span>\",\"col\":12}},{\"id\":\"ov-h2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Quick Access</span>\",\"col\":12}},{\"id\":\"ov-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Risk Assessments\",\"col\":3}},{\"id\":\"ov-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Charters\",\"col\":3}},{\"id\":\"ov-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Drawings\",\"col\":3}},{\"id\":\"ov-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Snag Lists\",\"col\":3}},{\"id\":\"ov-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\",\"col\":3}}]",
+ "creation": "2026-04-07 00:00:00",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "building",
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "AEC Architecture Square",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Risk Assessment",
+   "link_count": 0,
+   "link_to": "Risk Assessment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Charter",
+   "link_count": 0,
+   "link_to": "Project Charter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Drawing",
+   "link_count": 0,
+   "link_to": "Drawing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Snag List",
+   "link_count": 0,
+   "link_to": "Snag List",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Health Matrix",
+   "link_count": 0,
+   "link_to": "Project Health Matrix",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Project",
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-05-15 15:59:51.077106",
+ "modified_by": "farajadil1@gmail.com",
+ "module": "Crm Commercial",
+ "name": "AEC Architecture Square",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Red",
+   "label": "Risk Assessments",
+   "link_to": "Risk Assessment",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "label": "Project Charters",
+   "link_to": "Project Charter",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "label": "Drawings",
+   "link_to": "Drawing",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "label": "Snag Lists",
+   "link_to": "Snag List",
+   "type": "DocType"
+  },
+  {
+   "color": "Light Blue",
+   "label": "Project Health Matrix",
+   "link_to": "Project Health Matrix",
+   "report_ref_doctype": "Project",
+   "type": "Report"
+  }
+ ],
+ "title": "AEC Architecture Square"
+}

@@ -1,0 +1,121 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"cb-h1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pre-Qualification &amp; Risk</span>\",\"col\":12}},{\"id\":\"cb-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Risk Assessments\",\"col\":3}},{\"id\":\"cb-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Commercial Risk Reviews\",\"col\":3}},{\"id\":\"cb-h2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Contract Signing \u2014 Gate 1</span>\",\"col\":12}},{\"id\":\"cb-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Charters\",\"col\":3}},{\"id\":\"cb-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate 1 Reviews\",\"col\":3}},{\"id\":\"cb-h3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Project Changes</span>\",\"col\":12}},{\"id\":\"cb-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Variation Orders\",\"col\":3}},{\"id\":\"cb-h4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pipeline Overview</span>\",\"col\":12}}]",
+ "creation": "2026-01-01 00:00:00",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "es-line-handshake",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Commercial & Bidding",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Risk Assessment",
+   "link_count": 0,
+   "link_to": "Risk Assessment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Commercial Risk Review",
+   "link_count": 0,
+   "link_to": "Commercial Risk Review",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Charter",
+   "link_count": 0,
+   "link_to": "Project Charter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Variation Order",
+   "link_count": 0,
+   "link_to": "Project Variation Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gate Review",
+   "link_count": 0,
+   "link_to": "Gate Review",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-05-15 16:00:30.439689",
+ "modified_by": "farajadil1@gmail.com",
+ "module": "Crm Commercial",
+ "name": "Commercial & Bidding",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Managing Partner"
+  },
+  {
+   "role": "Project Manager"
+  }
+ ],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "color": "Red",
+   "label": "Risk Assessments",
+   "link_to": "Risk Assessment",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "label": "Commercial Risk Reviews",
+   "link_to": "Commercial Risk Review",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "label": "Project Charters",
+   "link_to": "Project Charter",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "label": "Gate 1 Reviews",
+   "link_to": "Gate Review",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "label": "Variation Orders",
+   "link_to": "Project Variation Order",
+   "type": "DocType"
+  }
+ ],
+ "title": "Commercial & Bidding"
+}

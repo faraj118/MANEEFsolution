@@ -2,6 +2,15 @@ frappe.ui.form.on("Project", {
     refresh: function(frm) {
         if (frm.doc.__islocal) return;
 
+        // Gate Review button — opens filtered list for this project instead of blank new form
+        frm.add_custom_button(__("Gate Reviews"), function() {
+            frappe.set_route("List", "Gate Review", { project: frm.doc.name });
+        }, __("View"));
+
+        frm.add_custom_button(__("New Gate Review"), function() {
+            frappe.new_doc("Gate Review", { project: frm.doc.name });
+        }, __("Create"));
+
         let html = '<div style="padding:12px 0;">';
 
         // Gate Status
@@ -42,6 +51,7 @@ frappe.ui.form.on("Project", {
             html += '<div style="margin-bottom:6px;"><a href="/app/sales-order/' + frm.doc.sales_order + '" style="font-size:12px;color:#60a5fa;text-decoration:none;">Sales Order: ' + frm.doc.sales_order + ' &rarr;</a></div>';
         }
 
+        html += '<div style="margin-bottom:6px;"><a href="#" style="font-size:12px;color:#60a5fa;text-decoration:none;" onclick="frappe.set_route(\'List\', \'Gate Review\', {\'project\': \'' + frm.doc.name + '\'});return false;">Gate Reviews &rarr;</a></div>';
         html += '<div style="margin-bottom:6px;"><a href="#" style="font-size:12px;color:#60a5fa;text-decoration:none;" onclick="frappe.set_route(\'List\', \'Project BOQ\', {\'project\': \'' + frm.doc.name + '\'});return false;">BOQs &rarr;</a></div>';
         html += '<div style="margin-bottom:6px;"><a href="#" style="font-size:12px;color:#60a5fa;text-decoration:none;" onclick="frappe.set_route(\'List\', \'Site Visit Report\', {\'project\': \'' + frm.doc.name + '\'});return false;">Site Visit Reports &rarr;</a></div>';
         html += '<div style="margin-bottom:6px;"><a href="#" style="font-size:12px;color:#60a5fa;text-decoration:none;" onclick="frappe.set_route(\'List\', \'RFI Record\', {\'project\': \'' + frm.doc.name + '\'});return false;">RFIs &rarr;</a></div>';

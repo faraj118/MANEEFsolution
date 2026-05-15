@@ -4,7 +4,8 @@ def get_data():
     return {
         'fieldname': 'custom_project_charter',
         'non_standard_fieldnames': {
-            'Project': 'project_charter'
+            'Project': 'project_charter',
+            'Risk Assessment': 'project_charter',
         },
         'transactions': [
             {
@@ -14,6 +15,10 @@ def get_data():
             {
                 'label': _('Operations'),
                 'items': ['Project']
+            },
+            {
+                'label': _('Risk & Assessment'),
+                'items': ['Risk Assessment']
             }
         ]
     }

@@ -533,7 +533,7 @@
   },
   {
     "charts": [],
-    "content": "[{\"id\":\"fc-h1\",\"type\":\"header\",\"data\":{\"text\":\"Budget & Cost Control\",\"level\":4}},{\"id\":\"fc-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Budget Controls\"}},{\"id\":\"fc-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Subcontractor Valuations\"}},{\"id\":\"fc-h2\",\"type\":\"header\",\"data\":{\"text\":\"Compliance\",\"level\":4}},{\"id\":\"fc-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stop Work Notices\"}},{\"id\":\"fc-h3\",\"type\":\"header\",\"data\":{\"text\":\"Monitoring\",\"level\":4}},{\"id\":\"fc-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Overdue Invoices\"},{\"card\":\"Average Project Burn Rate\"}]}},{\"id\":\"fc-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}},{\"id\":\"fc-h4\",\"type\":\"header\",\"data\":{\"text\":\"Configuration\",\"level\":4}},{\"id\":\"fc-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Maneef Settings\"}}]",
+    "content": "[{\"id\":\"fc-h1\",\"type\":\"header\",\"data\":{\"text\":\"Budget & Cost Control\",\"level\":4}},{\"id\":\"fc-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Budget Controls\"}},{\"id\":\"fc-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Subcontractor Valuations\"}},{\"id\":\"fc-h2\",\"type\":\"header\",\"data\":{\"text\":\"Compliance\",\"level\":4}},{\"id\":\"fc-s3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stop Work Notices\"}},{\"id\":\"fc-h3\",\"type\":\"header\",\"data\":{\"text\":\"Monitoring\",\"level\":4}},{\"id\":\"fc-c1\",\"type\":\"card\",\"data\":{\"cards\":[{\"card\":\"Overdue Invoices\"},{\"card\":\"Average Project Burn Rate\"}]}},{\"id\":\"fc-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Health Matrix\"}},{\"id\":\"fc-h4\",\"type\":\"header\",\"data\":{\"text\":\"Configuration\",\"level\":4}},{\"id\":\"fc-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Company Settings\"}}]",
     "creation": "2026-01-01 00:00:00.000000",
     "custom_blocks": [],
     "docstatus": 0,
@@ -570,9 +570,9 @@
         "type": "Link"
       },
       {
-        "label": "Maneef Settings",
+        "label": "Company Settings",
         "link_type": "DocType",
-        "link_to": "Maneef Settings",
+        "link_to": "Company Settings",
         "type": "Link"
       }
     ],
@@ -634,8 +634,8 @@
       },
       {
         "color": "Grey",
-        "label": "Maneef Settings",
-        "link_to": "Maneef Settings",
+        "label": "Company Settings",
+        "link_to": "Company Settings",
         "type": "DocType"
       }
     ],

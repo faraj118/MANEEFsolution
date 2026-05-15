@@ -14,11 +14,15 @@ class ProjectCharter(Document):
         self.validate_gate_status_change()
         self.calculate_risk_totals()
         self.sync_risk_assessment()
-        # NEW: Ensure Risk Assessment is updated when child tables change
         self.sync_risk_assessment_to_ra()
 
     def sync_risk_assessment_to_ra(self):
         """Sync Charter risk child tables to the linked Risk Assessment."""
+        # Guard against circular saves: if RA.save() re-triggers Charter.validate(),
+        # skip the push on re-entry to break the loop while keeping all other validations.
+        if frappe.flags.get("in_charter_risk_sync"):
+            return
+
         if not self.linked_risk_assessment:
             return
 
@@ -32,10 +36,18 @@ class ProjectCharter(Document):
         for ra_field, charter_field in child_map:
             charter_rows = self.get(charter_field, [])
             if charter_rows:
-                ra.set(ra_field, [row.as_dict() for row in charter_rows])
+                ra.set(ra_field, [
+                    {k: v for k, v in row.as_dict().items()
+                     if k not in ("name", "parent", "parenttype", "parentfield", "idx")}
+                    for row in charter_rows
+                ])
 
-        ra.calculate_risk_totals()
-        ra.save(ignore_permissions=True)
+        frappe.flags.in_charter_risk_sync = True
+        try:
+            ra.calculate_risk_totals()
+            ra.save(ignore_permissions=True)
+        finally:
+            frappe.flags.in_charter_risk_sync = False
 
     def sync_risk_assessment(self):
         """Sync risk ratings from standalone Risk Assessment back to Charter."""

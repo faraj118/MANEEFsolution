@@ -5,7 +5,7 @@ from frappe import _
 class SubcontractorValuation(Document):
     def before_insert(self):
         if not self.retention_pct:
-            settings = frappe.get_single("Maneef Settings")
+            settings = frappe.get_single("Company Settings")
             self.retention_pct = settings.default_retention_pct or 10
 
     def validate(self):

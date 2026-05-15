@@ -45,6 +45,13 @@
             "options": "SD Sketch\nSD Drawing\nDD Drawing\nCD Drawing\nBOQ\nSpecification\nBIM Model\nReport\nPresentation\nOther"
         },
         {
+            "fieldname": "design_stage",
+            "fieldtype": "Select",
+            "label": "Design Stage",
+            "options": "\nConcept\nSchematic\nDetailed\nTender\nIFC",
+            "description": "Links this deliverable to a Sales Invoice design stage for Revenue Lock (BRD 9.1)"
+        },
+        {
             "fieldname": "discipline",
             "fieldtype": "Select",
             "label": "Discipline",

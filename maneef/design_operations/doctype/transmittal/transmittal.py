@@ -15,7 +15,7 @@ class Transmittal(Document):
 
     def on_update_after_submit(self):
         if frappe.session.user != "Administrator" and "System Manager" not in frappe.get_roles(frappe.session.user):
-            frappe.throw(_(f"Transmittal {self.name} is permanently locked. No modifications are permitted after submission. This applies to all users and the REST API."))
+            frappe.throw(_("Transmittal {0} is permanently locked. No modifications are permitted after submission.").format(self.name))
 
     def on_cancel(self):
         frappe.throw(_("Transmittals are permanent legal records and cannot be cancelled."))

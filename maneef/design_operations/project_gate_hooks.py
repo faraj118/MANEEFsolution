@@ -19,7 +19,7 @@ def _require_gate_review(doc):
     # Allow if triggered programmatically from GateReview.on_submit
     if frappe.flags.get("via_gate_review"):
         return
-    settings = frappe.get_single("Maneef Settings")
+    settings = frappe.get_single("Company Settings")
     if not settings.gate_review_required:
         return
     approved = frappe.db.exists(
@@ -60,8 +60,8 @@ def _validate_gate_1_criteria(doc):
     if not charter:
         frappe.throw(_("Cannot advance to Gate 2. No Project Charter linked."))
 
-    if charter.go_no_go_decision != "GO":
-        frappe.throw(_("Cannot advance to Gate 2. GO/NO-GO decision is not GO."))
+    if charter.go_no_go_decision != "Go":
+        frappe.throw(_("Cannot advance to Gate 2. GO/NO-GO decision must be set to 'Go'."))
 
     if charter.linked_risk_assessment:
         ra = frappe.get_doc("Risk Assessment", charter.linked_risk_assessment)

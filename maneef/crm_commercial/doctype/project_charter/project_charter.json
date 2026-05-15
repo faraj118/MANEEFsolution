@@ -186,6 +186,24 @@
       "label": "Risk Assessment"
     },
     {
+      "fieldname": "custom_payment_risk_items",
+      "fieldtype": "Table",
+      "label": "Payment Risk Items",
+      "options": "Payment Risk Scan Item"
+    },
+    {
+      "fieldname": "custom_commercial_risk_items",
+      "fieldtype": "Table",
+      "label": "Commercial Risk Items",
+      "options": "Commercial Risk Item"
+    },
+    {
+      "fieldname": "custom_duration_risk_items",
+      "fieldtype": "Table",
+      "label": "Duration Risk Items",
+      "options": "Duration Risk Item"
+    },
+    {
       "fieldname": "linked_risk_assessment",
       "fieldtype": "Link",
       "label": "Linked Risk Assessment",

@@ -1,0 +1,171 @@
+{
+ "charts": [
+  {
+   "chart_name": "Projects by Gate Status",
+   "label": "GATE STATUS"
+  }
+ ],
+ "content": "[{\"id\":\"cc-h1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Daily Operations</span>\",\"col\":12}},{\"id\":\"cc-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Progress Reports\",\"col\":3}},{\"id\":\"cc-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site Visit Reports\",\"col\":3}},{\"id\":\"cc-h2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Quality &amp; Snagging</span>\",\"col\":12}},{\"id\":\"ic00DYsbYO\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Quality inspection\",\"col\":6}},{\"id\":\"iVcLCn16gW\",\"type\":\"card\",\"data\":{\"card_name\":\"QUALITY inspection\",\"col\":4}},{\"id\":\"cc-h3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">BOQ &amp; Subcontractors</span>\",\"col\":12}},{\"id\":\"cc-s4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project BOQs\",\"col\":3}},{\"id\":\"cc-s5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Subcontractor Valuations\",\"col\":3}},{\"id\":\"cc-h4\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Issues &amp; Compliance</span>\",\"col\":12}},{\"id\":\"cc-s6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"RFI Records\",\"col\":3}},{\"id\":\"cc-s7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stop Work Notices\",\"col\":3}},{\"id\":\"cc-h5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Gate 3 \u2014 Closeout</span>\",\"col\":12}},{\"id\":\"cc-s8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gate 3 Reviews\",\"col\":3}},{\"id\":\"sZT3Sw7sKJ\",\"type\":\"chart\",\"data\":{\"chart_name\":\"GATE STATUS\",\"col\":12}}]",
+ "creation": "2026-01-01 00:00:00",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "es-line-building",
+ "idx": 0,
+ "indicator_color": "orange",
+ "is_hidden": 0,
+ "label": "Construction Control",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Progress Report",
+   "link_count": 0,
+   "link_to": "Daily Progress Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Site Visit Report",
+   "link_count": 0,
+   "link_to": "Site Visit Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Snag List",
+   "link_count": 0,
+   "link_to": "Snag List",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project BOQ",
+   "link_count": 0,
+   "link_to": "Project BOQ",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Subcontractor Valuation",
+   "link_count": 0,
+   "link_to": "Subcontractor Valuation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "RFI Record",
+   "link_count": 0,
+   "link_to": "RFI Record",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stop Work Notice",
+   "link_count": 0,
+   "link_to": "Stop Work Notice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gate Review",
+   "link_count": 0,
+   "link_to": "Gate Review",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-05-15 17:17:10.926806",
+ "modified_by": "farajadil1@gmail.com",
+ "module": "Construction Control",
+ "name": "Construction Control",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Managing Partner"
+  },
+  {
+   "role": "Project Manager"
+  },
+  {
+   "role": "Projects User"
+  }
+ ],
+ "sequence_id": 4.0,
+ "shortcuts": [
+  {
+   "color": "Orange",
+   "label": "Daily Progress Reports",
+   "link_to": "Daily Progress Report",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "label": "Site Visit Reports",
+   "link_to": "Site Visit Report",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "label": "Project BOQs",
+   "link_to": "Project BOQ",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "label": "Subcontractor Valuations",
+   "link_to": "Subcontractor Valuation",
+   "type": "DocType"
+  },
+  {
+   "color": "Pink",
+   "label": "RFI Records",
+   "link_to": "RFI Record",
+   "type": "DocType"
+  },
+  {
+   "color": "Red",
+   "label": "Stop Work Notices",
+   "link_to": "Stop Work Notice",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "label": "Gate 3 Reviews",
+   "link_to": "Gate Review",
+   "type": "DocType"
+  }
+ ],
+ "title": "Construction Control"
+}
