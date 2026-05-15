@@ -147,6 +147,64 @@ def setup_all_companies_coa(doc=None, method=None):
         except Exception as e:
             frappe.log_error(title="AEC COA Auto-Injection Failed", message=f"Company {company.name}: {str(e)}")
 
+def seed_arabic_translations() -> None:
+    """Seed core-term Arabic overrides into the Translation DocType.
+
+    Frappe applies Translation records last in the merge chain, so they
+    always win over app CSV files. This covers Frappe-core strings that
+    cannot be overridden from within the app's ar.csv alone (e.g. Submit).
+    """
+    overrides = [
+        # Core workflow actions
+        ("Submit",        "اعتماد",        ""),
+        ("Cancel",        "إلغاء",         ""),
+        ("Amend",         "تعديل",         ""),
+        ("Save",          "حفظ",           ""),
+        ("Delete",        "حذف",           ""),
+        ("Edit",          "تعديل",         ""),
+        ("Submitted",     "معتمد",         ""),
+        ("Cancelled",     "ملغى",          ""),
+        # Document status labels
+        ("Draft",         "مسودة",         ""),
+        ("In Progress",   "قيد التنفيذ",   ""),
+        ("Completed",     "مكتمل",         ""),
+        ("Complete",      "مكتمل",         ""),
+        ("Open",          "مفتوح",         ""),
+        ("Closed",        "مغلق",          ""),
+        ("Pending",       "في الانتظار",   ""),
+        ("Not Started",   "لم يبدأ",       ""),
+        ("Resolved",      "محلول",         ""),
+        # Financial
+        ("Amount",        "مبلغ",          ""),
+        ("Total Amount",  "المبلغ الإجمالي",""),
+        ("Description",   "الوصف",         ""),
+        ("Purpose",       "الغرض",         ""),
+        ("Raised By",     "مقدم من",       ""),
+        ("Score",         "الدرجة",        ""),
+        # List / common UI
+        ("Add Row",       "إضافة صف",      ""),
+        ("Assign To",     "إسناد إلى",     ""),
+        ("Attachments",   "المرفقات",      ""),
+        ("Share",         "مشاركة",        ""),
+    ]
+    lang = "ar"
+    for source, translation, context in overrides:
+        filters = {"language": lang, "source_text": source}
+        if context:
+            filters["context"] = context
+        existing = frappe.db.get_value("Translation", filters, "name")
+        if existing:
+            frappe.db.set_value("Translation", existing, "translated_text", translation)
+        else:
+            frappe.get_doc({
+                "doctype": "Translation",
+                "language": lang,
+                "source_text": source,
+                "translated_text": translation,
+                "context": context,
+            }).insert(ignore_permissions=True)
+
+
 def run_post_migrate_setup():
     create_default_roles()
     create_default_offices()
@@ -155,6 +213,7 @@ def run_post_migrate_setup():
     set_naming_series()
     create_number_cards()
     _setup_hrms_masters()
+    seed_arabic_translations()
     frappe.logger().info("Maneef setup complete.")
     frappe.db.commit()
 

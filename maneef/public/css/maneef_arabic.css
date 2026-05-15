@@ -1,0 +1,231 @@
+/* ============================================================
+   Maneef AEC — Arabic Typography Layer
+   Font: IBM Plex Sans Arabic (Google Fonts)
+   Strategy: scope every rule to [dir="rtl"] so English sessions
+   are completely unaffected; use CSS logical properties so the
+   layout mirrors automatically without hardcoded left/right.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+/* ── Custom properties ───────────────────────────────────────── */
+:root {
+  --maneef-font-ar: 'IBM Plex Sans Arabic', 'Cairo', 'Segoe UI', system-ui, sans-serif;
+  --maneef-weight-regular: 400;
+  --maneef-weight-medium:  500;
+  --maneef-weight-semibold: 600;
+  --maneef-weight-bold:    700;
+  --maneef-lh-body:        1.7;
+  --maneef-lh-heading:     1.5;
+}
+
+/* ── Base RTL reset ──────────────────────────────────────────── */
+[dir="rtl"] {
+  font-family: var(--maneef-font-ar);
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Frappe Desk shell ───────────────────────────────────────── */
+[dir="rtl"] .frappe-app,
+[dir="rtl"] body.desk,
+[dir="rtl"] .page-container,
+[dir="rtl"] .main-section {
+  font-family: var(--maneef-font-ar);
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+[dir="rtl"] .desk-sidebar,
+[dir="rtl"] .desk-sidebar-item,
+[dir="rtl"] .sidebar-section-title,
+[dir="rtl"] .standard-sidebar-item span {
+  font-family: var(--maneef-font-ar);
+  font-weight: var(--maneef-weight-medium);
+}
+
+/* Logical: sidebar sits on the inline-start edge in both LTR/RTL */
+[dir="rtl"] .layout-side-section {
+  padding-inline-end: var(--padding-sm, 8px);
+  padding-inline-start: 0;
+}
+
+/* ── Form layout ─────────────────────────────────────────────── */
+[dir="rtl"] .form-page,
+[dir="rtl"] .form-section,
+[dir="rtl"] .form-column {
+  font-family: var(--maneef-font-ar);
+}
+
+[dir="rtl"] .form-column + .form-column {
+  padding-inline-start: var(--padding-md, 16px);
+  padding-inline-end: 0;
+}
+
+/* Section headings */
+[dir="rtl"] .section-head,
+[dir="rtl"] .form-section-heading {
+  font-family: var(--maneef-font-ar);
+  font-size: 0.75rem;
+  font-weight: var(--maneef-weight-semibold);
+  letter-spacing: 0.02em;
+  line-height: var(--maneef-lh-heading);
+  text-transform: none;
+}
+
+/* Field labels */
+[dir="rtl"] .control-label,
+[dir="rtl"] .frappe-control label,
+[dir="rtl"] .grid-heading-row .col-header {
+  font-family: var(--maneef-font-ar);
+  font-size: 0.72rem;
+  font-weight: var(--maneef-weight-medium);
+  line-height: var(--maneef-lh-body);
+  text-align: start;
+}
+
+/* Input, textarea, select */
+[dir="rtl"] input:not([type="checkbox"]):not([type="radio"]),
+[dir="rtl"] select,
+[dir="rtl"] textarea,
+[dir="rtl"] .form-control,
+[dir="rtl"] .input-with-feedback {
+  font-family: var(--maneef-font-ar);
+  font-size: 0.875rem;
+  font-weight: var(--maneef-weight-regular);
+  text-align: start;
+  direction: rtl;
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+}
+
+/* Read-only values */
+[dir="rtl"] .like-disabled-input,
+[dir="rtl"] .control-value {
+  font-family: var(--maneef-font-ar);
+  text-align: start;
+}
+
+/* ── Page title & breadcrumbs ────────────────────────────────── */
+[dir="rtl"] .page-title,
+[dir="rtl"] .title-text,
+[dir="rtl"] .page-head-content .title-area {
+  font-family: var(--maneef-font-ar);
+  font-size: 1.15rem;
+  font-weight: var(--maneef-weight-semibold);
+  line-height: var(--maneef-lh-heading);
+}
+
+[dir="rtl"] .breadcrumb-area,
+[dir="rtl"] .breadcrumb .breadcrumb-item,
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  font-family: var(--maneef-font-ar);
+  font-size: 0.8rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+[dir="rtl"] .btn,
+[dir="rtl"] .btn-default,
+[dir="rtl"] .btn-primary,
+[dir="rtl"] .btn-secondary {
+  font-family: var(--maneef-font-ar);
+  font-weight: var(--maneef-weight-medium);
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .btn .icon + span,
+[dir="rtl"] .btn span + .icon {
+  margin-inline-start: 6px;
+  margin-inline-end: 0;
+}
+
+/* ── Modals & dialogs ────────────────────────────────────────── */
+[dir="rtl"] .modal-title,
+[dir="rtl"] .modal-header h4 {
+  font-family: var(--maneef-font-ar);
+  font-size: 1rem;
+  font-weight: var(--maneef-weight-semibold);
+}
+
+[dir="rtl"] .modal-body,
+[dir="rtl"] .modal-footer {
+  font-family: var(--maneef-font-ar);
+  font-size: 0.875rem;
+}
+
+/* ── List view ───────────────────────────────────────────────── */
+[dir="rtl"] .list-row-col,
+[dir="rtl"] .list-subject,
+[dir="rtl"] .list-tag,
+[dir="rtl"] .result-list-item {
+  font-family: var(--maneef-font-ar);
+}
+
+[dir="rtl"] .list-row-head .col-header {
+  font-family: var(--maneef-font-ar);
+  font-weight: var(--maneef-weight-semibold);
+  text-align: start;
+}
+
+/* ── Data tables (child tables / grid) ───────────────────────── */
+[dir="rtl"] .data-pill,
+[dir="rtl"] .grid-body .row-check,
+[dir="rtl"] .grid-row .btn,
+[dir="rtl"] .in-grid-edit {
+  font-family: var(--maneef-font-ar);
+}
+
+/* ── Alerts, toasts, help text ───────────────────────────────── */
+[dir="rtl"] .alert,
+[dir="rtl"] .msgprint,
+[dir="rtl"] .help-box,
+[dir="rtl"] .desk-alert {
+  font-family: var(--maneef-font-ar);
+  font-size: 0.85rem;
+  line-height: var(--maneef-lh-body);
+  text-align: start;
+}
+
+/* ── Indicator badges ────────────────────────────────────────── */
+[dir="rtl"] .indicator-pill,
+[dir="rtl"] .badge {
+  font-family: var(--maneef-font-ar);
+  font-size: 0.72rem;
+  font-weight: var(--maneef-weight-medium);
+}
+
+/* ── Dashboard / Number cards ────────────────────────────────── */
+[dir="rtl"] .number-card-container .card-body,
+[dir="rtl"] .number-card .card-title,
+[dir="rtl"] .number-card .card-value {
+  font-family: var(--maneef-font-ar);
+}
+
+[dir="rtl"] .number-card .card-value {
+  font-size: 1.75rem;
+  font-weight: var(--maneef-weight-bold);
+}
+
+/* ── Workspace ───────────────────────────────────────────────── */
+[dir="rtl"] .workspace-section-header,
+[dir="rtl"] .workspace-shortcut-item .shortcut-label {
+  font-family: var(--maneef-font-ar);
+  font-weight: var(--maneef-weight-medium);
+}
+
+/* ── Print format overrides ──────────────────────────────────── */
+@media print {
+  [dir="rtl"] * {
+    font-family: var(--maneef-font-ar) !important;
+  }
+
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 {
+    font-weight: var(--maneef-weight-semibold);
+    line-height: var(--maneef-lh-heading);
+  }
+
+  [dir="rtl"] p, [dir="rtl"] td, [dir="rtl"] th {
+    font-size: 9pt;
+    line-height: 1.6;
+  }
+}

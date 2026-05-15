@@ -26,7 +26,7 @@ required_apps = ["erpnext", "hrms"]
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/maneef/css/maneef.css"
+app_include_css = "/assets/maneef/css/maneef_arabic.css"
 # app_include_js = "/assets/maneef/js/maneef.js"
 
 # include js, css files in header of web template
